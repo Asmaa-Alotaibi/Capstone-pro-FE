@@ -85,6 +85,48 @@ const Signup = ({ navigation }) => {
             onChangeText={(text) => setUser({ ...user, city: text })}
           />
         </View>
+        <View>
+          <DropDownPicker
+            items={[
+              { label: "Abdullah Al Salem", value: "abdullah al salem" },
+              { label: "Adailiya", value: "adailiya" },
+              { label: "Bneid Al Qar", value: "bneid al qar" },
+              { label: "Faiha", value: "faiha" },
+              { label: "Kaifan", value: "kaifan" },
+              { label: "Khaldiya", value: "khaldiya" },
+              { label: "Kuwait City", value: "kuwait city" },
+              { label: "Mansouriya", value: "mansouriya" },
+              { label: "Mirqab", value: "mirqab" },
+              { label: "Nuzha", value: "nuzha" },
+              { label: "Qadsiya", value: "qadsiya" },
+              { label: "Qortuba", value: "qortuba" },
+              { label: "Salhiya", value: "salhiya" },
+              { label: "Shamiya", value: "shamiya" },
+              { label: "Sharq", value: "sharq" },
+              { label: "Surra", value: "surra" },
+              { label: "Yarmouk", value: "yarmouk" },
+              { label: "Shuwaikh Residential", value: "shuwaikh residential" },
+              { label: "Al Hamra Tower", value: "al hamra tower" },
+              { label: "Ministries Area", value: "ministries area" },
+            ]}
+            defaultValue={setUser.city}
+            containerStyle={{
+              height: 60,
+              width: 350,
+              paddingVertical: 10,
+            }}
+            style={{ backgroundColor: "#fafafa" }}
+            itemStyle={{ justifyContent: "flex-center" }}
+            dropDownStyle={{ backgroundColor: "#fafafa" }}
+            onChangeItem={(item) => setUser({ city: item.value })}
+            labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
+            searchable={true}
+            searchablePlaceholder="Search for an item"
+            searchablePlaceholderTextColor="gray"
+            seachableStyle={{}}
+            searchableError={() => <Text>Not Found</Text>}
+          />
+        </View>
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
