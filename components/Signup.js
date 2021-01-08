@@ -20,6 +20,29 @@ import DropDownPicker from "react-native-dropdown-picker";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 
+const areas = [
+  { label: "Abdullah Al Salem", value: "abdullah al salem" },
+  { label: "Adailiya", value: "adailiya" },
+  { label: "Bneid Al Qar", value: "bneid al qar" },
+  { label: "Faiha", value: "faiha" },
+  { label: "Kaifan", value: "kaifan" },
+  { label: "Khaldiya", value: "khaldiya" },
+  { label: "Kuwait City", value: "kuwait city" },
+  { label: "Mansouriya", value: "mansouriya" },
+  { label: "Mirqab", value: "mirqab" },
+  { label: "Nuzha", value: "nuzha" },
+  { label: "Qadsiya", value: "qadsiya" },
+  { label: "Qortuba", value: "qortuba" },
+  { label: "Salhiya", value: "salhiya" },
+  { label: "Shamiya", value: "shamiya" },
+  { label: "Sharq", value: "sharq" },
+  { label: "Surra", value: "surra" },
+  { label: "Yarmouk", value: "yarmouk" },
+  { label: "Shuwaikh Residential", value: "shuwaikh residential" },
+  { label: "Al Hamra Tower", value: "al hamra tower" },
+  { label: "Ministries Area", value: "ministries area" },
+];
+
 const Signup = ({ navigation }) => {
   const [user, setUser] = useState({
     username: "",
@@ -85,30 +108,9 @@ const Signup = ({ navigation }) => {
             onChangeText={(text) => setUser({ ...user, city: text })}
           />
         </View>
-        <View>
+        <View style={styles.dropdownview}>
           <DropDownPicker
-            items={[
-              { label: "Abdullah Al Salem", value: "abdullah al salem" },
-              { label: "Adailiya", value: "adailiya" },
-              { label: "Bneid Al Qar", value: "bneid al qar" },
-              { label: "Faiha", value: "faiha" },
-              { label: "Kaifan", value: "kaifan" },
-              { label: "Khaldiya", value: "khaldiya" },
-              { label: "Kuwait City", value: "kuwait city" },
-              { label: "Mansouriya", value: "mansouriya" },
-              { label: "Mirqab", value: "mirqab" },
-              { label: "Nuzha", value: "nuzha" },
-              { label: "Qadsiya", value: "qadsiya" },
-              { label: "Qortuba", value: "qortuba" },
-              { label: "Salhiya", value: "salhiya" },
-              { label: "Shamiya", value: "shamiya" },
-              { label: "Sharq", value: "sharq" },
-              { label: "Surra", value: "surra" },
-              { label: "Yarmouk", value: "yarmouk" },
-              { label: "Shuwaikh Residential", value: "shuwaikh residential" },
-              { label: "Al Hamra Tower", value: "al hamra tower" },
-              { label: "Ministries Area", value: "ministries area" },
-            ]}
+            items={areas}
             defaultValue={setUser.city}
             containerStyle={{
               height: 60,
@@ -184,6 +186,9 @@ const Signup = ({ navigation }) => {
 export default observer(Signup);
 
 const styles = StyleSheet.create({
+  dropdownview: {
+    zIndex: 100,
+  },
   container: {
     flex: 1,
     backgroundColor: "#003f5c",
