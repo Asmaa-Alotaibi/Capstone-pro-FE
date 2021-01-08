@@ -56,6 +56,14 @@ const Signup = ({ navigation }) => {
     house: "",
     flat: "",
   });
+  const [address, setAddress] = useState({
+    city: "",
+    block: "",
+    avenue: "",
+    street: "",
+    house: "",
+    flat: "",
+  });
 
   const handleSubmit = async () => {
     await authStore.signup(user);
@@ -100,27 +108,15 @@ const Signup = ({ navigation }) => {
             onChangeText={(text) => setUser({ ...user, password: text })}
           />
         </View>
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="City..."
-            placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, city: text })}
-          />
-        </View>
         <View style={styles.dropdownview}>
           <DropDownPicker
             items={areas}
-            defaultValue={setUser.city}
-            containerStyle={{
-              height: 60,
-              width: 350,
-              paddingVertical: 10,
-            }}
+            defaultValue={setAddress.city}
+            containerStyle={style.cities}
             style={{ backgroundColor: "#fafafa" }}
             itemStyle={{ justifyContent: "flex-center" }}
             dropDownStyle={{ backgroundColor: "#fafafa" }}
-            onChangeItem={(item) => setUser({ city: item.value })}
+            onChangeItem={(item) => setAddress({ city: item.value })}
             labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
             searchable={true}
             searchablePlaceholder="Search for an item"
@@ -134,7 +130,7 @@ const Signup = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Block..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, block: text })}
+            onChangeText={(text) => setAddress({ ...address, block: text })}
           />
         </View>
         <View style={styles.inputView}>
@@ -142,7 +138,7 @@ const Signup = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Street..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, street: text })}
+            onChangeText={(text) => setAddress({ ...address, street: text })}
           />
         </View>
         <View style={styles.inputView}>
@@ -150,7 +146,7 @@ const Signup = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Avenue..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, avenue: text })}
+            onChangeText={(text) => setAddress({ ...address, avenue: text })}
           />
         </View>
         <View style={styles.inputView}>
@@ -158,7 +154,7 @@ const Signup = ({ navigation }) => {
             style={styles.inputText}
             placeholder="House..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, house: text })}
+            onChangeText={(text) => setAddress({ ...address, house: text })}
           />
         </View>
         <View style={styles.inputView}>
@@ -166,7 +162,7 @@ const Signup = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Flat..."
             placeholderTextColor="#003f5c"
-            onChangeText={(text) => setUser({ ...user, flat: text })}
+            onChangeText={(text) => setAddress({ ...address, flat: text })}
           />
         </View>
         <TouchableOpacity>
@@ -230,5 +226,10 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: "white",
+  },
+  cities: {
+    height: 60,
+    width: 350,
+    paddingVertical: 10,
   },
 });
