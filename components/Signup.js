@@ -118,7 +118,7 @@ const Signup = ({ navigation }) => {
               paddingVertical: 10,
             }}
             style={{ backgroundColor: "#fafafa" }}
-            itemStyle={{ justifyContent: "flex-center" }}
+            // itemStyle={{ justifyContent: "flex-center" }}
             dropDownStyle={{ backgroundColor: "#fafafa" }}
             onChangeItem={(item) => setUser({ city: item.value })}
             labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
