@@ -20,14 +20,14 @@ class AuthStore {
     this.user = decode(token);
   };
 
-  //   signup = async (userData) => {
-  //     try {
-  //       const res = await instance.post("/signup", userData);
-  //       await this.setUser(res.data.token);
-  //     } catch (error) {
-  //       console.log("AuthStore -> signup -> error", error);
-  //     }
-  //   };
+  signup = async (userData) => {
+    try {
+      const res = await instance.post("/signup", userData);
+      await this.setUser(res.data.token);
+    } catch (error) {
+      console.log("AuthStore -> signup -> error", error);
+    }
+  };
 
   signin = async (userData) => {
     try {
@@ -39,25 +39,25 @@ class AuthStore {
     }
   };
 
-  //   checkForToken = async () => {
-  //     const token = await AsyncStorage.getItem("myToken");
-  //     if (token) {
-  //       const decodedToken = decode(token);
-  //       if (Date.now() < decodedToken.exp) {
-  //         await this.setUser(token);
-  //       } else {
-  //         this.signout();
-  //       }
-  //     }
-  //   };
+  checkForToken = async () => {
+    const token = await AsyncStorage.getItem("myToken");
+    if (token) {
+      const decodedToken = decode(token);
+      if (Date.now() < decodedToken.exp) {
+        await this.setUser(token);
+      } else {
+        this.signout();
+      }
+    }
+  };
 
-  //   signout = () => {
-  //     delete instance.defaults.headers.common.Authorization;
-  //     this.user = {
-  //       id: 0,
-  //       username: "guest",
-  //     };
-  //   };
+  signout = () => {
+    delete instance.defaults.headers.common.Authorization;
+    this.user = {
+      id: 0,
+      username: "guest",
+    };
+  };
 }
 
 const authStore = new AuthStore();

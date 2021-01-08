@@ -11,8 +11,6 @@ import {
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 
-// import { AuthOther } from "../styles";
-
 const Signin = ({ navigation }) => {
   const [user, setUser] = useState({
     username: "",
@@ -24,11 +22,11 @@ const Signin = ({ navigation }) => {
     const loggedinUser = authStore.user;
 
     console.log("from sign in>>", loggedinUser);
-    // if (authStore.user) navigation.navigate("ItemList");
-    //   if (authStore.user) navigation.navigate("CreateItem");
+  };
 
-    // if (authStore.user.id !== 0)
-    //   navigation.navigate("Profile", { profileOwner: owner });
+  const handleSignout = () => {
+    authStore.signout();
+    navigation.navigate("Signup"); //redirect to home
   };
   return (
     <View style={styles.container}>
@@ -57,8 +55,11 @@ const Signin = ({ navigation }) => {
       <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.replace("Signup")}>
         <Text style={styles.loginText}>Signup</Text>
+      </TouchableOpacity>
+      <TouchableOpacity block dark onPress={() => handleSignout()}>
+        <Text style={styles.loginText}>Signout</Text>
       </TouchableOpacity>
     </View>
   );
