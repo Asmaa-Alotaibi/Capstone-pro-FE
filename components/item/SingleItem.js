@@ -1,8 +1,9 @@
-import { ListItem, Left, Right, Button, Text, Body } from "native-base";
 import React from "react";
 import { Image } from "react-native";
 import { observer } from "mobx-react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ListItem, Left, Right, Button, Text, Body } from "native-base";
+import ip from "../../stores/ipaddress";
 
 const SingleItem = ({ item, navigation }) => {
   const handleAdd = {};
@@ -14,7 +15,7 @@ const SingleItem = ({ item, navigation }) => {
         <Left>
           <Image
             style={{ width: 100, height: 100 }}
-            source={{ uri: item.image.replace("localhost", "192.168.1.152") }}
+            source={{ uri: item.image.replace("localhost", ip) }}
           />
         </Left>
         <Body>

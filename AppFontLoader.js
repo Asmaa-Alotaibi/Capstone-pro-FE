@@ -1,29 +1,29 @@
 import React from "react";
-import Router from "./components/Router";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 
-export default class App extends React.Component {
+class AppFontLoader extends React.Component {
   state = {
-    loading: true,
+    fontLoaded: false,
   };
-  // To load Fonts before loading the app
-  async componentDidMount() {
+
+  async componentWillMount() {
     try {
       await Font.loadAsync({
         Roboto: require("native-base/Fonts/Roboto.ttf"),
         Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
       });
 
-      this.setState({ loading: false });
+      this.setState({ fontLoaded: true });
     } catch (error) {
       console.log("error loading icon fonts", error);
     }
   }
   render() {
-    if (this.state.loading) {
+    if (!this.state.fontLoaded) {
       return <AppLoading />;
     }
-    return <Router />;
+    return this.props.children;
   }
 }
+export { AppFontLoader };

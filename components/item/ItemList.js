@@ -1,11 +1,11 @@
-import { Container, Content, Spinner } from "native-base";
+import { Spinner } from "native-base";
 import React from "react";
 import Item from "./Item";
 import itemStore from "../../stores/itemStore";
 import { observer } from "mobx-react";
 import authStore from "../../stores/authStore";
 import { Containerr } from "../../styles";
-import { ScrollView, View } from "react-native";
+
 const ItemList = ({ items, navigation }) => {
   if (!authStore.user) navigation.replace("Signin");
   if (itemStore.loading) return <Spinner />;

@@ -23,6 +23,7 @@ import {
 } from "../../styles";
 import UpdateButton from "../buttons/UpdateButton";
 import profileImg from "../../img/profileImage.jpg";
+import ip from "../../stores/ipaddress";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -48,10 +49,7 @@ const ItemDetail = ({ route, navigation }) => {
                       source={
                         profile.image
                           ? {
-                              uri: profile.imagereplace(
-                                "localhost",
-                                "192.168.1.152"
-                              ),
+                              uri: profile.imagereplace("localhost", ip),
                             }
                           : profileImg
                       }

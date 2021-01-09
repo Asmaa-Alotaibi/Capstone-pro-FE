@@ -1,5 +1,5 @@
-import { Button } from "native-base";
 import React from "react";
+import { Button } from "native-base";
 import { View, Text } from "react-native";
 
 const CategoryButton = ({ navigation, category }) => {
