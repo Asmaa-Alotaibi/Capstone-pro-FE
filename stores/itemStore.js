@@ -3,7 +3,7 @@ import instance from "./instance";
 
 class ItemStore {
   items = [];
-  //loading = true;
+  loading = true;
   constructor() {
     makeAutoObservable(this);
   }
@@ -13,7 +13,7 @@ class ItemStore {
     try {
       const response = await instance.get("/items");
       this.items = response.data;
-      // this.loading = false;
+      this.loading = false;
     } catch (error) {
       console.error("ItemStore -> fetchitems -> error", error);
     }

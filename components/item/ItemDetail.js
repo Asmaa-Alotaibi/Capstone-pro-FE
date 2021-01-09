@@ -46,7 +46,14 @@ const ItemDetail = ({ route, navigation }) => {
                   <Left>
                     <Thumbnail
                       source={
-                        profile.image ? { uri: profile.image } : profileImg
+                        profile.image
+                          ? {
+                              uri: profile.imagereplace(
+                                "localhost",
+                                "192.168.1.152"
+                              ),
+                            }
+                          : profileImg
                       }
                     />
                     <Body>

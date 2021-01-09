@@ -12,7 +12,8 @@ import ProfilePage from "./profile/ProfilePage";
 import ProfileList from "./profile/ProfileList";
 import ItemDetail from "./item/ItemDetail";
 import ItemList from "./item/ItemList";
-
+import Categories from "./categories";
+import CategoryItemList from "./item/CategoryItemList";
 const { Navigator, Screen } = createStackNavigator();
 
 const Router = () => {
@@ -32,6 +33,8 @@ const Router = () => {
           options={{ headerShown: true }}
         />
         <Screen name="NewItemList" component={NewItemList} />
+        <Screen name="Categories" component={Categories} />
+        <Screen name="CategoryItemList" component={CategoryItemList} />
         <Screen name="MyProfile" component={MyProfile} />
         <Screen
           name="UpdateProfile"
