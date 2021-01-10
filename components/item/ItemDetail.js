@@ -49,7 +49,7 @@ const ItemDetail = ({ route, navigation }) => {
                       source={
                         profile.image
                           ? {
-                              uri: profile.imagereplace("localhost", ip),
+                              uri: profile.imagereplace("localhost", ip), // profile.image.replace (missing the dot)
                             }
                           : profileImg
                       }
@@ -61,6 +61,7 @@ const ItemDetail = ({ route, navigation }) => {
                   </Left>
                 </ProfileCardItem>
               </TouchableOpacity>
+              {/* Instead of using ? : use && */}
               {authStore.user.id === profile.userId ? (
                 <ProfileCardItem>
                   <DeleteButton itemId={item.id} navigation={navigation} />
@@ -89,7 +90,7 @@ const ItemDetail = ({ route, navigation }) => {
               </ItemDetailCardItem>
               <CardItem>
                 <ItemDescription>
-                  {"      "}
+                  {"      "} {/* remove this */}
                   {item.description}
                 </ItemDescription>
               </CardItem>

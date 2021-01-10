@@ -17,6 +17,8 @@ const ProfileList = ({ navigation }) => {
     .map((profile) => (
       <ProfileItem profile={profile} key={profile.id} navigation={navigation} />
     ));
+
+  // you don't need the fragments
   return (
     <>
       <Content>

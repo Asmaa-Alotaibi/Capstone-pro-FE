@@ -4,6 +4,7 @@ class ProfileStore {
   profiles = [];
   loading = true;
   constructor() {
+    // when using makeAutoObservable just give it `this`.
     makeAutoObservable(this, {
       fetchprofiles: action,
     });

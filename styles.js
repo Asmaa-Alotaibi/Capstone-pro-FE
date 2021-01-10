@@ -1,6 +1,8 @@
 import { Card, Text, CardItem, Tab, View, Content } from "native-base";
 import styled from "styled-components";
 
+// come on, give it a better name -.- shda3wa
+// It's like having a baby and naming him "اي شي مو مهم"
 export const Containerr = styled.View`
   width: 100%;
   height: 85%;

@@ -9,6 +9,8 @@ const NewItemList = () => {
   const newitemList = itemStore.items
     .filter((e) => Date.parse(e.createdAt) > d)
     .map((e) => <SingleItem item={e} key={e.id} />);
+
+  // you left a comment here. Clean up everything before moving on.
   //
   return (
     <Content>

@@ -31,7 +31,7 @@ class AuthStore {
 
   signin = async (userData) => {
     try {
-      console.log(userData);
+      console.log(userData); // you know what to do with console logs in the main
       const res = await instance.post("/signin", userData);
       await this.setUser(res.data.token);
     } catch (error) {
