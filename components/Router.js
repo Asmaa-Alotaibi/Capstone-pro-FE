@@ -35,9 +35,9 @@
 //         <Screen name="NewItemList" component={NewItemList} />
 //         <Screen name="Categories" component={Categories} />
 //         <Screen name="CategoryItemList" component={CategoryItemList} />
-            <Screen name="Request" component={Request} />
-             <Screen name="DriversList" component={DriversList} />
-  
+// <Screen name="Request" component={Request} />
+//  <Screen name="DriversList" component={DriversList} />
+
 //         <Screen name="MyProfile" component={MyProfile} />
 //         <Screen
 //           name="UpdateProfile"
@@ -55,7 +55,6 @@
 //           component={ProfilePage}
 //           options={({ route }) => {
 //             const { profile } = route.params;
- 
 
 //             return {
 //               title: profile.user.username,

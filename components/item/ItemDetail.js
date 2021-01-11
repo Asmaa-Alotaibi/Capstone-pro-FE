@@ -19,6 +19,7 @@ import {
   ItemDetailCardItem,
   ItemDetailTitle,
   ItemCard,
+  ItemDetailImage,
 } from "../../styles";
 import UpdateButton from "../buttons/UpdateButton";
 import profileImg from "../../img/profileImage.jpg";
@@ -45,7 +46,7 @@ const ItemDetail = ({ route, navigation }) => {
                 <ProfileCardItem>
                   <Left>
                     <Thumbnail
-                     // source={{ uri: profile.image.replace("localhost", ip) }}
+                      // source={{ uri: profile.image.replace("localhost", ip) }}
 
                       source={
                         profile.image
@@ -54,7 +55,6 @@ const ItemDetail = ({ route, navigation }) => {
                             }
                           : profileImg
                       }
-
                     />
                     <Body>
                       <Text>{profile.user.username}</Text>
