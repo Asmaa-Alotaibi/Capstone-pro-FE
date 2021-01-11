@@ -6,7 +6,6 @@ import { ListItem, Left, Right, Button, Text, Body } from "native-base";
 import ip from "../../stores/ipaddress";
 
 const SingleItem = ({ item, navigation }) => {
-  const handleAdd = {};
   return (
     <ListItem>
       <TouchableOpacity
@@ -21,12 +20,15 @@ const SingleItem = ({ item, navigation }) => {
         <Body>
           <Text>{item.name}</Text>
         </Body>
-        <Right>
-          <Button onPress={handleAdd} style={{ width: 80, height: 30 }}>
-            <Text style={{ fontSize: 10 }}>Request</Text>
-          </Button>
-        </Right>
       </TouchableOpacity>
+      <Right>
+        <Button
+          onPress={() => navigation.navigate("Request", { item: item })}
+          style={{ width: 80, height: 30 }}
+        >
+          <Text style={{ fontSize: 10 }}>Request</Text>
+        </Button>
+      </Right>
     </ListItem>
   );
 };
