@@ -45,18 +45,26 @@ const ItemDetail = ({ route, navigation }) => {
                 <ProfileCardItem>
                   <Left>
                     <Thumbnail
-                      source={{ uri: profile.image.replace("localhost", ip) }}
+                     // source={{ uri: profile.image.replace("localhost", ip) }}
+
+                      source={
+                        profile.image
+                          ? {
+                              uri: profile.image,
+                            }
+                          : profileImg
+                      }
+
                     />
                     <Body>
                       <Text>{profile.user.username}</Text>
-                      <Text note>{item.createdAt}</Text>
                     </Body>
                   </Left>
                 </ProfileCardItem>
               </TouchableOpacity>
               {authStore.user.id === profile.userId ? (
                 <ProfileCardItem>
-                  <DeleteButton itemId={item.id} navigation={navigation} />
+                  {/* <DeleteButton itemId={item.id} navigation={navigation} /> */}
                   <UpdateButton item={item} navigation={navigation} />
                 </ProfileCardItem>
               ) : null}
