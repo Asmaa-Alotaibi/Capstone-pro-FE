@@ -14,9 +14,10 @@ import ProfileList from "../profile/ProfileList";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
 import Categories from "../categories";
-import CategoryItemList from "../item/CategoryItemList";
 import authStore from "../../stores/authStore";
 import LogOutButton from "../buttons/LogOutButton";
+import CategoryItemList from "../item/CategoryItemList";
+import AddItem from "../item/AddItem";
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -77,6 +78,15 @@ const Router = () => {
       />
     </ProfileStack.Navigator>
   );
+  const CategoryStackScreen = () => (
+    <CategoriesStack.Navigator>
+      <CategoriesStack.Screen name="Categories" component={Categories} />
+      <CategoriesStack.Screen
+        name="CategoryItemList"
+        component={CategoryItemList}
+      />
+    </CategoriesStack.Navigator>
+  );
   return (
     <NavigationContainer>
       <Tab.Navigator>
@@ -84,10 +94,13 @@ const Router = () => {
         {authStore.user.id === 0 ? (
           <Tab.Screen name="Signin" component={Signin} />
         ) : (
-          <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
+          <>
+            <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
+            <Tab.Screen name="AddItem" component={AddItem} />
+          </>
         )}
 
-        <Tab.Screen name="Categoties" component={Categories} />
+        <Tab.Screen name="Categoties" component={CategoryStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -95,11 +108,12 @@ const Router = () => {
 
 {
   /* <>
+   <Screen name="Request" component={Request} />
+   <Screen name="DriversList" component={DriversList} />
   <Navigator initialRouteName="Home">
 
     <Screen name="Home" component={Home} options={{ headerShown: false }} />
 
-    <Screen name="CategoryItemList" component={CategoryItemList} />
   
 
     <Screen name="Profiles" component={ProfileList} />
