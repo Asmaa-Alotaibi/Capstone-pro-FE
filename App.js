@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "./components/Router";
+import Router from "./components/navigator/Router";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 

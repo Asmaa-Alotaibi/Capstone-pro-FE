@@ -1,5 +1,14 @@
 import { observer } from "mobx-react";
-import { Body, Content, Header, Left, Tab, Tabs, Thumbnail } from "native-base";
+import {
+  Body,
+  Content,
+  Header,
+  Left,
+  Spinner,
+  Tab,
+  Tabs,
+  Thumbnail,
+} from "native-base";
 import React from "react";
 import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
@@ -17,6 +26,7 @@ import {
   ProfileItemList,
 } from "../../styles";
 import { ScrollView, Text } from "react-native";
+import Signin from "../Signin";
 
 const ProfilePage = ({ route, navigation, Myprofile }) => {
   const profile = Myprofile ? Myprofile : route.params.profile;
