@@ -17,7 +17,6 @@ import {
   ProfileCardItem,
   ItemDescription,
   ItemDetailCardItem,
-  ItemDetailImage,
   ItemDetailTitle,
   ItemCard,
 } from "../../styles";
@@ -46,13 +45,7 @@ const ItemDetail = ({ route, navigation }) => {
                 <ProfileCardItem>
                   <Left>
                     <Thumbnail
-                      source={
-                        profile.image
-                          ? {
-                              uri: profile.imagereplace("localhost", ip),
-                            }
-                          : profileImg
-                      }
+                      source={{ uri: profile.image.replace("localhost", ip) }}
                     />
                     <Body>
                       <Text>{profile.user.username}</Text>

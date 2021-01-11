@@ -3,6 +3,7 @@ import React from "react";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Home from "./Home";
+import Request from "./Request";
 import NewItemList from "./item/NewItemList";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
@@ -14,19 +15,19 @@ import ItemDetail from "./item/ItemDetail";
 import ItemList from "./item/ItemList";
 import Categories from "./categories";
 import CategoryItemList from "./item/CategoryItemList";
+import DriversList from "./DriversList";
 const { Navigator, Screen } = createStackNavigator();
 
 const Router = () => {
   return (
     <NavigationContainer>
-      <Navigator initialRouteName="Home">
+      <Navigator initialRouteName="NewItemList">
         <Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Screen
           name="Signin"
           component={Signin}
           options={{ headerShown: true }}
         />
-
         <Screen
           name="Signup"
           component={Signup}
@@ -35,6 +36,8 @@ const Router = () => {
         <Screen name="NewItemList" component={NewItemList} />
         <Screen name="Categories" component={Categories} />
         <Screen name="CategoryItemList" component={CategoryItemList} />
+        <Screen name="Request" component={Request} />
+        <Screen name="DriversList" component={DriversList} />
         <Screen name="MyProfile" component={MyProfile} />
         <Screen
           name="UpdateProfile"
