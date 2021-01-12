@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import UpdateItem from "../components/item/UpdateItem";
 import authStore from "./authStore";
 import instance from "./instance";
 
@@ -32,6 +33,33 @@ class ItemStore {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+  deleteItem = async (itemId) => {
+    try {
+      await instance.delete(`/items/${itemId}`);
+      runInAction(() => {
+        this.items = this.items.filter((item) => item.id !== itemId);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  updateItem = async (updatedItem) => {
+    try {
+      const formData = new FormData();
+      for (const key in updatedItem)
+        if (updatedItem[key]) formData.append(key, updatedItem[key]);
+      console.log(formData);
+      await instance.put(`/items/${updatedItem.id}`, formData);
+      runInAction(() => {
+        const item = this.items.find((item) => item.id === updatedItem.id);
+        for (const key in updatedItem) item[key] = updatedItem[key];
+        item.image = URL.createObjectURL(updatedItem.image);
+      });
+    } catch (error) {
+      console.log("ItemStore -> updateItem -> error", error);
     }
   };
 }
