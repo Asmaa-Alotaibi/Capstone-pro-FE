@@ -18,6 +18,9 @@ import authStore from "../../stores/authStore";
 import LogOutButton from "../buttons/LogOutButton";
 import CategoryItemList from "../item/CategoryItemList";
 import AddItem from "../item/AddItem";
+import DeleteButton from "../buttons/DeleteButton";
+import UpdateButton from "../buttons/UpdateButton";
+import UpdateItem from "../item/UpdateItem";
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,6 +43,8 @@ const Router = () => {
           };
         }}
       />
+      <HomeStack.Screen name="UpdateItem" component={UpdateItem} />
+      <HomeStack.Screen name="DeleteItem" component={DeleteButton} />
       <HomeStack.Screen
         name="ProfilePage"
         component={ProfilePage}
@@ -65,6 +70,7 @@ const Router = () => {
         }}
       />
 
+      <ProfileStack.Screen name="ProfilePagge" component={ProfilePage} />
       <ProfileStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -72,7 +78,6 @@ const Router = () => {
           const { profile } = route.params;
           return {
             title: profile.user.username,
-            headerRight: () => <AddButton />,
           };
         }}
       />

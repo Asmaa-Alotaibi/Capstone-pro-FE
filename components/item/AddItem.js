@@ -10,7 +10,7 @@ import {
 } from "native-base";
 import itemStore from "../../stores/itemStore";
 import React, { useState, useEffect } from "react";
-import { Image, Platform, Text } from "react-native";
+import { Image, ImageBackground, Platform, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const AddItem = ({ navigation }) => {
@@ -72,12 +72,20 @@ const AddItem = ({ navigation }) => {
           <Form>
             <TouchableOpacity onPress={pickImage}>
               <Item>
-                {item.image && (
-                  <Image
-                    source={{ uri: item.image.uri }}
-                    style={{ width: "100%", height: 300, marginLeft: -9 }}
-                  />
-                )}
+                <ImageBackground
+                  source={{
+                    uri:
+                      "https://www.namepros.com/attachments/empty-png.89209/",
+                  }}
+                  style={{ width: "100%", height: 300 }}
+                >
+                  {item.image && (
+                    <Image
+                      source={{ uri: item.image.uri }}
+                      style={{ width: "100%", height: 300, marginLeft: -9 }}
+                    />
+                  )}
+                </ImageBackground>
               </Item>
               <Text note style={{ fontSize: 17, textAlign: "center" }}>
                 Edit Your Picture

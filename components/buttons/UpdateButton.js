@@ -1,11 +1,13 @@
 import { Button, Text } from "native-base";
 import React from "react";
-const UpdateButton = ({ profile, navigation }) => {
+const UpdateButton = ({ profile, navigation, item }) => {
   return (
     <>
       <Button
         onPress={() =>
-          navigation.navigate("UpdateProfile", { profile: profile })
+          profile
+            ? navigation.navigate("UpdateProfile", { profile: profile })
+            : navigation.navigate("UpdateItem", { item: item })
         }
         bordered
         dark
@@ -17,7 +19,7 @@ const UpdateButton = ({ profile, navigation }) => {
           justifyContent: "center",
         }}
       >
-        <Text>Edit Your Profile</Text>
+        {profile ? <Text>Edit Your Profile</Text> : <Text>Edit Your Item</Text>}
       </Button>
     </>
   );
