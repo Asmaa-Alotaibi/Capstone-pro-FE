@@ -9,6 +9,7 @@ import NewItemList from "./item/NewItemList";
 import ProfileList from "./profile/ProfileList";
 import ProfilePage from "./profile/ProfilePage";
 import React from "react";
+import SignInHook from "./SignInHook";
 import SignUpHook from "./SignUpHook";
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -58,40 +59,8 @@ const Router = () => {
           component={ProfilePage}
           options={({ route }) => {
             const { profile } = route.params;
-
-
-        <Screen name="MyProfile" component={MyProfile} />
-        <Screen
-          name="UpdateProfile"
-          component={UpdateProfile}
-          options={({ route }) => {
-            const { profile } = route.params;
             return {
               title: profile.user.username,
-              headerRight: () => <AddButton />,
-            };
-          }}
-        />
-        <Screen
-          name="ProfilePage"
-          component={ProfilePage}
-          options={({ route }) => {
-            const { profile } = route.params;
-
-            return {
-              title: profile.user.username,
-            };
-          }}
-        />
-        <Screen name="Profiles" component={ProfileList} />
-        <Screen name="ItemList" component={ItemList} />
-        <Screen
-          name="ItemDetail"
-          component={ItemDetail}
-          options={({ route }) => {
-            const { item } = route.params;
-            return {
-              title: item.title,
             };
           }}
         />
@@ -101,3 +70,39 @@ const Router = () => {
 };
 
 export default observer(Router);
+
+// <Screen name="MyProfile" component={MyProfile} />
+// <Screen
+//   name="UpdateProfile"
+//   component={UpdateProfile}
+//   options={({ route }) => {
+//     const { profile } = route.params;
+//     return {
+//       title: profile.user.username,
+//       headerRight: () => <AddButton />,
+//     };
+//   }}
+// />
+// <Screen
+//   name="ProfilePage"
+//   component={ProfilePage}
+//   options={({ route }) => {
+//     const { profile } = route.params;
+
+//     return {
+//       title: profile.user.username,
+//     };
+//   }}
+// />
+// <Screen name="Profiles" component={ProfileList} />
+// <Screen name="ItemList" component={ItemList} />
+// <Screen
+//   name="ItemDetail"
+//   component={ItemDetail}
+//   options={({ route }) => {
+//     const { item } = route.params;
+//     return {
+//       title: item.title,
+//     };
+//   }}
+// />
