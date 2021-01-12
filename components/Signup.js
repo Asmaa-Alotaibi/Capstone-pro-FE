@@ -112,9 +112,9 @@ const Signup = ({ navigation }) => {
           <DropDownPicker
             items={areas}
             defaultValue={setAddress.city}
-            containerStyle={style.cities}
+            containerStyle={styles.cities}
             style={{ backgroundColor: "#fafafa" }}
-            // itemStyle={{ justifyContent: "flex-center" }}
+            itemStyle={{ justifyContent: "flex-center" }}
             dropDownStyle={{ backgroundColor: "#fafafa" }}
             onChangeItem={(item) => setAddress({ city: item.value })}
             labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
