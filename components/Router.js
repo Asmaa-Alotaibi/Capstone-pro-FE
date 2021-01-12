@@ -59,6 +59,25 @@ const Router = () => {
           options={({ route }) => {
             const { profile } = route.params;
 
+
+        <Screen name="MyProfile" component={MyProfile} />
+        <Screen
+          name="UpdateProfile"
+          component={UpdateProfile}
+          options={({ route }) => {
+            const { profile } = route.params;
+            return {
+              title: profile.user.username,
+              headerRight: () => <AddButton />,
+            };
+          }}
+        />
+        <Screen
+          name="ProfilePage"
+          component={ProfilePage}
+          options={({ route }) => {
+            const { profile } = route.params;
+
             return {
               title: profile.user.username,
             };
