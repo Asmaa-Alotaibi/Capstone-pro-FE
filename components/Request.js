@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import ip from "../stores/ipaddress";
 import authStore from "../stores/authStore";
+import itemStore from "../stores/itemStore";
 import addressStore from "../stores/addressStore";
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -20,23 +21,29 @@ const Request = ({ navigation, route }) => {
   //const owner = profileStore.getProfileByUserId(item.ownerId);
   const itemAddress = addressStore.getAddressById(item.addressId);
 
-  console.log("from request>>", item);
-
   const handelSubmit = () => {
-    console.log("from request>>", deliveryOption);
     // if (!authStore.user) navigation.replace("Signin");
-    // request from BE
+    //notify owner (push notification)
+    //generate QR
     if (deliveryOption.id === 0) {
+      itemStore.requestItem(item, 0);
       Alert.alert("Done", "Your order has been submited !");
-      //notify owner (push notification)
-      //generate QR
       navigation.navigate("RequestSummary", {
         item: item,
         address: itemAddress,
       });
-      // change staus to booked item
+    } else {
+      //change stause of needdelivery (item )
+      itemStore.requestItem(item, 1);
+      Alert.alert(
+        "Done",
+        "Item is booked and your Delivery request in process !"
+      );
+      navigation.navigate("RequestSummary", {
+        item: item,
+        address: null,
+      });
     }
-    // else  change stause of needdelivery (item )
   };
   return (
     <Content>
@@ -50,7 +57,6 @@ const Request = ({ navigation, route }) => {
         </Left>
         <Text>You are ordering : {item.name}</Text>
         <Text>Description : {item.description}</Text>
-
         <Text>owner of this item is : {item.owner.username}</Text>
         <Text> Address of this item is : {itemAddress.city}</Text>
         <Text>Delivery Options:</Text>
@@ -59,7 +65,6 @@ const Request = ({ navigation, route }) => {
           selectedBtn={(option) => setdeliveryOption(option)}
           icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
         />
-
         <Button onPress={handelSubmit} style={{ width: 80, height: 30 }}>
           <Text style={{ fontSize: 15 }}>Submit</Text>
         </Button>
@@ -69,5 +74,3 @@ const Request = ({ navigation, route }) => {
 };
 
 export default observer(Request);
-
-//{  option===1 ?   <   >   :  <    >   }
