@@ -14,10 +14,13 @@ import ProfileList from "../profile/ProfileList";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
 import Categories from "../categories";
+import CategoryItemList from "../item/CategoryItemList";
+import Request from "../Request";
+import DriversList from "../DriversList";
+
 import authStore from "../../stores/authStore";
 import LogOutButton from "../buttons/LogOutButton";
-import CategoryItemList from "../item/CategoryItemList";
-import AddItem from "../item/AddItem";
+import RequestSummary from "../RequestSummary";
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,7 +32,11 @@ const CategoriesStack = createStackNavigator();
 const Router = () => {
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="NewItemList" component={NewItemList} />
+      <HomeStack.Screen name="Request" component={Request} />
+      <HomeStack.Screen name="RequestSummary" component={RequestSummary} />
+      <HomeStack.Screen name="DriversList" component={DriversList} />
       <HomeStack.Screen
         name="ItemDetail"
         component={ItemDetail}
@@ -78,6 +85,7 @@ const Router = () => {
       />
     </ProfileStack.Navigator>
   );
+
   const CategoryStackScreen = () => (
     <CategoriesStack.Navigator>
       <CategoriesStack.Screen name="Categories" component={Categories} />
@@ -94,10 +102,7 @@ const Router = () => {
         {authStore.user.id === 0 ? (
           <Tab.Screen name="Signin" component={Signin} />
         ) : (
-          <>
-            <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
-            <Tab.Screen name="AddItem" component={AddItem} />
-          </>
+          <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
         )}
 
         <Tab.Screen name="Categoties" component={CategoryStackScreen} />
@@ -108,12 +113,11 @@ const Router = () => {
 
 {
   /* <>
-   <Screen name="Request" component={Request} />
-   <Screen name="DriversList" component={DriversList} />
   <Navigator initialRouteName="Home">
 
     <Screen name="Home" component={Home} options={{ headerShown: false }} />
 
+    <Screen name="CategoryItemList" component={CategoryItemList} />
   
 
     <Screen name="Profiles" component={ProfileList} />
