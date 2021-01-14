@@ -1,4 +1,4 @@
-import { action, makeAutoObservable } from "mobx";
+import { action, makeAutoObservable, runInAction } from "mobx";
 import instance from "./instance";
 class ProfileStore {
   profiles = [];
@@ -23,13 +23,15 @@ class ProfileStore {
       const formData = new FormData();
       for (const key in updatedProfile)
         formData.append(key, updatedProfile[key]);
+      console.log(formData);
       await instance.put(`/profiles/${updatedProfile.id}`, formData);
-
-      const profile = this.profiles.find(
-        (profile) => profile.id === updatedProfile.id
-      );
-      for (const key in updatedProfile) profile[key] = updatedProfile[key];
-      profile.image = URL.createObjectURL(updatedProfile.image);
+      runInAction(() => {
+        const profile = this.profiles.find(
+          (profile) => profile.id === updatedProfile.id
+        );
+        for (const key in updatedProfile) profile[key] = updatedProfile[key];
+        profile.image = URL.createObjectURL(updatedProfile.image);
+      });
     } catch (error) {
       console.log("ProfileStore -> updateProfile -> error", error);
     }

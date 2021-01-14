@@ -11,14 +11,17 @@ import {
 } from "native-base";
 import profileStore from "../../stores/profileStore";
 import React, { useState, useEffect } from "react";
-import { Image, Platform } from "react-native";
+import { Image, ImageBackground, Platform } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 
 const UpdateProfile = ({ route, navigation }) => {
   const { profile } = route.params;
   const [newProfile, setNewProfile] = useState(profile);
-
+  console.log(newProfile);
   const handleSubmit = async () => {
     await profileStore.updateProfile(newProfile);
     navigation.navigate("MyProfile");
@@ -70,12 +73,25 @@ const UpdateProfile = ({ route, navigation }) => {
               <Item
                 style={{ alignContent: "center", justifyContent: "center" }}
               >
-                {newProfile.image && (
-                  <Image
-                    source={{ uri: newProfile.image.uri }}
-                    style={{ width: "100%", height: 300, marginLeft: -13 }}
-                  />
-                )}
+                <ImageBackground
+                  source={{
+                    uri:
+                      "https://www.namepros.com/attachments/empty-png.89209/",
+                  }}
+                  style={{ width: "100%", height: 300 }}
+                >
+                  {newProfile.image.uri ? (
+                    <Image
+                      source={{ uri: newProfile.image.uri }}
+                      style={{ width: "100%", height: 300, marginLeft: -13 }}
+                    />
+                  ) : (
+                    <Image
+                      source={{ uri: newProfile.image }}
+                      style={{ width: "100%", height: 300, marginLeft: -13 }}
+                    />
+                  )}
+                </ImageBackground>
               </Item>
               <Text note style={{ fontSize: 17, textAlign: "center" }}>
                 Edit Your Picture
@@ -85,7 +101,7 @@ const UpdateProfile = ({ route, navigation }) => {
           <Item floatingLabel>
             <Label>First Name</Label>
             <Input
-              value={newProfile.user.firstName}
+              value={newProfile.firstName}
               onChangeText={(firstName) =>
                 setNewProfile({ ...newProfile, firstName })
               }
@@ -94,19 +110,19 @@ const UpdateProfile = ({ route, navigation }) => {
           <Item floatingLabel last>
             <Label>Last Name</Label>
             <Input
-              value={newProfile.user.lastName}
+              value={newProfile.lastName}
               onChangeText={(lastName) =>
                 setNewProfile({ ...newProfile, lastName })
               }
             />
           </Item>
-          <Item floatingLabel last>
+          {/* <Item floatingLabel last>
             <Label>Bio</Label>
             <Input
               onChangeText={(bio) => setNewProfile({ ...newProfile, bio })}
               value={newProfile.bio}
             />
-          </Item>
+          </Item> */}
         </Form>
         <Button
           bordered

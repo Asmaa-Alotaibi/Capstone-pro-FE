@@ -76,6 +76,7 @@ class AuthStore {
 }
 
 const authStore = new AuthStore();
+
 authStore.fetchUsers();
-// authStore.checkForToken();
+authStore.checkForToken();
 export default authStore;

@@ -24,6 +24,7 @@ import {
 import UpdateButton from "../buttons/UpdateButton";
 import profileImg from "../../img/profileImage.jpg";
 import ip from "../../stores/ipaddress";
+import DeleteButton from "../buttons/DeleteButton";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -64,7 +65,7 @@ const ItemDetail = ({ route, navigation }) => {
               </TouchableOpacity>
               {authStore.user.id === profile.userId ? (
                 <ProfileCardItem>
-                  {/* <DeleteButton itemId={item.id} navigation={navigation} /> */}
+                  <DeleteButton itemId={item.id} navigation={navigation} />
                   <UpdateButton item={item} navigation={navigation} />
                 </ProfileCardItem>
               ) : null}

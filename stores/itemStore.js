@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import UpdateItem from "../components/item/UpdateItem";
 import authStore from "./authStore";
 import instance from "./instance";
 
@@ -61,7 +62,6 @@ class ItemStore {
       console.log("ItemStore -> updateItem -> error", error);
     }
   };
-
   requestItem = async (requestedItem, option) => {
     try {
       await instance.put(`/items/request/${requestedItem.id}`, requestedItem);
@@ -91,6 +91,7 @@ class ItemStore {
       console.log("ItemStore -> requestItem -> error", error);
     }
   };
+
 }
 const itemStore = new ItemStore(); //new instance
 itemStore.fetchItems();
