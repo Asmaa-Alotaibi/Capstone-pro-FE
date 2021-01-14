@@ -27,6 +27,7 @@ import {
 } from "../../styles";
 import { ScrollView, Text } from "react-native";
 import Signin from "../Signin";
+import ip from "../../stores/ipaddress";
 
 const ProfilePage = ({ route, navigation, Myprofile }) => {
   const profile = Myprofile ? Myprofile : route.params.profile;
@@ -51,7 +52,11 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
           <Left>
             <Thumbnail
               large
-              source={profile.image ? { uri: profile.image } : profileImg}
+              source={
+                profile.image
+                  ? { uri: profile.image.replace("localhost", ip) }
+                  : profileImg
+              }
             />
             <ProfileFirstName>{profile.firstName}</ProfileFirstName>
             <ProfileLastName>{profile.lastName}</ProfileLastName>
