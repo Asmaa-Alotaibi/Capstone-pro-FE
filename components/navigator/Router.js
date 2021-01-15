@@ -3,7 +3,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Signin from "../Signin";
-import Signup from "../Signup";
+import SignUpHook from "../SignUpHook";
 import Home from "../Home";
 import NewItemList from "../item/NewItemList";
 import { observer } from "mobx-react";
@@ -28,8 +28,15 @@ const HomeStack = createStackNavigator();
 const ItemDetailStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
 const Router = () => {
+  const AuthStackScreen = () => (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name="Signin" component={Signin} />
+      <AuthStack.Screen name="Signup" component={SignUpHook} />
+    </AuthStack.Navigator>
+  );
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
       <HomeStack.Screen name="NewItemList" component={NewItemList} />
@@ -55,8 +62,16 @@ const Router = () => {
           };
         }}
       />
-      <HomeStack.Screen name="Signup" component={Signup} />
-      <HomeStack.Screen name="Signin" component={Signin} />
+      <HomeStack.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
+        options={({ route }) => {
+          const { profile } = route.params;
+          return {
+            title: profile.user.username,
+          };
+        }}
+      />
     </HomeStack.Navigator>
   );
 
@@ -97,7 +112,7 @@ const Router = () => {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         {authStore.user.id === 0 ? (
-          <Tab.Screen name="Signin" component={Signin} />
+          <Tab.Screen name="Signin" component={AuthStackScreen} />
         ) : (
           <>
             <Tab.Screen name="MyProfile" component={ProfileStackScreen} />

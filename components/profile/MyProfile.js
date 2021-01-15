@@ -1,7 +1,6 @@
 import React from "react";
 import authStore from "../../stores/authStore";
 import profileStore from "../../stores/profileStore";
-import Signin from "../Signin";
 import ProfilePage from "./ProfilePage";
 
 const MyProfile = ({ navigation }) => {

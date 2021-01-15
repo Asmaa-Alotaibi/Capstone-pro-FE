@@ -36,7 +36,13 @@ const Request = ({ navigation, route }) => {
   const handelSubmit = () => {
     // if (!authStore.user) navigation.replace("Signin");
     if (deliveryOption.id === 0)
-      Alert.alert("Done", "Your order has been submited !");
+      showMessage({
+        message: "Done, Thanks",
+        description: `Your order has been submited !`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
     else navigation.navigate("DriversList", { item: item });
   };
   return (

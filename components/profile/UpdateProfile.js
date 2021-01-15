@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+import { showMessage } from "react-native-flash-message";
 
 const UpdateProfile = ({ route, navigation }) => {
   const { profile } = route.params;
@@ -24,6 +25,17 @@ const UpdateProfile = ({ route, navigation }) => {
   console.log(newProfile);
   const handleSubmit = async () => {
     await profileStore.updateProfile(newProfile);
+    {
+      newProfile !== profile
+        ? showMessage({
+            message: "Profile Updated",
+            description: `You have Updated your Profile Succesfully`,
+            type: "default",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          })
+        : null;
+    }
     navigation.navigate("MyProfile");
   };
 
@@ -78,22 +90,21 @@ const UpdateProfile = ({ route, navigation }) => {
                     uri:
                       "https://www.namepros.com/attachments/empty-png.89209/",
                   }}
-                  style={{ width: "100%", height: 300 }}
+                  style={{ width: "100%", height: 300, marginLeft: -10 }}
                 >
-                  {newProfile.image.uri ? (
+                  {newProfile.image && (
                     <Image
-                      source={{ uri: newProfile.image.uri }}
-                      style={{ width: "100%", height: 300, marginLeft: -13 }}
-                    />
-                  ) : (
-                    <Image
-                      source={{ uri: newProfile.image }}
-                      style={{ width: "100%", height: 300, marginLeft: -13 }}
+                      source={
+                        newProfile.image.uri
+                          ? { uri: newProfile.image.uri }
+                          : { uri: newProfile.image }
+                      }
+                      style={{ width: "100%", height: 300 }}
                     />
                   )}
                 </ImageBackground>
               </Item>
-              <Text note style={{ fontSize: 17, textAlign: "center" }}>
+              <Text style={{ fontSize: 17, textAlign: "center" }}>
                 Edit Your Picture
               </Text>
             </TouchableOpacity>
