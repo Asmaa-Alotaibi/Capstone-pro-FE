@@ -22,7 +22,7 @@ class ProfileStore {
     try {
       const formData = new FormData();
       for (const key in updatedProfile)
-        formData.append(key, updatedProfile[key]);
+        if (updatedProfile[key]) formData.append(key, updatedProfile[key]);
       console.log(formData);
       await instance.put(`/profiles/${updatedProfile.id}`, formData);
       runInAction(() => {

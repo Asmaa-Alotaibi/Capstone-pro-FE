@@ -10,6 +10,7 @@ import {
 
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
+import { showMessage } from "react-native-flash-message";
 
 const Signin = ({ navigation }) => {
   const [user, setUser] = useState({
@@ -19,6 +20,23 @@ const Signin = ({ navigation }) => {
 
   const handleSubmit = async () => {
     await authStore.signin(user);
+    {
+      authStore.user.id !== 0
+        ? showMessage({
+            message: `Welcome ${authStore.user.username}`,
+            description: `You Signed in Succesfully, Thanks !`,
+            type: "default",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          })
+        : showMessage({
+            message: `Fieled Required`,
+            description: `Please Fill The Username and the Password`,
+            type: "default",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          });
+    }
     const loggedinUser = authStore.user;
 
     console.log("from sign in>>", loggedinUser);

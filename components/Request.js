@@ -7,14 +7,15 @@ import itemStore from "../stores/itemStore";
 import addressStore from "../stores/addressStore";
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Image, Alert, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
+import { showMessage } from "react-native-flash-message";
 
 const Request = ({ navigation, route }) => {
   const [deliveryOption, setdeliveryOption] = useState("");
 
   const radiogroup_options = [
     { id: 0, label: "I will pick it up" },
-    { id: 1, label: "I need Deleviry" },
+    { id: 1, label: "I need Delivery" },
   ];
 
   const { item } = route.params;
@@ -26,8 +27,13 @@ const Request = ({ navigation, route }) => {
     //notify owner (push notification)
     //generate QR
     if (deliveryOption.id === 0) {
-      itemStore.requestItem(item, 0);
-      Alert.alert("Done", "Your order has been submited !");
+      showMessage({
+        message: "Done, Thanks",
+        description: `Your order has been submited !`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
       navigation.navigate("RequestSummary", {
         item: item,
         address: itemAddress,
@@ -35,10 +41,13 @@ const Request = ({ navigation, route }) => {
     } else {
       //change stause of needdelivery (item )
       itemStore.requestItem(item, 1);
-      Alert.alert(
-        "Done",
-        "Item is booked and your Delivery request in process !"
-      );
+      showMessage({
+        message: "Done, Thanks",
+        description: `Item is booked and your Delivery request in process !`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
       navigation.navigate("RequestSummary", {
         item: item,
         address: null,
