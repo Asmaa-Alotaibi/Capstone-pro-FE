@@ -9,6 +9,7 @@ import addressStore from "../stores/addressStore";
 const RequestSummary = ({ navigation, route }) => {
   const option = route.params.option;
   const item = route.params.item;
+  const randomValue = route.params.randomValue;
 
   const handelPress = () => {
     const args = {
@@ -57,6 +58,7 @@ const RequestSummary = ({ navigation, route }) => {
         <Text> Description : {item.description}</Text>
         <Text> owner of this item is : {item.owner.username}</Text>
         {showAddress()}
+        <QRgenerator randomValue={randomValue} />;
       </Content>
     </Content>
   );
