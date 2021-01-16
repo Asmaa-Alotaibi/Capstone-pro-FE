@@ -53,7 +53,8 @@ const ItemDetail = ({ route, navigation }) => {
                       source={
                         profile.image
                           ? {
-                              uri: profile.image.replace("localhost", ip),
+                              uri: profile.image,
+                              // uri: profile.image.replace("localhost", ip),
                             }
                           : profileImg
                       }

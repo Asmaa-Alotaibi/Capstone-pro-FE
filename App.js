@@ -2,6 +2,8 @@ import React from "react";
 import Router from "./components/navigator/Router";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
+import FlashMessage from "react-native-flash-message";
+import { View } from "react-native";
 
 export default class App extends React.Component {
   state = {
@@ -24,6 +26,11 @@ export default class App extends React.Component {
     if (this.state.loading) {
       return <AppLoading />;
     }
-    return <Router />;
+    return (
+      <View style={{ flex: 1 }}>
+        <Router />
+        <FlashMessage position="top" />
+      </View>
+    );
   }
 }

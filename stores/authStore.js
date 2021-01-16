@@ -63,21 +63,10 @@ class AuthStore {
     });
   };
 
-  // fetchUsers = async () => {
-  //   try {
-  //     const response = await instance.get("/users");
-  //     this.users = response.data;
-  //     this.loading = false;
-  //   } catch (error) {
-  //     console.error("AuthStore -> fetchUsers -> error", error);
-  //   }
-  // };
-
   getUserBYId = (userId) => this.users.find((user) => user.id === userId);
 }
 
 const authStore = new AuthStore();
 
-//authStore.fetchUsers();
 authStore.checkForToken();
 export default authStore;

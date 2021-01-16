@@ -1,5 +1,4 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import UpdateItem from "../components/item/UpdateItem";
 import authStore from "./authStore";
 import instance from "./instance";
 
@@ -27,7 +26,7 @@ class ItemStore {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
       const res = await instance.post("/items", formData);
-      res.data.user = { username: authStore.user.username };
+      res.data.owner = { username: authStore.user.username };
       runInAction(() => {
         this.items.push(res.data);
       });

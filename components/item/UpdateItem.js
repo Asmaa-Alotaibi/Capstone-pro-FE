@@ -15,6 +15,7 @@ import React, { useState, useEffect } from "react";
 import { Image, Platform, ImageBackground } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { showMessage } from "react-native-flash-message";
 
 const UpdateItem = ({ route, navigation }) => {
   const { item } = route.params;
@@ -22,6 +23,23 @@ const UpdateItem = ({ route, navigation }) => {
 
   const handleSubmit = async () => {
     await itemStore.updateItem(updatedItem);
+    {
+      updatedItem !== item
+        ? showMessage({
+            message: "Item Updated",
+            description: `You have Updated your Item Succesfully`,
+            type: "default",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          })
+        : showMessage({
+            message: "Item was not Updated",
+            description: `You have not Updated anything in your Item`,
+            type: "default",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          });
+    }
     navigation.navigate("NewItemList");
   };
   useEffect(() => {
@@ -71,26 +89,21 @@ const UpdateItem = ({ route, navigation }) => {
                 source={{
                   uri: "https://www.namepros.com/attachments/empty-png.89209/",
                 }}
-                style={{ width: "100%", height: 300 }}
+                style={{ width: "100%", height: 300, marginLeft: -10 }}
               >
-                {updatedItem.image.uri ? (
+                {updatedItem.image && (
                   <Image
-                    source={{ uri: updatedItem.image.uri }}
-                    style={{ width: "100%", height: 300, marginLeft: -14 }}
-                  />
-                ) : (
-                  <Image
-                    source={{ uri: updatedItem.image }}
-                    style={{ width: "100%", height: 300, marginLeft: -14 }}
+                    source={
+                      updatedItem.image.uri
+                        ? { uri: updatedItem.image.uri }
+                        : { uri: updatedItem.image }
+                    }
+                    style={{ width: "100%", height: 300 }}
                   />
                 )}
               </ImageBackground>
             </Item>
-            <Text
-              note
-              style={{ fontSize: 17, textAlign: "center", marginTop: 5 }}
-            >
-              {" "}
+            <Text style={{ fontSize: 17, textAlign: "center", marginTop: 5 }}>
               Edit Your Picture
             </Text>
           </TouchableOpacity>
