@@ -11,8 +11,8 @@ import MyProfile from "../profile/MyProfile";
 import UpdateProfile from "../profile/UpdateProfile";
 
 import Request from "../Request";
-import DriversList from "../DriversList";
 import RequestSummary from "../RequestSummary";
+import DriversList from "../DriversList";
 
 import ProfilePage from "../profile/ProfilePage";
 import ProfileList from "../profile/ProfileList";
@@ -26,7 +26,8 @@ import AddItem from "../item/AddItem";
 import DeleteButton from "../buttons/DeleteButton";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
- 
+import QRScanner from "../QRScanner";
+
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,7 +92,7 @@ const Router = () => {
         }}
       />
 
-      <ProfileStack.Screen name="ProfilePagge" component={ProfilePage} />
+      <ProfileStack.Screen name="ProfilePage" component={ProfilePage} />
       <ProfileStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -111,6 +112,13 @@ const Router = () => {
         name="CategoryItemList"
         component={CategoryItemList}
       />
+
+      <CategoriesStack.Screen name="Request" component={Request} />
+      <CategoriesStack.Screen
+        name="RequestSummary"
+        component={RequestSummary}
+      />
+      <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
     </CategoriesStack.Navigator>
   );
   return (
@@ -134,7 +142,7 @@ const Router = () => {
 
 {
   /* <>
-   <Screen name="Request" component={Request} />
+  
    <Screen name="DriversList" component={DriversList} />
   <Navigator initialRouteName="Home">
 

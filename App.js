@@ -4,7 +4,7 @@ import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import FlashMessage from "react-native-flash-message";
 import { View } from "react-native";
-
+import authStore from "./stores/authStore";
 export default class App extends React.Component {
   state = {
     loading: true,
@@ -34,3 +34,4 @@ export default class App extends React.Component {
     );
   }
 }
+//{authStore.signout()}
