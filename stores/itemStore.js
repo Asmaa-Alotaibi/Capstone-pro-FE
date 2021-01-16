@@ -86,12 +86,13 @@ class ItemStore {
           booked: !newArray[elementsIndex].booked,
         };
       }
-      this.items = newArray;
+      runInAction(() => {
+        this.items = newArray;
+      });
     } catch (error) {
       console.log("ItemStore -> requestItem -> error", error);
     }
   };
-
 }
 const itemStore = new ItemStore(); //new instance
 itemStore.fetchItems();

@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import ip from "../stores/ipaddress";
 import authStore from "../stores/authStore";
 import itemStore from "../stores/itemStore";
-import addressStore from "../stores/addressStore";
+
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Image, Alert, Text, View } from "react-native";
@@ -18,11 +18,10 @@ const Request = ({ navigation, route }) => {
   ];
 
   const { item } = route.params;
-  //const owner = profileStore.getProfileByUserId(item.ownerId);
-  const itemAddress = addressStore.getAddressById(item.addressId);
 
+  console.log("from request>>", item);
   const handelSubmit = () => {
-    // if (!authStore.user) navigation.replace("Signin");
+    //if (!authStore.user) navigation.replace("Signin");
     //notify owner (push notification)
     //generate QR
     if (deliveryOption.id === 0) {
@@ -30,7 +29,7 @@ const Request = ({ navigation, route }) => {
       Alert.alert("Done", "Your order has been submited !");
       navigation.navigate("RequestSummary", {
         item: item,
-        address: itemAddress,
+        option: 0,
       });
     } else {
       //change stause of needdelivery (item )
@@ -41,7 +40,7 @@ const Request = ({ navigation, route }) => {
       );
       navigation.navigate("RequestSummary", {
         item: item,
-        address: null,
+        option: 1,
       });
     }
   };
@@ -58,7 +57,7 @@ const Request = ({ navigation, route }) => {
         <Text>You are ordering : {item.name}</Text>
         <Text>Description : {item.description}</Text>
         <Text>owner of this item is : {item.owner.username}</Text>
-        <Text> Address of this item is : {itemAddress.city}</Text>
+        <Text> Address of this item is : {item.addressId.city}</Text>
         <Text>Delivery Options:</Text>
         <RadioButtonRN
           data={radiogroup_options}
