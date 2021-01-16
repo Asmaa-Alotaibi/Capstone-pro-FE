@@ -24,5 +24,5 @@ class AddressStore {
   };
 }
 const addressStore = new AddressStore(); //new instance
-addressStore.fetchAdresses();
+//addressStore.fetchAdresses();
 export default addressStore;

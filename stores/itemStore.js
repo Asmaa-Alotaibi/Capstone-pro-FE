@@ -85,7 +85,9 @@ class ItemStore {
           booked: !newArray[elementsIndex].booked,
         };
       }
-      this.items = newArray;
+      runInAction(() => {
+        this.items = newArray;
+      });
     } catch (error) {
       console.log("ItemStore -> requestItem -> error", error);
     }

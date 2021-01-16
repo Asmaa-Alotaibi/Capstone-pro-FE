@@ -5,22 +5,21 @@ import ip from "../stores/ipaddress";
 import SingleAdress from "./SingleAdress";
 import call from "react-native-phone-call";
 import { Icon } from "native-base";
-import authStore from "../stores/authStore";
-
+import addressStore from "../stores/addressStore";
 const RequestSummary = ({ navigation, route }) => {
-  const address = route.params.address;
+  const option = route.params.option;
   const item = route.params.item;
-  const owner = authStore.getUserBYId(item.ownerId);
 
   const handelPress = () => {
     const args = {
-      number: JSON.stringify(owner.phone), // String value with the number to call
+      number: JSON.stringify(item.owner.phone),
       prompt: false, // Optional boolean property. Determines if the user should be prompt prior to the call
     };
     call(args).catch(console.error);
   };
   const showAddress = () => {
-    if (address)
+    const address = addressStore.getAddressById(item.addressId);
+    if (option === 0)
       return (
         <>
           <Text> Address of this item is: </Text>

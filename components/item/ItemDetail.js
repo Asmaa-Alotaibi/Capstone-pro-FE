@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import {
   Body,
+  Button,
   CardItem,
   Container,
   Content,
@@ -97,6 +98,12 @@ const ItemDetail = ({ route, navigation }) => {
                 </ItemDescription>
               </CardItem>
             </ItemCard>
+            <Button
+              onPress={() => navigation.navigate("Request", { item: item })}
+              style={{ width: 80, height: 30 }}
+            >
+              <Text style={{ fontSize: 10 }}>Request</Text>
+            </Button>
           </Content>
         </Container>
       </ScrollView>
