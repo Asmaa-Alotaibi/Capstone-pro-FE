@@ -1,4 +1,6 @@
+import AddAddress from "../address/AddAddress";
 import AddItem from "../item/AddItem";
+import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
@@ -16,6 +18,7 @@ import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
 import Signup from "../Signup";
+import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
 import UpdateProfile from "../profile/UpdateProfile";
@@ -62,6 +65,8 @@ const Router = () => {
       <HomeStack.Screen name="Signin" component={Signin} />
       <HomeStack.Screen name="SignUpHook" component={SignUpHook} />
       <HomeStack.Screen name="SignInHook" component={SignInHook} />
+      <HomeStack.Screen name="AddressList" component={AddressList} />
+      <HomeStack.Screen name="AddAddress" component={AddAddress} />
     </HomeStack.Navigator>
   );
 
@@ -86,6 +91,7 @@ const Router = () => {
           };
         }}
       />
+      <ProfileStack.Screen name="UpdateAddress" component={UpdateAddress} />
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
@@ -102,11 +108,11 @@ const Router = () => {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         {authStore.user.id === 0 ? (
-          <Tab.Screen name="SignUpHook" component={SignUpHook} />
+          <Tab.Screen name="SignInHook" component={SignInHook} />
         ) : (
           <>
             <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
-            <Tab.Screen name="AddItem" component={AddItem} />
+            <Tab.Screen name="AddItem" component={HomeStackScreen} />
           </>
         )}
 

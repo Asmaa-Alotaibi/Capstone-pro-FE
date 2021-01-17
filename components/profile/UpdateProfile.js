@@ -1,4 +1,5 @@
-import { observer } from "mobx-react";
+import * as ImagePicker from "expo-image-picker";
+
 import {
   Button,
   Container,
@@ -9,14 +10,15 @@ import {
   Label,
   Text,
 } from "native-base";
-import profileStore from "../../stores/profileStore";
-import React, { useState, useEffect } from "react";
 import { Image, ImageBackground, Platform } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import React, { useEffect, useState } from "react";
 import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+
+import { observer } from "mobx-react";
+import profileStore from "../../stores/profileStore";
 
 const UpdateProfile = ({ route, navigation }) => {
   const { profile } = route.params;
@@ -87,6 +89,7 @@ const UpdateProfile = ({ route, navigation }) => {
                     />
                   ) : (
                     <Image
+                      // source={{ uri: newProfile.image }}
                       source={{ uri: newProfile.image }}
                       style={{ width: "100%", height: 300, marginLeft: -13 }}
                     />

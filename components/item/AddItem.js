@@ -1,4 +1,5 @@
-import { observer } from "mobx-react";
+import * as ImagePicker from "expo-image-picker";
+
 import {
   Button,
   Container,
@@ -8,11 +9,13 @@ import {
   Item,
   Label,
 } from "native-base";
-import itemStore from "../../stores/itemStore";
-import React, { useState, useEffect } from "react";
 import { Image, ImageBackground, Platform, Text } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import React, { useEffect, useState } from "react";
+
 import { TouchableOpacity } from "react-native-gesture-handler";
+import itemStore from "../../stores/itemStore";
+import { observer } from "mobx-react";
+
 const AddItem = ({ navigation }) => {
   const [item, setItem] = useState({
     image:
@@ -91,7 +94,6 @@ const AddItem = ({ navigation }) => {
                 Edit Your Picture
               </Text>
             </TouchableOpacity>
-
             <Item floatingLabel>
               <Label>Name</Label>
               <Input
@@ -106,6 +108,13 @@ const AddItem = ({ navigation }) => {
                 onChangeText={(description) =>
                   setItem({ ...item, description })
                 }
+              />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Category</Label>
+              <Input
+                value={item.category}
+                onChangeText={(category) => setItem({ ...item, category })}
               />
             </Item>
             <Item floatingLabel last>
@@ -136,3 +145,6 @@ const AddItem = ({ navigation }) => {
 };
 
 export default observer(AddItem);
+
+// radio button old addresses drop downlist vs create new address //
+// check item.addressid
