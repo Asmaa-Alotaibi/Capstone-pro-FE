@@ -46,6 +46,7 @@ const Router = () => {
   );
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="NewItemList" component={NewItemList} />
       <HomeStack.Screen
         name="ItemDetail"

@@ -2,18 +2,22 @@ import { Card, Text, CardItem, Tab, View, Content } from "native-base";
 import styled from "styled-components";
 
 export const Containerr = styled.View`
+  flex: 1;
   width: 100%;
-  height: 85%;
+  height: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 5px;
+  padding-bottom: 280px;
+  padding-top: 50px;
+  margin-left: 10px;
 `;
 
 export const Product = styled.View`
   width: 50%;
-  height: 50%;
+  height: 35%;
   border-radius: 16px;
-  padding: 5px;
+  padding-bottom: 20px;
+  padding-right: 4px;
 `;
 
 export const ProfileCard = styled(Card)`
