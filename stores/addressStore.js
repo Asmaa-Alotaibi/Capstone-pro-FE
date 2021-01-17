@@ -1,3 +1,4 @@
+
 import { makeAutoObservable, runInAction } from "mobx";
 
 import authStore from "./authStore";
@@ -11,6 +12,8 @@ class AddressStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+// sara code
   getAddressById = (addressId) =>
     this.addresses.find((address) => address.id === addressId);
 
@@ -66,6 +69,22 @@ class AddressStore {
       });
     } catch (error) {
       console.log("AddressStore -> updateAddress -> error", error);
+
+  // asmaa code
+  getAddressByUserId = (userId) =>
+    this.addresses.find((address) => address.userId === userId);
+
+  getAddressById = (addressId) =>
+    this.addresses.find((address) => address.id === addressId);
+
+  fetchAdresses = async () => {
+    try {
+      const response = await instance.get("/addresses");
+      this.addresses = response.data;
+      this.loading = false;
+    } catch (error) {
+      console.error("Addressestore -> fetchAdresses -> error", error);
+
     }
   };
 }

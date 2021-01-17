@@ -15,6 +15,7 @@ import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import itemStore from "../../stores/itemStore";
 import { observer } from "mobx-react";
+import { showMessage } from "react-native-flash-message";
 
 const AddItem = ({ navigation }) => {
   const [item, setItem] = useState({
@@ -27,6 +28,13 @@ const AddItem = ({ navigation }) => {
   });
   const handleSubmit = async () => {
     await itemStore.createItem(item);
+    showMessage({
+      message: "Item Has been added",
+      description: `You have Added an New Item Succesfully`,
+      type: "default",
+      backgroundColor: "black", // background color
+      color: "#fff",
+    });
     navigation.navigate("NewItemList");
   };
   const imageSize = (image) => {
@@ -75,20 +83,16 @@ const AddItem = ({ navigation }) => {
           <Form>
             <TouchableOpacity onPress={pickImage}>
               <Item>
-                <ImageBackground
-                  source={{
-                    uri:
-                      "https://www.namepros.com/attachments/empty-png.89209/",
-                  }}
-                  style={{ width: "100%", height: 300 }}
-                >
-                  {item.image && (
-                    <Image
-                      source={{ uri: item.image.uri }}
-                      style={{ width: "100%", height: 300, marginLeft: -9 }}
-                    />
-                  )}
-                </ImageBackground>
+                {item.image && (
+                  <Image
+                    source={
+                      item.image.uri
+                        ? { uri: item.image.uri }
+                        : { uri: item.image }
+                    }
+                    style={{ width: "100%", height: 300, marginLeft: -9 }}
+                  />
+                )}
               </Item>
               <Text note style={{ fontSize: 17, textAlign: "center" }}>
                 Edit Your Picture

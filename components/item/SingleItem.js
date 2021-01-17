@@ -15,6 +15,7 @@ const SingleItem = ({ item, navigation }) => {
           <Image
             style={{ width: 100, height: 100 }}
             source={{ uri: item.image }}
+            // source={{ uri: item.image.replace("localhost", ip) }}
           />
         </Left>
         <Body>

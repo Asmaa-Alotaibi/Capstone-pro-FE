@@ -62,8 +62,11 @@ class AuthStore {
       };
     });
   };
+
+  getUserBYId = (userId) => this.users.find((user) => user.id === userId);
 }
 
 const authStore = new AuthStore();
+
 authStore.checkForToken();
 export default authStore;

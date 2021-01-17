@@ -3,12 +3,15 @@ import { Controller, useForm } from "react-hook-form";
 
 import React from "react";
 import authStore from "../stores/authStore";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { showMessage } from "react-native-flash-message";
 
-export default function App() {
+export default function App({ navigation }) {
   const { control, handleSubmit, errors, getValues } = useForm();
   const usernameInputRef = React.useRef();
   const passwordInputRef = React.useRef();
   const phonenumberInputRef = React.useRef();
+
 
   const onSubmit = async (user, { navigation }) => {
     console.log(user);
@@ -16,6 +19,20 @@ export default function App() {
     const newUser = authStore.user;
     console.log("from sign up>>", newUser);
     navigation.navigate("Signup");
+// =======
+//   const onSubmit = async (user) => {
+    // console.log(user);
+//     await authStore.signup(user);
+//     showMessage({
+//       message: `Welcome ${authStore.user.username}`,
+//       description: `You Signed up Succesfully, Thanks !`,
+//       type: "default",
+//       backgroundColor: "black", // background color
+//       color: "#fff",
+//     });
+    // const newUser = authStore.user;
+    // console.log("from sign up>>", newUser);
+
   };
 
   return (
@@ -118,6 +135,9 @@ export default function App() {
       <View style={styles.button}>
         <Button title="Submit" onPress={handleSubmit(onSubmit)} />
       </View>
+      <TouchableOpacity onPress={() => navigation.replace("Signin")}>
+        <Text style={styles.loginText}>Signin</Text>
+      </TouchableOpacity>
     </View>
   );
 }

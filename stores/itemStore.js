@@ -1,5 +1,4 @@
 import { makeAutoObservable, runInAction } from "mobx";
-
 import authStore from "./authStore";
 import instance from "./instance";
 
@@ -27,7 +26,7 @@ class ItemStore {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
       const res = await instance.post("/items", formData);
-      res.data.user = { username: authStore.user.username };
+      res.data.owner = { username: authStore.user.username };
       runInAction(() => {
         this.items.push(res.data);
       });
@@ -60,6 +59,37 @@ class ItemStore {
       });
     } catch (error) {
       console.log("ItemStore -> updateItem -> error", error);
+    }
+  };
+  requestItem = async (requestedItem, option) => {
+    try {
+      await instance.put(`/items/request/${requestedItem.id}`, requestedItem);
+      //update at FE
+      const elementsIndex = this.items.findIndex(
+        (element) => element.id == requestedItem.id
+      );
+      let newArray = [...this.items];
+      if (option === 1) {
+        await instance.put(
+          `/items/needDelivery/${requestedItem.id}`,
+          requestedItem
+        );
+        newArray[elementsIndex] = {
+          ...newArray[elementsIndex],
+          booked: !newArray[elementsIndex].booked,
+          needDelivery: !newArray[elementsIndex].needDelivery,
+        };
+      } else {
+        newArray[elementsIndex] = {
+          ...newArray[elementsIndex],
+          booked: !newArray[elementsIndex].booked,
+        };
+      }
+      runInAction(() => {
+        this.items = newArray;
+      });
+    } catch (error) {
+      console.log("ItemStore -> requestItem -> error", error);
     }
   };
 }
