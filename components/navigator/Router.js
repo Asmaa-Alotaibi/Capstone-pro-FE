@@ -1,4 +1,3 @@
-
 import AddAddress from "../address/AddAddress";
 import AddItem from "../item/AddItem";
 import AddressList from "../address/AddressList";
@@ -21,10 +20,8 @@ import ProfilePage from "../profile/ProfilePage";
 import ProfileList from "../profile/ProfileList";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
-import Categories from "../categories";
 import authStore from "../../stores/authStore";
 import LogOutButton from "../buttons/LogOutButton";
-import { NavigationContainer } from "@react-navigation/native";
 import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
@@ -108,7 +105,6 @@ const Router = () => {
       <HomeStack.Screen name="Request" component={Request} />
       <HomeStack.Screen name="RequestSummary" component={RequestSummary} />
       <HomeStack.Screen name="QRScanner" component={QRScanner} />
-
     </HomeStack.Navigator>
   );
 
@@ -140,7 +136,6 @@ const Router = () => {
       <ProfileStack.Screen name="Request" component={Request} />
       <ProfileStack.Screen name="RequestSummary" component={RequestSummary} />
       <ProfileStack.Screen name="QRScanner" component={QRScanner} />
-
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
@@ -164,12 +159,11 @@ const Router = () => {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         {authStore.user.id === 0 ? (
-          <Tab.Screen name="SignInHook" component={SignInHook} />
-
+          <Tab.Screen name="Signin" component={Signin} />
         ) : (
           <>
             <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
-            <Tab.Screen name="AddItem" component={HomeStackScreen} />
+            <Tab.Screen name="AddItem" component={AddItem} />
           </>
         )}
 

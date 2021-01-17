@@ -9,7 +9,7 @@ const Home = ({ navigation }) => {
       <Text>"ReUse !"</Text>
       <Button
         onPress={() => {
-          navigation.navigate("SingleItem");
+          navigation.navigate("NewItemList");
         }}
       >
         <Text>Click here to skip</Text>

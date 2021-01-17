@@ -1,10 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { TouchableOpacity } from "react-native-gesture-handler";
- 
- 
-import ip from "../../stores/ipaddress";
- 
 import {
   Containerr,
   ItemCardItem,
@@ -13,7 +9,6 @@ import {
   Product,
 } from "../../styles";
 import { StyleSheet, View } from "react-native";
-  
 const Item = ({ item, navigation }) => {
   return (
     <Product>
@@ -22,19 +17,15 @@ const Item = ({ item, navigation }) => {
       >
         <ItemCardItem>
           {/* <ItemName>{item.name}</ItemName> */}
- 
-            <ItemImage
-              source={{
-                uri: item.image.replace("localhost", ip), //uri: item.image,
-              }}
-            />
-          </ItemCardItem>
-        </TouchableOpacity>
-      </Product>
-    </>
- 
-           
- 
+
+          <ItemImage
+            source={{
+              uri: item.image,
+            }}
+          />
+        </ItemCardItem>
+      </TouchableOpacity>
+    </Product>
   );
 };
 
