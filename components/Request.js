@@ -4,7 +4,6 @@ import { observer } from "mobx-react";
 import ip from "../stores/ipaddress";
 import authStore from "../stores/authStore";
 import itemStore from "../stores/itemStore";
-import QRgenerator from "./QRgenerator";
 
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -26,10 +25,8 @@ const Request = ({ navigation, route }) => {
     //if (!authStore.user) navigation.replace("Signin");
     //notify owner (push notification)
 
-    const randomValue =
-      Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); //random string
-
-    //How to assign to item.QRvalue==randomValue;
+    // const randomValue =
+    //   Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); //random string
 
     if (deliveryOption.id === 0) {
       itemStore.requestItem(item, 0);
@@ -43,22 +40,21 @@ const Request = ({ navigation, route }) => {
       navigation.navigate("RequestSummary", {
         item: item,
         option: 0,
-        randomValue: randomValue,
       });
     } else {
-      //change stause of needdelivery (item )
+      //change stauts of needdelivery (item )
       itemStore.requestItem(item, 1);
+
       showMessage({
         message: "Done, Thanks",
         description: `Item is booked and your Delivery request in process !`,
         type: "default",
-        backgroundColor: "black", // background color
+        backgroundColor: "black",
         color: "#fff",
       });
       navigation.navigate("RequestSummary", {
         item: item,
         option: 1,
-        randomValue: randomValue,
       });
     }
   };
@@ -91,3 +87,4 @@ const Request = ({ navigation, route }) => {
 };
 
 export default observer(Request);
+// { ...item, QRvalue: randomValue }

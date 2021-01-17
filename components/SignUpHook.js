@@ -12,18 +12,27 @@ export default function App({ navigation }) {
   const passwordInputRef = React.useRef();
   const phonenumberInputRef = React.useRef();
 
-  const onSubmit = async (user) => {
-    // console.log(user);
+
+  const onSubmit = async (user, { navigation }) => {
+    console.log(user);
     await authStore.signup(user);
-    showMessage({
-      message: `Welcome ${authStore.user.username}`,
-      description: `You Signed up Succesfully, Thanks !`,
-      type: "default",
-      backgroundColor: "black", // background color
-      color: "#fff",
-    });
+    const newUser = authStore.user;
+    console.log("from sign up>>", newUser);
+    navigation.navigate("Signup");
+// =======
+//   const onSubmit = async (user) => {
+    // console.log(user);
+//     await authStore.signup(user);
+//     showMessage({
+//       message: `Welcome ${authStore.user.username}`,
+//       description: `You Signed up Succesfully, Thanks !`,
+//       type: "default",
+//       backgroundColor: "black", // background color
+//       color: "#fff",
+//     });
     // const newUser = authStore.user;
     // console.log("from sign up>>", newUser);
+
   };
 
   return (
@@ -160,53 +169,3 @@ const styles = StyleSheet.create({
     color: "black",
   },
 });
-
-// const firstNameInputRef = React.useRef();
-// const lastNameInputRef = React.useRef();
-// <View>
-//         <Text style={styles.label}>First Name</Text>
-//         <Controller
-//           name="firstName"
-//           defaultValue=""
-//           control={control}
-//           rules={{ required: "This is required." }}
-//           onFocus={() => {
-//             firstNameInputRef.current.focus();
-//           }}
-//           render={({ onChange, onBlur, value }) => (
-//             <TextInput
-//               style={styles.input}
-//               ref={firstNameInputRef}
-//               onBlur={onBlur}
-//               onChangeText={(value) => onChange(value)}
-//               value={value}
-//             />
-//           )}
-//         />
-//       </View>
-
-//       {errors.firstName && <Text>This is required.</Text>}
-
-//       <View>
-//         <Text style={styles.label}>Last Name</Text>
-//         <Controller
-//           name="lastName"
-//           defaultValue=""
-//           control={control}
-//           rules={{ required: "This is required." }}
-//           onFocus={() => {
-//             firstNameInputRef.current.focus();
-//           }}
-//           render={({ onChange, onBlur, value }) => (
-//             <TextInput
-//               style={styles.input}
-//               ref={lastNameInputRef}
-//               onBlur={onBlur}
-//               onChangeText={(value) => onChange(value)}
-//               value={value}
-//             />
-//           )}
-//         />
-//       </View>
-
-//       {errors.lastName && <Text>This is required.</Text>}

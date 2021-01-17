@@ -6,15 +6,17 @@ import SingleAdress from "./SingleAdress";
 import call from "react-native-phone-call";
 import { Icon } from "native-base";
 import addressStore from "../stores/addressStore";
-const RequestSummary = ({ navigation, route }) => {
+import QRgenerator from "./QRgenerator";
+
+const RequestSummary = ({ route }) => {
   const option = route.params.option;
   const item = route.params.item;
-  const randomValue = route.params.randomValue;
+  //  const randomValue = route.params.randomValue;
 
   const handelPress = () => {
     const args = {
       number: JSON.stringify(item.owner.phone),
-      prompt: false, // Optional boolean property. Determines if the user should be prompt prior to the call
+      prompt: false, // Optional to determines if the user should be prompt prior to the call
     };
     call(args).catch(console.error);
   };
@@ -24,7 +26,7 @@ const RequestSummary = ({ navigation, route }) => {
       return (
         <>
           <Text> Address of this item is: </Text>
-          <SingleAdress address={address} />
+          {/* <SingleAdress address={address} /> */}
           <Text> call {item.owner.username}: </Text>
           <Icon
             onPress={handelPress}
@@ -58,11 +60,10 @@ const RequestSummary = ({ navigation, route }) => {
         <Text> Description : {item.description}</Text>
         <Text> owner of this item is : {item.owner.username}</Text>
         {showAddress()}
-        <QRgenerator randomValue={randomValue} />;
+        <QRgenerator randomValue={item.QRvalue} />
       </Content>
     </Content>
   );
 };
 
 export default RequestSummary;
-//<Text> Address of this item is: </Text>

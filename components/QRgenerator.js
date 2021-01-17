@@ -25,13 +25,14 @@ const QRgenerator = ({ randomValue }) => {
       Share.share(shareImageBase64).catch((error) => console.log(error));
     });
   };
+  console.log("from QRgenertor>>", JSON.stringify(randomValue));
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.titleStyle}>Your QR Code ..</Text>
         <QRCode
           getRef={(ref) => (myQRCode = ref)}
-          value={randomValue}
+          value={JSON.stringify(randomValue)}
           size={250}
           color="black"
           backgroundColor="white"

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react";
 import {
   Body,
   Button,
@@ -11,23 +10,26 @@ import {
   Thumbnail,
   View,
 } from "native-base";
-import React, { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import authStore from "../../stores/authStore";
-import profileStore from "../../stores/profileStore";
 import {
-  ProfileCardItem,
+  ItemCard,
   ItemDescription,
   ItemDetailCardItem,
-  ItemDetailTitle,
-  ItemCard,
   ItemDetailImage,
+  ItemDetailTitle,
+  ProfileCardItem,
 } from "../../styles";
+import React, { useState } from "react";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+
+import DeleteButton from "../buttons/DeleteButton";
 import UpdateButton from "../buttons/UpdateButton";
-import profileImg from "../../img/profileImage.jpg";
+import authStore from "../../stores/authStore";
 import ip from "../../stores/ipaddress";
 import DeleteButton from "../buttons/DeleteButton";
 import UpdateItemButton from "../buttons/UpdateItemButton";
+import { observer } from "mobx-react";
+import profileImg from "../../img/profileImage.jpg";
+import profileStore from "../../stores/profileStore";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -59,6 +61,7 @@ const ItemDetail = ({ route, navigation }) => {
                           }
                         : profileImg
                     }
+
                   />
                 </TouchableOpacity>
                 <Body>
@@ -103,6 +106,7 @@ const ItemDetail = ({ route, navigation }) => {
               </Body>
             </ItemDetailCardItem>
           </ItemCard>
+
         </Container>
       </ScrollView>
     </>
