@@ -76,7 +76,7 @@ const ItemDetail = ({ route, navigation }) => {
                 <Body>
                   <CardItem>
                     <Left>
-                      <ItemDetailTitle>{item.title}</ItemDetailTitle>
+                      <ItemDetailTitle>{item.name}</ItemDetailTitle>
                     </Left>
                     <Right>
                       <TouchableOpacity onPress={handleAdd}>
@@ -87,16 +87,14 @@ const ItemDetail = ({ route, navigation }) => {
 
                   <ItemDetailImage
                     source={{
-                      uri: item.image,
+                      uri: item.image.replace("localhost", ip),
+                      // uri: item.image,
                     }}
                   />
                 </Body>
               </ItemDetailCardItem>
               <CardItem>
-                <ItemDescription>
-                  {"      "}
-                  {item.description}
-                </ItemDescription>
+                <ItemDescription>{item.description}</ItemDescription>
               </CardItem>
             </ItemCard>
             <Button
