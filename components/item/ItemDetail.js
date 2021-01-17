@@ -21,7 +21,6 @@ import {
 import React, { useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
-import DeleteButton from "../buttons/DeleteButton";
 import UpdateButton from "../buttons/UpdateButton";
 import authStore from "../../stores/authStore";
 import ip from "../../stores/ipaddress";
@@ -61,7 +60,6 @@ const ItemDetail = ({ route, navigation }) => {
                           }
                         : profileImg
                     }
-
                   />
                 </TouchableOpacity>
                 <Body>
@@ -106,7 +104,6 @@ const ItemDetail = ({ route, navigation }) => {
               </Body>
             </ItemDetailCardItem>
           </ItemCard>
-
         </Container>
       </ScrollView>
     </>

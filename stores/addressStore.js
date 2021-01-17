@@ -1,4 +1,3 @@
-
 import { makeAutoObservable, runInAction } from "mobx";
 
 import authStore from "./authStore";
@@ -13,7 +12,7 @@ class AddressStore {
     makeAutoObservable(this);
   }
 
-// sara code
+  // sara code
   getAddressById = (addressId) =>
     this.addresses.find((address) => address.id === addressId);
 
@@ -69,6 +68,8 @@ class AddressStore {
       });
     } catch (error) {
       console.log("AddressStore -> updateAddress -> error", error);
+    }
+  };
 
   // asmaa code
   getAddressByUserId = (userId) =>
@@ -84,7 +85,6 @@ class AddressStore {
       this.loading = false;
     } catch (error) {
       console.error("Addressestore -> fetchAdresses -> error", error);
-
     }
   };
 }
