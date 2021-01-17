@@ -1,4 +1,5 @@
 import { Button, Container, Text } from "native-base";
+
 import React from "react";
 import ItemList from "./item/ItemList";
 
@@ -8,7 +9,7 @@ const Home = ({ navigation }) => {
       <Text>"ReUse !"</Text>
       <Button
         onPress={() => {
-          navigation.navigate("NewItemList");
+          navigation.navigate("SingleItem");
         }}
       >
         <Text>Click here to skip</Text>

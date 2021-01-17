@@ -1,4 +1,3 @@
-import { observer } from "mobx-react";
 import {
   Body,
   Button,
@@ -10,22 +9,24 @@ import {
   Text,
   Thumbnail,
 } from "native-base";
-import React, { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import authStore from "../../stores/authStore";
-import profileStore from "../../stores/profileStore";
 import {
-  ProfileCardItem,
+  ItemCard,
   ItemDescription,
   ItemDetailCardItem,
-  ItemDetailTitle,
-  ItemCard,
   ItemDetailImage,
+  ItemDetailTitle,
+  ProfileCardItem,
 } from "../../styles";
-import UpdateButton from "../buttons/UpdateButton";
-import profileImg from "../../img/profileImage.jpg";
-import ip from "../../stores/ipaddress";
+import React, { useState } from "react";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+
 import DeleteButton from "../buttons/DeleteButton";
+import UpdateButton from "../buttons/UpdateButton";
+import authStore from "../../stores/authStore";
+import ip from "../../stores/ipaddress";
+import { observer } from "mobx-react";
+import profileImg from "../../img/profileImage.jpg";
+import profileStore from "../../stores/profileStore";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -79,7 +80,7 @@ const ItemDetail = ({ route, navigation }) => {
                     </Left>
                     <Right>
                       <TouchableOpacity onPress={handleAdd}>
-                        <Text>Requist</Text>
+                        <Text>Request</Text>
                       </TouchableOpacity>
                     </Right>
                   </CardItem>
