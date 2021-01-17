@@ -25,7 +25,7 @@ import {
   ProfileUserName,
   ProfileItemList,
 } from "../../styles";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Signin from "../Signin";
 import ip from "../../stores/ipaddress";
 
@@ -41,66 +41,64 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
     (item) => item.recepientId === profile.userId
   );
   return (
-    <>
-      <ProfileCard>
+    <ProfileCard>
+      <ProfileCardItem>
+        <Body>
+          <ProfileUserName>{profile.user.username}</ProfileUserName>
+        </Body>
+      </ProfileCardItem>
+      <ProfileCardItem>
+        <Left>
+          <Thumbnail
+            large
+            source={
+              profile.image
+                ? { uri: profile.image }
+                : // ? { uri: profile.image.replace("localhost", ip) }
+                  profileImg
+            }
+          />
+          <ProfileFirstName>{profile.firstName}</ProfileFirstName>
+          <ProfileLastName>{profile.lastName}</ProfileLastName>
+        </Left>
+        {items.length === 1 ? (
+          <ProfileItems>
+            {items.length}
+            {"\n"}Item
+          </ProfileItems>
+        ) : (
+          <ProfileItems>
+            {items.length}
+            {"\n"}Items
+          </ProfileItems>
+        )}
+      </ProfileCardItem>
+      {authStore.user.id === profile.userId ? (
         <ProfileCardItem>
-          <Body>
-            <ProfileUserName>{profile.user.username}</ProfileUserName>
-          </Body>
+          <UpdateButton profile={profile} navigation={navigation} />
         </ProfileCardItem>
-        <ProfileCardItem>
-          <Left>
-            <Thumbnail
-              large
-              source={
-                profile.image
-                  ? { uri: profile.image }
-                  : // ? { uri: profile.image.replace("localhost", ip) }
-                    profileImg
-              }
-            />
-            <ProfileFirstName>{profile.firstName}</ProfileFirstName>
-            <ProfileLastName>{profile.lastName}</ProfileLastName>
-          </Left>
-          {items.length === 1 ? (
-            <ProfileItems>
-              {items.length}
-              {"\n"}Item
-            </ProfileItems>
-          ) : (
-            <ProfileItems>
-              {items.length}
-              {"\n"}Items
-            </ProfileItems>
-          )}
-        </ProfileCardItem>
-        {authStore.user.id === profile.userId ? (
-          <ProfileCardItem>
-            <UpdateButton profile={profile} navigation={navigation} />
-          </ProfileCardItem>
-        ) : null}
-        <ProfileItemList>
-          <Header hasTabs />
-          <Tabs>
-            <Tab heading={`My Profile`}>
-              <Text>
-                we have to show the profile detail and it showld be shown only
-                for the owner of the profile
-              </Text>
-            </Tab>
-            <Tab heading={`${items.length} Items`}>
-              <ItemList items={items} navigation={navigation} />
-            </Tab>
-            <Tab heading={`${deliveredItems.length} Deliveries`}>
-              <ItemList items={deliveredItems} navigation={navigation} />
-            </Tab>
-            <Tab heading={`${requistedItems.length} Requisted Items`}>
-              <ItemList items={requistedItems} navigation={navigation} />
-            </Tab>
-          </Tabs>
-        </ProfileItemList>
-      </ProfileCard>
-    </>
+      ) : null}
+      <ProfileItemList>
+        <Header hasTabs />
+        <Tabs>
+          <Tab heading={`My Profile`}>
+            <Text>
+              we have to show the profile detail and it showld be shown only for
+              the owner of the profile
+            </Text>
+          </Tab>
+          <Tab heading={`${items.length} Items`}>
+            <ItemList items={items} navigation={navigation} />
+          </Tab>
+          <Tab heading={`${deliveredItems.length} Deliveries`}>
+            <ItemList items={deliveredItems} navigation={navigation} />
+          </Tab>
+          <Tab heading={`${requistedItems.length} Requisted Items`}>
+            <ItemList items={requistedItems} navigation={navigation} />
+          </Tab>
+        </Tabs>
+      </ProfileItemList>
+    </ProfileCard>
   );
 };
 export default observer(ProfilePage);
