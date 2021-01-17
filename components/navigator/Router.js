@@ -27,7 +27,7 @@ import DeleteButton from "../buttons/DeleteButton";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
 import QRScanner from "../QRScanner";
-
+import QRgenerator from "../QRgenerator";
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,6 +80,9 @@ const Router = () => {
           };
         }}
       />
+      <HomeStack.Screen name="Request" component={Request} />
+      <HomeStack.Screen name="RequestSummary" component={RequestSummary} />
+      <HomeStack.Screen name="QRScanner" component={QRScanner} />
     </HomeStack.Navigator>
   );
 
@@ -104,6 +107,9 @@ const Router = () => {
           };
         }}
       />
+      <ProfileStack.Screen name="Request" component={Request} />
+      <ProfileStack.Screen name="RequestSummary" component={RequestSummary} />
+      <ProfileStack.Screen name="QRScanner" component={QRScanner} />
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
