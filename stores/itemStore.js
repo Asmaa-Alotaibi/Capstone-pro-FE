@@ -92,6 +92,17 @@ class ItemStore {
       console.log("ItemStore -> requestItem -> error", error);
     }
   };
+  driver = async (updatedItem) => {
+    try {
+      await instance.put(`/items/delivery/${updatedItem.id}`, updatedItem);
+      runInAction(() => {
+        const item = this.items.find((item) => item.id === updatedItem.id);
+        for (const key in item) item[key] = updatedItem[key];
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 const itemStore = new ItemStore(); //new instance
 itemStore.fetchItems();

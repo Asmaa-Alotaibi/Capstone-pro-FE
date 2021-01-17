@@ -8,26 +8,27 @@ import ip from "../../stores/ipaddress";
 const SingleItem = ({ item, navigation }) => {
   return (
     <ListItem>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("ItemDetail", { item: item })}
-      >
-        <Left>
+      <Left>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ItemDetail", { item: item })}
+        >
           <Image
-            style={{ width: 100, height: 100 }}
+            style={{ width: 150, height: 150 }}
             source={{ uri: item.image }}
             // source={{ uri: item.image.replace("localhost", ip) }}
           />
-        </Left>
-        <Body>
-          <Text>{item.name}</Text>
-        </Body>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </Left>
+      <Body>
+        <Text>{item.name}</Text>
+      </Body>
+
       <Right>
         <Button
           onPress={() => navigation.navigate("Request", { item: item })}
-          style={{ width: 80, height: 30 }}
+          style={{ width: 90, height: 50 }}
         >
-          <Text style={{ fontSize: 10 }}>Request</Text>
+          <Text>Request</Text>
         </Button>
       </Right>
     </ListItem>

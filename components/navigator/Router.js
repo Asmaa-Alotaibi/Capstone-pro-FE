@@ -27,6 +27,7 @@ import DeleteButton from "../buttons/DeleteButton";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
 import QRScanner from "../QRScanner";
+import RequestedItemList from "../item/RequestedItemList";
 
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
@@ -36,6 +37,7 @@ const ItemDetailStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const AuthStack = createStackNavigator();
+const DriverStack = createStackNavigator();
 
 const Router = () => {
   const AuthStackScreen = () => (
@@ -43,6 +45,14 @@ const Router = () => {
       <AuthStack.Screen name="Signin" component={Signin} />
       <AuthStack.Screen name="Signup" component={SignUpHook} />
     </AuthStack.Navigator>
+  );
+  const DriverStackScreen = () => (
+    <DriverStack.Navigator>
+      <DriverStack.Screen
+        name="RequestedItemList"
+        component={RequestedItemList}
+      />
+    </DriverStack.Navigator>
   );
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
@@ -94,6 +104,7 @@ const Router = () => {
       />
 
       <ProfileStack.Screen name="ProfilePage" component={ProfilePage} />
+      <ProfileStack.Screen name="ItemList" component={ItemList} />
       <ProfileStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -136,6 +147,9 @@ const Router = () => {
         )}
 
         <Tab.Screen name="Categoties" component={CategoryStackScreen} />
+        {authStore.user.driver ? (
+          <Tab.Screen name="Driver" component={DriverStackScreen} />
+        ) : null}
       </Tab.Navigator>
     </NavigationContainer>
   );
