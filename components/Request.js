@@ -25,11 +25,11 @@ const Request = ({ navigation, route }) => {
     //if (!authStore.user) navigation.replace("Signin");
     //notify owner (push notification)
 
-    const randomValue =
-      Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); //random string
+    // const randomValue =
+    //   Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); //random string
 
     if (deliveryOption.id === 0) {
-      itemStore.requestItem({ ...item, QRvalue: randomValue }, 0);
+      itemStore.requestItem(item, 0);
       showMessage({
         message: "Done, Thanks",
         description: `Your order has been submited !`,
@@ -40,11 +40,10 @@ const Request = ({ navigation, route }) => {
       navigation.navigate("RequestSummary", {
         item: item,
         option: 0,
-        randomValue: randomValue,
       });
     } else {
       //change stauts of needdelivery (item )
-      itemStore.requestItem({ ...item, QRvalue: randomValue }, 1);
+      itemStore.requestItem(item, 1);
 
       showMessage({
         message: "Done, Thanks",
@@ -56,7 +55,6 @@ const Request = ({ navigation, route }) => {
       navigation.navigate("RequestSummary", {
         item: item,
         option: 1,
-        randomValue: randomValue,
       });
     }
   };
@@ -89,3 +87,4 @@ const Request = ({ navigation, route }) => {
 };
 
 export default observer(Request);
+// { ...item, QRvalue: randomValue }

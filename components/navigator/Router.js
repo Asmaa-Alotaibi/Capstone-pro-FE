@@ -28,6 +28,7 @@ import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
 import QRScanner from "../QRScanner";
 import QRgenerator from "../QRgenerator";
+import QRScannertButton from "../buttons/QRScannertButton";
 // import { Tab } from "native-base";
 // const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,6 +93,7 @@ const Router = () => {
         component={MyProfile}
         options={{
           headerLeft: () => <LogOutButton />,
+          headerRight: () => <QRScannertButton />,
         }}
       />
 

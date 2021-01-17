@@ -11,7 +11,7 @@ import QRgenerator from "./QRgenerator";
 const RequestSummary = ({ route }) => {
   const option = route.params.option;
   const item = route.params.item;
-  const randomValue = route.params.randomValue;
+  //  const randomValue = route.params.randomValue;
 
   const handelPress = () => {
     const args = {
@@ -60,7 +60,7 @@ const RequestSummary = ({ route }) => {
         <Text> Description : {item.description}</Text>
         <Text> owner of this item is : {item.owner.username}</Text>
         {showAddress()}
-        <QRgenerator randomValue={randomValue} />
+        <QRgenerator randomValue={item.QRvalue} />
       </Content>
     </Content>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ItemCardItem, ItemImage, ItemName, Product } from "../../styles";
+import ip from "../../stores/ipaddress";
 const Item = ({ item, navigation }) => {
   return (
     <>
@@ -14,7 +15,7 @@ const Item = ({ item, navigation }) => {
 
             <ItemImage
               source={{
-                uri: item.image,
+                uri: item.image.replace("localhost", ip), //uri: item.image,
               }}
             />
           </ItemCardItem>
