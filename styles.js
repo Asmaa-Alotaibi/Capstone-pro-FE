@@ -97,9 +97,9 @@ export const ItemDetailTitle = styled.Text`
 `;
 
 export const ItemDetailImage = styled.Image`
-  height: 100px;
-  width: 100%;
-  flex: 1;
+  height: 400px;
+  width: 98%;
+  margin-left: 4px;
 `;
 
 export const ItemDescription = styled.Text`

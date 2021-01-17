@@ -8,7 +8,14 @@ const DeleteButton = ({ itemId, navigation }) => {
     navigation.replace("NewItemList");
   };
 
-  return <Icon onPress={handleDelete} name="trash" color="red" />;
+  return (
+    <Icon
+      onPress={handleDelete}
+      name="trash"
+      color="red"
+      style={{ marginRight: 5 }}
+    />
+  );
 };
 
 export default DeleteButton;
