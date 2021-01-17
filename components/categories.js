@@ -8,7 +8,6 @@ const Categories = ({ navigation }) => {
   const categories = category.map((e) => (
     <CategoryButton category={e} navigation={navigation} key={index++} />
   ));
-
   return (
     <>
       <Container>{categories}</Container>
