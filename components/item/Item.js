@@ -1,6 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, View } from "react-native";
+import ip from "../../stores/ipaddress";
 import {
   Containerr,
   ItemCardItem,
@@ -8,7 +10,7 @@ import {
   ItemName,
   Product,
 } from "../../styles";
-import { StyleSheet, View } from "react-native";
+
 const Item = ({ item, navigation }) => {
   return (
     // <View style={styles.container}>
@@ -18,6 +20,7 @@ const Item = ({ item, navigation }) => {
       <View style={styles.box}>
         {/* <ItemName>{item.name}</ItemName> */}
 
+ 
         <ItemImage
           source={{
             uri: item.image,
@@ -26,6 +29,7 @@ const Item = ({ item, navigation }) => {
       </View>
     </TouchableOpacity>
     // </View>
+ 
   );
 };
 

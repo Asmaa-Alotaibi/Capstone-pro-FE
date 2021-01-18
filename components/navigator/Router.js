@@ -31,12 +31,17 @@ import Signup from "../Signup";
 import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
+ 
+import QRScanner from "../QRScanner";
+import RequestedItemList from "../item/RequestedItemList";
+ 
 import UpdateProfile from "../profile/UpdateProfile";
 import authStore from "../../stores/authStore";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
+ 
 
 // import { Tab } from "native-base";
 
@@ -121,7 +126,6 @@ const Router = () => {
         component={MyProfile}
         options={{
           headerLeft: () => <LogOutButton />,
-          headerRight: () => <QRScannertButton />,
         }}
       />
 
