@@ -30,6 +30,7 @@ import { observer } from "mobx-react";
 import profileImg from "../../img/profileImage.jpg";
 import profileStore from "../../stores/profileStore";
 import itemStore from "../../stores/itemStore";
+import QRScannertButton from "../buttons/QRScannertButton";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -58,8 +59,8 @@ const ItemDetail = ({ route, navigation }) => {
                     source={
                       profile.image
                         ? {
-                            uri: profile.image,
-                            // uri: profile.image.replace("localhost", ip),
+                            // uri: profile.image,
+                            uri: profile.image.replace("localhost", ip),
                           }
                         : profileImg
                     }
@@ -74,6 +75,7 @@ const ItemDetail = ({ route, navigation }) => {
                   <ProfileCardItem>
                     <DeleteButton itemId={item.id} navigation={navigation} />
                     <UpdateItemButton item={item} navigation={navigation} />
+                    <QRScannertButton item={item} navigation={navigation} />
                   </ProfileCardItem>
                 ) : item.recipientId === null ? (
                   <Button
@@ -122,12 +124,13 @@ const ItemDetail = ({ route, navigation }) => {
               <Body>
                 <ItemDetailImage
                   source={{
-                    uri: item.image,
+                    //  uri: item.image,
+                    uri: item.image.replace("localhost", ip),
                   }}
                 />
                 <ItemDetailTitle style={{ color: "gray" }}>
-                  Name <Text>{item.name}</Text> {"\n"}
-                  About the Item: <Text>{item.description}</Text>
+                  Name <Text>{item.name}</Text>
+                  {"\n"}About the Item: <Text>{item.description}</Text>
                 </ItemDetailTitle>
               </Body>
             </ItemDetailCardItem>

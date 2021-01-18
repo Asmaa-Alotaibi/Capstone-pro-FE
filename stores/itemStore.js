@@ -94,6 +94,29 @@ class ItemStore {
       console.log("ItemStore -> requestItem -> error", error);
     }
   };
+
+  gonetItem = async (goneItem) => {
+    console.log("TCL: ItemStore -> gonetItem -> goneItem", goneItem);
+    try {
+      await instance.put(`/items/gone/${goneItem.id}`, goneItem);
+      //update at FE
+      const elementsIndex = this.items.findIndex(
+        (element) => element.id == goneItem.id
+      );
+      let newArray = [...this.items];
+      newArray[elementsIndex] = {
+        ...newArray[elementsIndex],
+        gone: !newArray[elementsIndex].gone,
+      };
+
+      runInAction(() => {
+        this.items = newArray;
+      });
+    } catch (error) {
+      console.log("ItemStore -> gonetItem -> error", error);
+    }
+  };
+
   driver = async (updatedItem) => {
     try {
       await instance.put(`/items/delivery/${updatedItem.id}`, updatedItem);

@@ -10,13 +10,11 @@ import {
   Alert,
 } from "react-native";
 
-const QRgenerator = ({ randomValue }) => {
-  console.log("TCL: App -> randomInputValue", randomValue);
+const QRgenerator = ({ RQValue }) => {
   let myQRCode = useRef();
 
   const shareQRCode = () => {
     myQRCode.toDataURL((dataURL) => {
-      console.log(dataURL);
       let shareImageBase64 = {
         title: "React Native",
         url: `data:image/png;base64,${dataURL}`,
@@ -25,14 +23,14 @@ const QRgenerator = ({ randomValue }) => {
       Share.share(shareImageBase64).catch((error) => console.log(error));
     });
   };
-  console.log("from QRgenertor>>", JSON.stringify(randomValue));
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.titleStyle}>Your QR Code ..</Text>
         <QRCode
           getRef={(ref) => (myQRCode = ref)}
-          value={JSON.stringify(randomValue)}
+          value={JSON.stringify(RQValue)}
           size={250}
           color="black"
           backgroundColor="white"

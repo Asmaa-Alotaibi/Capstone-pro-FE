@@ -19,15 +19,9 @@ const Request = ({ navigation, route }) => {
   ];
 
   const { item } = route.params;
-  console.log("from request>>", item);
 
   const handelSubmit = () => {
-    //if (!authStore.user) navigation.replace("Signin");
     //notify owner (push notification)
-
-    // const randomValue =
-    //   Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); //random string
-
     if (deliveryOption.id === 0) {
       itemStore.requestItem({ ...item, recipientId: authStore.user.id }, 0);
       showMessage({
