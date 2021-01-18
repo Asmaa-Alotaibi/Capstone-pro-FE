@@ -1,4 +1,5 @@
 import AddAddress from "../address/AddAddress";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import AddItem from "../item/AddItem";
 import AddressList from "../address/AddressList";
 import Categories from "../categories";
@@ -8,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../Home";
 import NewItemList from "../item/NewItemList";
 import { observer } from "mobx-react";
@@ -33,16 +35,19 @@ import QRScanner from "../QRScanner";
 import RequestedItemList from "../item/RequestedItemList";
 import QRgenerator from "../QRgenerator";
 import QRScannertButton from "../buttons/QRScannertButton";
+import DriverHomePage from "../drivers/DriverHomePage";
+import { Icon } from "native-base";
 // import { Tab } from "native-base";
 
 // const { Navigator, Screen } = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const MainTab = createBottomTabNavigator();
+const DriverTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
-const ItemDetailStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const DriverStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const Router = () => {
   const AuthStackScreen = () => (
@@ -154,24 +159,43 @@ const Router = () => {
       <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
     </CategoriesStack.Navigator>
   );
+  const MainTabScreen = () => (
+    <MainTab.Navigator>
+      <MainTab.Screen name="Home" component={HomeStackScreen} />
+      {authStore.user.id === 0 ? (
+        <MainTab.Screen name="Signin" component={Signin} />
+      ) : (
+        <>
+          <MainTab.Screen name="MyProfile" component={ProfileStackScreen} />
+          <MainTab.Screen name="AddItem" component={AddItem} />
+        </>
+      )}
+
+      <MainTab.Screen name="Categoties" component={CategoryStackScreen} />
+    </MainTab.Navigator>
+  );
+  const DriverTabScreen = () => (
+    <DriverTab.Navigator>
+      <DriverTab.Screen name="Home" component={DriverHomePage} />
+      <DriverTab.Screen name="Deliveries" component={DriverStackScreen} />
+    </DriverTab.Navigator>
+  );
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        {authStore.user.id === 0 ? (
-          <Tab.Screen name="Signin" component={Signin} />
-        ) : (
-          <>
-            <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
-            <Tab.Screen name="AddItem" component={AddItem} />
-          </>
-        )}
+      <Drawer.Navigator>
+        <Drawer.Screen name="Main" component={MainTabScreen} />
 
-        <Tab.Screen name="Categoties" component={CategoryStackScreen} />
         {authStore.user.driver ? (
-          <Tab.Screen name="Driver" component={DriverStackScreen} />
+          <Drawer.Screen name="Driver" component={DriverTabScreen} />
         ) : null}
-      </Tab.Navigator>
+        {authStore.user.id === 0 ? (
+          <>
+            <Drawer.Screen name="Signin" component={AuthStackScreen} />
+          </>
+        ) : (
+          <Drawer.Screen name="LogOut" component={LogOutButton} />
+        )}
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
