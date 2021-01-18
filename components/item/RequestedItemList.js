@@ -7,14 +7,17 @@ import QRScanner from "../QRScanner";
 import RequestedItem from "./RequestedItem";
 import authStore from "../../stores/authStore";
 
-const RequestedItemList = ({ navigation }) => {
+const RequestedItemList = ({ navigation, items }) => {
   if (itemStore.loading) return <Spinner />;
-  const itemList = itemStore.items
-    .filter((item) => item.needDelivery === true)
-
-    .map((item) => (
-      <RequestedItem item={item} key={item.id} navigation={navigation} />
-    ));
+  const itemList = items
+    ? items.map((item) => (
+        <RequestedItem item={item} key={item.id} navigation={navigation} />
+      ))
+    : itemStore.items
+        .filter((item) => item.needDelivery === true)
+        .map((item) => (
+          <RequestedItem item={item} key={item.id} navigation={navigation} />
+        ));
   //
   return (
     <Content>

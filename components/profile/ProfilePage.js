@@ -25,7 +25,7 @@ import {
   ProfileUserName,
   ProfileItemList,
 } from "../../styles";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Signin from "../Signin";
 import ip from "../../stores/ipaddress";
 
@@ -41,7 +41,7 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
     (item) => item.recepientId === profile.userId
   );
   return (
-    <ProfileCard>
+    <View style={styles.list}>
       <ProfileCardItem>
         <Body>
           <ProfileUserName>{profile.user.username}</ProfileUserName>
@@ -78,8 +78,8 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
           <UpdateButton profile={profile} navigation={navigation} />
         </ProfileCardItem>
       ) : null}
-      <ProfileItemList>
-        <Header hasTabs />
+      <View style={styles.list}>
+        {/* <Header hasTabs /> */}
         <Tabs>
           <Tab heading={`My Profile`}>
             <Text>
@@ -88,17 +88,26 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
             </Text>
           </Tab>
           <Tab heading={`${items.length} Items`}>
-            <ItemList items={items} navigation={navigation} />
+            <ScrollView>
+              <ItemList items={items} navigation={navigation} />
+            </ScrollView>
           </Tab>
           <Tab heading={`${deliveredItems.length} Deliveries`}>
             <ItemList items={deliveredItems} navigation={navigation} />
           </Tab>
           <Tab heading={`${requistedItems.length} Requisted Items`}>
-            <ItemList items={requistedItems} navigation={navigation} />
+            <ScrollView>
+              <ItemList items={requistedItems} navigation={navigation} />
+            </ScrollView>
           </Tab>
         </Tabs>
-      </ProfileItemList>
-    </ProfileCard>
+      </View>
+    </View>
   );
 };
 export default observer(ProfilePage);
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+  },
+});
