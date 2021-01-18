@@ -29,14 +29,17 @@ import UpdateItemButton from "../buttons/UpdateItemButton";
 import { observer } from "mobx-react";
 import profileImg from "../../img/profileImage.jpg";
 import profileStore from "../../stores/profileStore";
+import itemStore from "../../stores/itemStore";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
   const profile = profileStore.getProfileByUserId(item.ownerId);
-  const handleAdd = () => {
-    console.log("hello");
+  const handleCancel = () => {
+    itemStore.cancelRequest({ ...item, recipientId: null, booked: false });
   };
-
+  console.log("recID", item.recipientId);
+  console.log("booked", item.booked);
+  console.log("user", authStore.user.id);
   return (
     <>
       <ScrollView>
@@ -72,7 +75,7 @@ const ItemDetail = ({ route, navigation }) => {
                     <DeleteButton itemId={item.id} navigation={navigation} />
                     <UpdateItemButton item={item} navigation={navigation} />
                   </ProfileCardItem>
-                ) : (
+                ) : item.recipientId === null ? (
                   <Button
                     onPress={() =>
                       navigation.navigate("Request", { item: item })
@@ -85,6 +88,31 @@ const ItemDetail = ({ route, navigation }) => {
                     }}
                   >
                     <Text>Request</Text>
+                  </Button>
+                ) : authStore.user.id === item.recipientId ? (
+                  <Button
+                    onPress={handleCancel}
+                    style={{
+                      width: 100,
+                      height: 50,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "red",
+                    }}
+                  >
+                    <Text>Cancel</Text>
+                  </Button>
+                ) : (
+                  <Button
+                    style={{
+                      width: 120,
+                      height: 50,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "gray",
+                    }}
+                  >
+                    <Text>Unavailable</Text>
                   </Button>
                 )}
               </Right>

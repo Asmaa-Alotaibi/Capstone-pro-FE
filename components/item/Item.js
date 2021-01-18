@@ -16,13 +16,12 @@ const Item = ({ item, navigation }) => {
       onPress={() => navigation.navigate("ItemDetail", { item: item })}
     >
       <View style={styles.box}>
-        {/* <ItemName>{item.name}</ItemName> */}
-
         <ItemImage
           source={{
             uri: item.image,
           }}
         />
+        <ItemName>{item.name}</ItemName>
       </View>
     </TouchableOpacity>
     // </View>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     height: 180,
-    width: 180,
+    width: 190,
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
-    margin: 10,
+    margin: 5,
   },
   numberD: {
     fontSize: 30,
