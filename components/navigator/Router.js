@@ -4,24 +4,26 @@ import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
-import { NavigationContainer } from "@react-navigation/native";
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../Home";
-import NewItemList from "../item/NewItemList";
-import { observer } from "mobx-react";
-import MyProfile from "../profile/MyProfile";
-import UpdateProfile from "../profile/UpdateProfile";
-import Request from "../Request";
-import RequestSummary from "../RequestSummary";
+import DriverHomePage from "../drivers/DriverHomePage";
 import DriversList from "../DriversList";
-import ProfilePage from "../profile/ProfilePage";
-import ProfileList from "../profile/ProfileList";
+import Home from "../Home";
+import { Icon } from "native-base";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
-import authStore from "../../stores/authStore";
 import LogOutButton from "../buttons/LogOutButton";
+import MyProfile from "../profile/MyProfile";
+import { NavigationContainer } from "@react-navigation/native";
+import NewItemList from "../item/NewItemList";
+import ProfileList from "../profile/ProfileList";
+import ProfilePage from "../profile/ProfilePage";
+import QRScanner from "../QRScanner";
+import QRScannertButton from "../buttons/QRScannertButton";
+import QRgenerator from "../QRgenerator";
+import React from "react";
+import Request from "../Request";
+import RequestSummary from "../RequestSummary";
+import RequestedItemList from "../item/RequestedItemList";
 import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
@@ -29,19 +31,29 @@ import Signup from "../Signup";
 import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
+ 
 import QRScanner from "../QRScanner";
 import RequestedItemList from "../item/RequestedItemList";
+ 
+import UpdateProfile from "../profile/UpdateProfile";
+import authStore from "../../stores/authStore";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
+import { observer } from "mobx-react";
+ 
 
 // import { Tab } from "native-base";
 
 // const { Navigator, Screen } = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const MainTab = createBottomTabNavigator();
+const DriverTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
-const ItemDetailStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const DriverStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const Router = () => {
   const AuthStackScreen = () => (
@@ -152,24 +164,43 @@ const Router = () => {
       <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
     </CategoriesStack.Navigator>
   );
+  const MainTabScreen = () => (
+    <MainTab.Navigator>
+      <MainTab.Screen name="Home" component={HomeStackScreen} />
+      {authStore.user.id === 0 ? (
+        <MainTab.Screen name="SignInHook" component={SignInHook} />
+      ) : (
+        <>
+          <MainTab.Screen name="MyProfile" component={ProfileStackScreen} />
+          <MainTab.Screen name="AddItem" component={AddItem} />
+        </>
+      )}
+
+      <MainTab.Screen name="Categoties" component={CategoryStackScreen} />
+    </MainTab.Navigator>
+  );
+  const DriverTabScreen = () => (
+    <DriverTab.Navigator>
+      <DriverTab.Screen name="Home" component={DriverHomePage} />
+      <DriverTab.Screen name="Deliveries" component={DriverStackScreen} />
+    </DriverTab.Navigator>
+  );
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        {authStore.user.id === 0 ? (
-          <Tab.Screen name="Signin" component={Signin} />
-        ) : (
-          <>
-            <Tab.Screen name="MyProfile" component={ProfileStackScreen} />
-            <Tab.Screen name="AddItem" component={AddItem} />
-          </>
-        )}
+      <Drawer.Navigator>
+        <Drawer.Screen name="Main" component={MainTabScreen} />
 
-        <Tab.Screen name="Categoties" component={CategoryStackScreen} />
         {authStore.user.driver ? (
-          <Tab.Screen name="Driver" component={DriverStackScreen} />
+          <Drawer.Screen name="Driver" component={DriverTabScreen} />
         ) : null}
-      </Tab.Navigator>
+        {authStore.user.id === 0 ? (
+          <>
+            <Drawer.Screen name="Signin" component={AuthStackScreen} />
+          </>
+        ) : (
+          <Drawer.Screen name="LogOut" component={LogOutButton} />
+        )}
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

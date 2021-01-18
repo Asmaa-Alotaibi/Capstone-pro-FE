@@ -36,14 +36,20 @@ const RequestedItem = ({ item }) => {
           </Body>
         </Left>
         <Right>
-          {item.driverId === null ? (
+          {item.gone ? (
+            <Button
+              style={{ backgroundColor: "gray", width: 100, marginRight: 5 }}
+            >
+              <Text>Delivered</Text>
+            </Button>
+          ) : item.driverId === null ? (
             <Button onPress={handleDriver} style={{ marginRight: 5 }}>
               <Text>Deliver</Text>
             </Button>
           ) : authStore.user.id === item.driverId ? (
             <Button
               onPress={handleDriver}
-              style={{ backgroundColor: "red", marginRight: 5 }}
+              style={{ backgroundColor: "red", marginRight: 3 }}
             >
               <Text>Cancel</Text>
             </Button>
