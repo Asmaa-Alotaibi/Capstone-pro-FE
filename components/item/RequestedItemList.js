@@ -14,7 +14,7 @@ const RequestedItemList = ({ navigation, items }) => {
         <RequestedItem item={item} key={item.id} navigation={navigation} />
       ))
     : itemStore.items
-        .filter((item) => item.needDelivery === true)
+        .filter((item) => item.needDelivery & item.booked)
         .map((item) => (
           <RequestedItem item={item} key={item.id} navigation={navigation} />
         ));
