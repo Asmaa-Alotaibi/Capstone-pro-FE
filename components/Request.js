@@ -23,7 +23,7 @@ const Request = ({ navigation, route }) => {
   const handelSubmit = () => {
     //notify owner (push notification)
     if (deliveryOption.id === 0) {
-      itemStore.requestItem(item, 0);
+      itemStore.requestItem({ ...item, recipientId: authStore.user.id }, 0);
       showMessage({
         message: "Done, Thanks",
         description: `Your order has been submited !`,
@@ -37,7 +37,7 @@ const Request = ({ navigation, route }) => {
       });
     } else {
       //change stauts of needdelivery (item )
-      itemStore.requestItem(item, 1);
+      itemStore.requestItem({ ...item, recipientId: authStore.user.id }, 1);
 
       showMessage({
         message: "Done, Thanks",
@@ -65,7 +65,7 @@ const Request = ({ navigation, route }) => {
         <Text>You are ordering : {item.name}</Text>
         <Text>Description : {item.description}</Text>
         <Text>owner of this item is : {item.owner.username}</Text>
-        <Text> Address of this item is : {item.addressId.city}</Text>
+        {/* <Text> Address of this item is : {item.addressId.city}</Text> */}
         <Text>Delivery Options:</Text>
         <RadioButtonRN
           data={radiogroup_options}
