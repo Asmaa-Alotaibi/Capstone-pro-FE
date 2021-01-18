@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import React from "react";
 import authStore from "../stores/authStore";
+import { EyeButtonStyled } from "../styles";
 
 export default function App() {
   const { control, handleSubmit, errors, getValues } = useForm();
@@ -165,3 +166,36 @@ const styles = StyleSheet.create({
 //       </View>
 
 //       {errors.lastName && <Text>This is required.</Text>}
+
+{
+  /* <View>
+        <Text style={styles.label}>Password</Text>
+        <Controller
+          name="password"
+          //   type={password}
+          defaultValue=""
+          control={control}
+          type="password"
+          rules={{
+            required: { value: true, message: "Password is required." },
+            pattern: {
+              // value: /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/,
+              message: "Incorrect",
+            },
+          }}
+          onFocus={() => {
+            passwordInputRef.current.focus();
+          }}
+          render={({ onChange, onBlur, value }) => (
+            <TextInput
+              style={styles.input}
+              ref={passwordInputRef}
+              onBlur={onBlur}
+              onChangeText={(value) => onChange(value)}
+              value={value}
+              secureTextEntry={true}
+            />
+          )}
+        />
+      </View> */
+}

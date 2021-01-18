@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import itemStore from "../stores/itemStore";
+import { showMessage } from "react-native-flash-message";
 
-export default function QRScanner({ QRvalue }) {
+export default function QRScanner({ navigation, route }) {
+  const { item } = route.params;
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -15,14 +19,25 @@ export default function QRScanner({ QRvalue }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    if (QRvalue === data)
-      alert(
-        `Bar code with type ${type} and data ${data} has been scanned! ....Match`
-      );
-    else
-      alert(
-        `Bar code with type ${type} and data ${data} has been scanned! ....Dont Match !`
-      );
+    match(data);
+  };
+  // matching QRcode between owner and recepient
+  const match = (data) => {
+    if (data === JSON.stringify(item.id)) {
+      alert("Matched!");
+      itemStore.gonetItem(item);
+      showMessage({
+        message: "Well done",
+        description: `Your item is gone now :) !`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
+      navigation.navigate("Home");
+    } else {
+      alert("UN-Matched!");
+      navigation.navigate("Home");
+    }
   };
 
   if (hasPermission === null) {

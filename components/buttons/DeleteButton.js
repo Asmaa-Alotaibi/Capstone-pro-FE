@@ -13,7 +13,7 @@ const DeleteButton = ({ itemId, navigation }) => {
       onPress={handleDelete}
       name="trash"
       color="red"
-      style={{ marginRight: 5 }}
+      style={{ marginRight: 20 }}
     />
   );
 };

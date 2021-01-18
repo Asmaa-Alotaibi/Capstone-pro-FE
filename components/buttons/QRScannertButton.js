@@ -1,16 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
 import { Icon } from "native-base";
 import React from "react";
 
-const QRScannertButton = () => {
-  const navigation = useNavigation();
+const QRScannertButton = ({ navigation, item }) => {
+  console.log("TCL: QRScannertButton -> item", item);
 
   return (
     <Icon
-      onPress={() => navigation.navigate("QRScanner")}
+      onPress={() => navigation.navigate("QRScanner", { item: item })}
       name="qrcode-scan"
       type="MaterialCommunityIcons"
-      style={{ marginRight: 20, fontSize: 40 }}
+      style={{ marginLeft: 40, marginRight: 10, fontSize: 30 }}
     />
   );
 };

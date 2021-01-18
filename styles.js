@@ -1,5 +1,6 @@
 import { Card, Text, CardItem, Tab, View, Content } from "native-base";
 import styled from "styled-components";
+import { Icon } from "native-base";
 
 export const Containerr = styled.View`
   flex: 1;
@@ -105,4 +106,8 @@ export const ItemDetailImage = styled.Image`
 export const ItemDescription = styled.Text`
   margin-top: 5px;
   font-size: 20px;
+`;
+export const EyeButtonStyled = styled(Icon)`
+  color: gray;
+  margin-right: 10px;
 `;
