@@ -1,6 +1,7 @@
 import { Button, Container, View, Text } from "native-base";
 import React from "react";
 import CategoryButton from "./CategoryButton";
+import profileImg from "../img/profileImage.jpg";
 
 const Categories = ({ navigation }) => {
   const category = ["furniture", "toyes", "gears", "books"];
@@ -11,12 +12,6 @@ const Categories = ({ navigation }) => {
   return (
     <>
       <Container>{categories}</Container>
-      <Button
-        onPress={() => navigation.navigate("QRScanner")}
-        style={{ width: 80, height: 30 }}
-      >
-        <Text style={{ fontSize: 10 }}>testQR Scanner</Text>
-      </Button>
     </>
   );
 };

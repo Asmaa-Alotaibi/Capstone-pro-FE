@@ -34,8 +34,9 @@ import QRScannertButton from "../buttons/QRScannertButton";
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
   const profile = profileStore.getProfileByUserId(item.ownerId);
-  const handleAdd = () => {
-    console.log("hello");
+  const handlePress = () => {
+    if (authStore.user.id === 0) navigation.replace("SignInHook");
+    else navigation.navigate("Request", { item: item });
   };
 
   return (
@@ -76,9 +77,7 @@ const ItemDetail = ({ route, navigation }) => {
                   </ProfileCardItem>
                 ) : (
                   <Button
-                    onPress={() =>
-                      navigation.navigate("Request", { item: item })
-                    }
+                    onPress={handlePress}
                     style={{
                       width: 100,
                       height: 50,

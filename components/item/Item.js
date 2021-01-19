@@ -20,16 +20,15 @@ const Item = ({ item, navigation }) => {
       <View style={styles.box}>
         {/* <ItemName>{item.name}</ItemName> */}
 
- 
         <ItemImage
           source={{
-            uri: item.image,
+            //uri: item.image,
+            uri: item.image.replace("localhost", ip),
           }}
         />
       </View>
     </TouchableOpacity>
     // </View>
- 
   );
 };
 
