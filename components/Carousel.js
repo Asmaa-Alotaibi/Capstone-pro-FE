@@ -9,34 +9,28 @@ import {
   ImageBackground,
 } from "react-native";
 import Carousel from "react-native-anchor-carousel";
+import driver from "../img/driver.jpg";
+import receiving from "../img/receiving.jpg";
 
 const { width } = Dimensions.get("window");
 const data = [
   {
-    uri: "https://i.imgur.com/Pz2WYAc.jpg",
-    title: "Lorem ipsum ",
-    content: "Neque porro quisquam est qui dolorem ipsum ",
+    uri: driver,
+    title: "Deliver Mode",
+    content: "Volunteer to transport items from point A to point B",
+    lit: "Deliver",
   },
   {
-    uri: "https://i.imgur.com/IGRuEAa.jpg",
-    title: "Lorem ipsum dolor",
-    content: "Neque porro quisquam est qui",
-  },
-  {
-    uri: "https://i.imgur.com/fRGHItn.jpg",
-    title: "Lorem ipsum dolor",
-    content: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
-  },
-  {
-    uri: "https://i.imgur.com/WmenvXr.jpg",
-    title: "Lorem ipsum ",
-    content: "Neque porro quisquam est qui dolorem ipsum quia dolor ",
+    uri: receiving,
+    title: "A chance to Re Use Items",
+    content: "Bridging the gap between giving and getting",
+    lit: "Give. Get",
   },
 ];
 
 export default class ImageCarousel extends Component {
   renderItem = ({ item, index }) => {
-    const { uri, title, content } = item;
+    const { uri, title, content, lit } = item;
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -45,13 +39,15 @@ export default class ImageCarousel extends Component {
           this.numberCarousel.scrollToIndex(index);
         }}
       >
-        <ImageBackground source={{ uri: uri }} style={styles.imageBackground}>
+        <ImageBackground source={uri} style={styles.imageBackground}>
           <View style={styles.rightTextContainer}>
-            <Text style={styles.rightText}>Lorem</Text>
+            <Text style={styles.rightText}>{lit}</Text>
           </View>
           <View style={styles.lowerContainer}>
-            <Text style={styles.titleText}>{title}</Text>
-            <Text style={styles.contentText}>{content}</Text>
+            <View style={styles.box}>
+              <Text style={styles.titleText}>{title}</Text>
+              <Text style={styles.contentText}>{content}</Text>
+            </View>
           </View>
         </ImageBackground>
       </TouchableOpacity>
@@ -124,16 +120,47 @@ const styles = StyleSheet.create({
   },
   rightText: { color: "white" },
   lowerContainer: {
-    flex: 1,
+    // flex: 1,
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#7d7e8073",
     position: "absolute",
-    bottom: 10,
-    margin: 10,
+    // bottom: 10,
+    // margin: 10,
   },
   titleText: {
     fontWeight: "bold",
     fontSize: 24,
+    color: "white",
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 5,
+      height: 0,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
   contentText: {
     fontSize: 18,
+    fontWeight: "500",
+    color: "white",
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 5,
+      height: 0,
+    },
+    shadowOpacity: 5,
+    shadowRadius: 5,
+
+    elevation: 5,
+  },
+  box: {
+    position: "absolute",
+    bottom: 10,
+    margin: 10,
   },
 });

@@ -84,7 +84,10 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
       ) : null}
       <View style={styles.list}>
         {/* <Header hasTabs /> */}
-        <Tabs>
+        <Tabs
+          tabBarActiveTextColor={"#009387"}
+          tabBarUnderlineStyle={{ backgroundColor: "#009387" }}
+        >
           {authStore.user.id === profile.userId ? (
             <Tab heading={`My Profile`}>
               <Button onPress={() => navigation.navigate("AddAddress")}>
@@ -115,5 +118,6 @@ export default observer(ProfilePage);
 const styles = StyleSheet.create({
   list: {
     flex: 1,
+    backgroundColor: "white",
   },
 });

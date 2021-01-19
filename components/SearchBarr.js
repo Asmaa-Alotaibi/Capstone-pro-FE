@@ -8,6 +8,7 @@ const SearchBarr = ({ setQuery, query }) => {
       placeholderTextColor="white"
       onChangeText={(event) => setQuery(event)}
       value={query}
+      // lightTheme={true}
     />
   );
 };
