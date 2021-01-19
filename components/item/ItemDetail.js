@@ -36,14 +36,14 @@ import { StyleSheet } from "react-native";
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
   const profile = profileStore.getProfileByUserId(item.ownerId);
- 
+
   const handlePress = () => {
     if (authStore.user.id === 0) navigation.replace("SignInHook");
     else navigation.navigate("Request", { item: item });
- 
+  };
+
   const handleCancel = () => {
     itemStore.cancelRequest({ ...item, recipientId: null, booked: false });
- 
   };
   console.log("recID", item.recipientId);
   console.log("booked", item.booked);
