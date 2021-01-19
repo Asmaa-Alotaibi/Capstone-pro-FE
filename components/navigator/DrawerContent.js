@@ -9,7 +9,6 @@ import {
   Title,
   TouchableRipple,
 } from "react-native-paper";
-import { color } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
