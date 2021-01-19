@@ -78,11 +78,13 @@ class ItemStore {
           ...newArray[elementsIndex],
           booked: !newArray[elementsIndex].booked,
           needDelivery: !newArray[elementsIndex].needDelivery,
+          recipientId: authStore.user.id,
         };
       } else {
         newArray[elementsIndex] = {
           ...newArray[elementsIndex],
           booked: !newArray[elementsIndex].booked,
+          recipientId: authStore.user.id,
         };
       }
       runInAction(() => {
@@ -125,6 +127,15 @@ class ItemStore {
     } catch (error) {
       console.log(error);
     }
+  };
+  cancelRequest = async (updatedItem) => {
+    try {
+      await instance.put(`/items/request/${updatedItem.id}`, updatedItem);
+      runInAction(() => {
+        const item = this.items.find((item) => item.id === updatedItem.id);
+        for (const key in item) item[key] = updatedItem[key];
+      });
+    } catch (error) {}
   };
 }
 const itemStore = new ItemStore(); //new instance

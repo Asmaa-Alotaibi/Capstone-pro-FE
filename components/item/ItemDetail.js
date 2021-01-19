@@ -29,16 +29,24 @@ import UpdateItemButton from "../buttons/UpdateItemButton";
 import { observer } from "mobx-react";
 import profileImg from "../../img/profileImage.jpg";
 import profileStore from "../../stores/profileStore";
+import itemStore from "../../stores/itemStore";
 import QRScannertButton from "../buttons/QRScannertButton";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
   const profile = profileStore.getProfileByUserId(item.ownerId);
+ 
   const handlePress = () => {
     if (authStore.user.id === 0) navigation.replace("SignInHook");
     else navigation.navigate("Request", { item: item });
+ 
+  const handleCancel = () => {
+    itemStore.cancelRequest({ ...item, recipientId: null, booked: false });
+ 
   };
-
+  console.log("recID", item.recipientId);
+  console.log("booked", item.booked);
+  console.log("user", authStore.user.id);
   return (
     <>
       <ScrollView>
@@ -75,7 +83,7 @@ const ItemDetail = ({ route, navigation }) => {
                     <UpdateItemButton item={item} navigation={navigation} />
                     <QRScannertButton item={item} navigation={navigation} />
                   </ProfileCardItem>
-                ) : (
+                ) : item.recipientId === null ? (
                   <Button
                     onPress={handlePress}
                     style={{
@@ -86,6 +94,31 @@ const ItemDetail = ({ route, navigation }) => {
                     }}
                   >
                     <Text>Request</Text>
+                  </Button>
+                ) : authStore.user.id === item.recipientId ? (
+                  <Button
+                    onPress={handleCancel}
+                    style={{
+                      width: 100,
+                      height: 50,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "red",
+                    }}
+                  >
+                    <Text>Cancel</Text>
+                  </Button>
+                ) : (
+                  <Button
+                    style={{
+                      width: 120,
+                      height: 50,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "gray",
+                    }}
+                  >
+                    <Text>Unavailable</Text>
                   </Button>
                 )}
               </Right>
