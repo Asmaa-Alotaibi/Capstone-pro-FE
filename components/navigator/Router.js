@@ -7,7 +7,7 @@ import DeleteButton from "../buttons/DeleteButton";
 import DriverHomePage from "../drivers/DriverHomePage";
 import DriversList from "../DriversList";
 import Home from "../Home";
-import { Icon } from "native-base";
+import { Thumbnail } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
@@ -34,14 +34,19 @@ import UpdateItem from "../item/UpdateItem";
 import UpdateProfile from "../profile/UpdateProfile";
 import authStore from "../../stores/authStore";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
+import profileStore from "../../stores/profileStore";
+import DrawerConntent from "./DrawerContent";
+import { View } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 // import { Tab } from "native-base";
 
 // const { Navigator, Screen } = createStackNavigator();
 const MainTab = createBottomTabNavigator();
+// const MainTab1 = createMaterialBottomTabNavigator();
 const DriverTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
@@ -53,8 +58,16 @@ const Drawer = createDrawerNavigator();
 const Router = () => {
   const AuthStackScreen = () => (
     <AuthStack.Navigator>
-      <AuthStack.Screen name="Signin" component={Signin} />
-      <AuthStack.Screen name="Signup" component={SignUpHook} />
+      <AuthStack.Screen
+        name="Signin"
+        component={Signin}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <AuthStack.Screen
+        name="Signup"
+        component={SignUpHook}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </AuthStack.Navigator>
   );
   const DriverStackScreen = () => (
@@ -62,13 +75,22 @@ const Router = () => {
       <DriverStack.Screen
         name="RequestedItemList"
         component={RequestedItemList}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
     </DriverStack.Navigator>
   );
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="NewItemList" component={NewItemList} />
+      <HomeStack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="NewItemList"
+        component={NewItemList}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <HomeStack.Screen
         name="ItemDetail"
         component={ItemDetail}
@@ -78,9 +100,18 @@ const Router = () => {
             title: item.title,
           };
         }}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
-      <HomeStack.Screen name="UpdateItem" component={UpdateItem} />
-      <HomeStack.Screen name="DeleteItem" component={DeleteButton} />
+      <HomeStack.Screen
+        name="UpdateItem"
+        component={UpdateItem}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="DeleteItem"
+        component={DeleteButton}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <HomeStack.Screen
         name="ProfilePage"
         component={ProfilePage}
@@ -88,16 +119,41 @@ const Router = () => {
           const { profile } = route.params;
           return {
             title: profile.user.username,
+            headerLeft: () => <LogOutButton />,
           };
         }}
       />
 
-      <HomeStack.Screen name="Signup" component={Signup} />
-      <HomeStack.Screen name="Signin" component={Signin} />
-      <HomeStack.Screen name="SignUpHook" component={SignUpHook} />
-      <HomeStack.Screen name="SignInHook" component={SignInHook} />
-      <HomeStack.Screen name="AddressList" component={AddressList} />
-      <HomeStack.Screen name="AddAddress" component={AddAddress} />
+      <HomeStack.Screen
+        name="Signup"
+        component={Signup}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="Signin"
+        component={Signin}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="SignUpHook"
+        component={SignUpHook}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="SignInHook"
+        component={SignInHook}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="AddressList"
+        component={AddressList}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="AddAddress"
+        component={AddAddress}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <HomeStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -105,12 +161,25 @@ const Router = () => {
           const { profile } = route.params;
           return {
             title: profile.user.username,
+            headerLeft: () => <LogOutButton />,
           };
         }}
       />
-      <HomeStack.Screen name="Request" component={Request} />
-      <HomeStack.Screen name="RequestSummary" component={RequestSummary} />
-      <HomeStack.Screen name="QRScanner" component={QRScanner} />
+      <HomeStack.Screen
+        name="Request"
+        component={Request}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="RequestSummary"
+        component={RequestSummary}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="QRScanner"
+        component={QRScanner}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </HomeStack.Navigator>
   );
 
@@ -122,10 +191,19 @@ const Router = () => {
         options={{
           headerLeft: () => <LogOutButton />,
         }}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
 
-      <ProfileStack.Screen name="ProfilePage" component={ProfilePage} />
-      <ProfileStack.Screen name="ItemList" component={ItemList} />
+      <ProfileStack.Screen
+        name="ProfilePage"
+        component={ProfilePage}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <ProfileStack.Screen
+        name="ItemList"
+        component={ItemList}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <ProfileStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -133,45 +211,133 @@ const Router = () => {
           const { profile } = route.params;
           return {
             title: profile.user.username,
+            headerLeft: () => <LogOutButton />,
           };
         }}
       />
-      <ProfileStack.Screen name="UpdateAddress" component={UpdateAddress} />
+      <ProfileStack.Screen
+        name="UpdateAddress"
+        component={UpdateAddress}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
 
-      <ProfileStack.Screen name="Request" component={Request} />
-      <ProfileStack.Screen name="RequestSummary" component={RequestSummary} />
-      <ProfileStack.Screen name="QRScanner" component={QRScanner} />
+      <ProfileStack.Screen
+        name="Request"
+        component={Request}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <ProfileStack.Screen
+        name="RequestSummary"
+        component={RequestSummary}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <ProfileStack.Screen
+        name="QRScanner"
+        component={QRScanner}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
     <CategoriesStack.Navigator>
-      <CategoriesStack.Screen name="Categories" component={Categories} />
+      <CategoriesStack.Screen
+        name="Categories"
+        component={Categories}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <CategoriesStack.Screen
         name="CategoryItemList"
         component={CategoryItemList}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
 
-      <CategoriesStack.Screen name="Request" component={Request} />
+      <CategoriesStack.Screen
+        name="Request"
+        component={Request}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
       <CategoriesStack.Screen
         name="RequestSummary"
         component={RequestSummary}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
-      <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
+      <CategoriesStack.Screen
+        name="QRScanner"
+        component={QRScanner}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </CategoriesStack.Navigator>
   );
   const MainTabScreen = () => (
-    <MainTab.Navigator>
-      <MainTab.Screen name="Home" component={HomeStackScreen} />
+    <MainTab.Navigator
+      tabBarOptions={{
+        pressColor: "gray", //for click (ripple) effect color
+        style: {
+          backgroundColor: "#009387",
+          justifyContent: "center",
+          alignItems: "center",
+          alignContent: "center", //color you want to change
+        },
+        activeTintColor: "white",
+        inactiveTintColor: "white",
+        labelStyle: {
+          fontSize: 10,
+        },
+      }}
+    >
+      <MainTab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" size={26} color={color} />
+          ),
+        }}
+      />
+      <MainTab.Screen
+        name="Categoties"
+        component={CategoryStackScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="list-circle" size={26} color={color} />
+          ),
+        }}
+      />
       {authStore.user.id === 0 ? (
-        <MainTab.Screen name="SignInHook" component={SignInHook} />
+        <MainTab.Screen
+          name="Signin"
+          component={AuthStackScreen}
+          options={{
+            tabBarLabel: "Sign in",
+            tabBarIcon: ({ color }) => (
+              <Icon name="person" size={26} color={color} />
+            ),
+          }}
+        />
       ) : (
         <>
-          <MainTab.Screen name="MyProfile" component={ProfileStackScreen} />
-          <MainTab.Screen name="AddItem" component={AddItem} />
+          <MainTab.Screen
+            name="AddItem"
+            component={AddItem}
+            options={{
+              tabBarLabel: "Add Item",
+              tabBarIcon: ({ color }) => (
+                <Icon name="ios-add-circle-sharp" size={26} color={color} />
+              ),
+            }}
+          />
+          <MainTab.Screen
+            name="MyProfile"
+            component={ProfileStackScreen}
+            options={{
+              tabBarLabel: "Profile",
+              tabBarIcon: ({ color }) => (
+                <Icon name="person" size={30} color={color} />
+              ),
+            }}
+          />
         </>
       )}
-
-      <MainTab.Screen name="Categoties" component={CategoryStackScreen} />
     </MainTab.Navigator>
   );
   const DriverTabScreen = () => (
@@ -182,19 +348,12 @@ const Router = () => {
   );
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        drawerContent={(props) => <DrawerConntent {...props} />}
+      >
         <Drawer.Screen name="Main" component={MainTabScreen} />
 
-        {authStore.user.driver ? (
-          <Drawer.Screen name="Driver" component={DriverTabScreen} />
-        ) : null}
-        {authStore.user.id === 0 ? (
-          <>
-            <Drawer.Screen name="Signin" component={AuthStackScreen} />
-          </>
-        ) : (
-          <Drawer.Screen name="LogOut" component={LogOutButton} />
-        )}
+        <Drawer.Screen name="Driver" component={DriverTabScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
