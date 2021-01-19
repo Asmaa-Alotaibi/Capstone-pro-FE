@@ -28,6 +28,7 @@ import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
 import Signup from "../Signup";
+import Flatcategories from "../Flatcategories";
 import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
@@ -112,6 +113,8 @@ const Router = () => {
         component={DeleteButton}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+      <HomeStack.Screen name="FlatList" component={Flatcategories} />
+
       <HomeStack.Screen
         name="ProfilePage"
         component={ProfilePage}
@@ -164,6 +167,11 @@ const Router = () => {
             headerLeft: () => <LogOutButton />,
           };
         }}
+      />
+      <HomeStack.Screen
+        name="CategoryItemList"
+        component={CategoryItemList}
+        options={{ headerLeft: () => <LogOutButton /> }}
       />
       <HomeStack.Screen
         name="Request"

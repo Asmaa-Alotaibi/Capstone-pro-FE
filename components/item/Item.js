@@ -18,7 +18,6 @@ const Item = ({ item, navigation }) => {
       onPress={() => navigation.navigate("ItemDetail", { item: item })}
     >
       <View style={styles.box}>
- 
         <ItemImage
           source={{
             //uri: item.image,
