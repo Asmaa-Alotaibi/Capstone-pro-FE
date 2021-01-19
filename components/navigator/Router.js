@@ -37,6 +37,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
+import MiniRequestSummary from "../MiniRequestSummary";
 
 // import { Tab } from "native-base";
 
@@ -96,8 +97,7 @@ const Router = () => {
       <HomeStack.Screen name="Signin" component={Signin} />
       <HomeStack.Screen name="SignUpHook" component={SignUpHook} />
       <HomeStack.Screen name="SignInHook" component={SignInHook} />
-      <HomeStack.Screen name="AddressList" component={AddressList} />
-      <HomeStack.Screen name="AddAddress" component={AddAddress} />
+
       <HomeStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -110,6 +110,10 @@ const Router = () => {
       />
       <HomeStack.Screen name="Request" component={Request} />
       <HomeStack.Screen name="RequestSummary" component={RequestSummary} />
+      <HomeStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
+      />
       <HomeStack.Screen name="QRScanner" component={QRScanner} />
     </HomeStack.Navigator>
   );
@@ -123,7 +127,8 @@ const Router = () => {
           headerLeft: () => <LogOutButton />,
         }}
       />
-
+      <ProfileStack.Screen name="AddressList" component={AddressList} />
+      <ProfileStack.Screen name="AddAddress" component={AddAddress} />
       <ProfileStack.Screen name="ProfilePage" component={ProfilePage} />
       <ProfileStack.Screen name="ItemList" component={ItemList} />
       <ProfileStack.Screen
@@ -140,6 +145,10 @@ const Router = () => {
 
       <ProfileStack.Screen name="Request" component={Request} />
       <ProfileStack.Screen name="RequestSummary" component={RequestSummary} />
+      <ProfileStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
+      />
       <ProfileStack.Screen name="QRScanner" component={QRScanner} />
     </ProfileStack.Navigator>
   );
@@ -155,6 +164,10 @@ const Router = () => {
       <CategoriesStack.Screen
         name="RequestSummary"
         component={RequestSummary}
+      />
+      <CategoriesStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
       />
       <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
     </CategoriesStack.Navigator>

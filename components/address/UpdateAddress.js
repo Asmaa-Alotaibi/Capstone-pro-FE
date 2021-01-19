@@ -1,5 +1,7 @@
-import * as ImagePicker from "expo-image-picker";
-
+import React, { useState } from "react";
+import DropDownList from "./DropDownList";
+import addressStore from "../../stores/addressStore";
+import { observer } from "mobx-react";
 import {
   Button,
   Container,
@@ -9,15 +11,7 @@ import {
   Item,
   Label,
   Text,
-  Thumbnail,
 } from "native-base";
-import { Image, ImageBackground, Platform } from "react-native";
-import React, { useEffect, useState } from "react";
-
-import DropDownList from "./DropDownList";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import addressStore from "../../stores/addressStore";
-import { observer } from "mobx-react";
 
 const UpdateAddress = ({ route, navigation }) => {
   const { address } = route.params;

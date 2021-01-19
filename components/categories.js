@@ -4,17 +4,22 @@ import CategoryButton from "./CategoryButton";
 import profileImg from "../img/profileImage.jpg";
 
 const Categories = ({ navigation }) => {
-  const category = ["furniture", "toyes", "gears", "books"];
+  const category = [
+    "furniture",
+    "toys",
+    "cloths",
+    "books",
+    "electronics",
+    "tools",
+  ];
   let index = 0;
   const categories = category.map((e) => (
     <CategoryButton category={e} navigation={navigation} key={index++} />
   ));
   return (
-
     <ScrollView>
       <View style={styles.container}>{categories}</View>
     </ScrollView>
-
   );
 };
 
