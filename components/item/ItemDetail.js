@@ -31,6 +31,7 @@ import profileImg from "../../img/profileImage.jpg";
 import profileStore from "../../stores/profileStore";
 import itemStore from "../../stores/itemStore";
 import QRScannertButton from "../buttons/QRScannertButton";
+import { StyleSheet } from "react-native";
 
 const ItemDetail = ({ route, navigation }) => {
   const { item } = route.params;
@@ -52,90 +53,44 @@ const ItemDetail = ({ route, navigation }) => {
       <ScrollView>
         <Container>
           <ItemCard>
-            <ProfileCardItem>
-              <Left>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("ProfilePage", { profile: profile })
-                  }
-                >
-                  <Thumbnail
-                    // source={{ uri: profile.image.replace("localhost", ip) }}
-
-                    source={
-                      profile.image
-                        ? {
-                            // uri: profile.image,
-                            uri: profile.image.replace("localhost", ip),
-                          }
-                        : profileImg
-                    }
-                  />
-                </TouchableOpacity>
-                <Body>
-                  <Text>{profile.user.username}</Text>
-                </Body>
-              </Left>
-              <Right>
-                {authStore.user.id === profile.userId ? (
-                  <ProfileCardItem>
-                    <DeleteButton itemId={item.id} navigation={navigation} />
-                    <UpdateItemButton item={item} navigation={navigation} />
-                    <QRScannertButton item={item} navigation={navigation} />
-                  </ProfileCardItem>
-                ) : item.recipientId === null ? (
-                  <Button
-                    onPress={handlePress}
-                    style={{
-                      width: 100,
-                      height: 50,
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Text>Request</Text>
-                  </Button>
-                ) : authStore.user.id === item.recipientId ? (
-                  <Button
-                    onPress={handleCancel}
-                    style={{
-                      width: 100,
-                      height: 50,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "red",
-                    }}
-                  >
-                    <Text>Cancel</Text>
-                  </Button>
-                ) : (
-                  <Button
-                    style={{
-                      width: 120,
-                      height: 50,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "gray",
-                    }}
-                  >
-                    <Text>Unavailable</Text>
-                  </Button>
-                )}
-              </Right>
-            </ProfileCardItem>
-
             <ItemDetailCardItem>
               <Body>
                 <ItemDetailImage
                   source={{
-                    //  uri: item.image,
-                    uri: item.image.replace("localhost", ip),
+                    uri: item.image,
+                    // uri: item.image.replace("localhost", ip),
                   }}
                 />
                 <ItemDetailTitle style={{ color: "gray" }}>
                   Name <Text>{item.name}</Text>
                   {"\n"}About the Item: <Text>{item.description}</Text>
                 </ItemDetailTitle>
+                <Right>
+                  {authStore.user.id === profile.userId ? (
+                    <ProfileCardItem>
+                      <DeleteButton itemId={item.id} navigation={navigation} />
+                      <UpdateItemButton item={item} navigation={navigation} />
+                      <QRScannertButton item={item} navigation={navigation} />
+                    </ProfileCardItem>
+                  ) : item.recipientId === null ? (
+                    <Button
+                      onPress={() =>
+                        navigation.navigate("Request", { item: item })
+                      }
+                      style={styles.imageRe}
+                    >
+                      <Text>Request</Text>
+                    </Button>
+                  ) : (authStore.user.id === item.recipientId) & !item.gone ? (
+                    <Button onPress={handleCancel} style={styles.imageCa}>
+                      <Text>Cancel</Text>
+                    </Button>
+                  ) : (
+                    <Button style={styles.imageUv}>
+                      <Text>Unavailable</Text>
+                    </Button>
+                  )}
+                </Right>
               </Body>
             </ItemDetailCardItem>
           </ItemCard>
@@ -145,3 +100,25 @@ const ItemDetail = ({ route, navigation }) => {
   );
 };
 export default observer(ItemDetail);
+const styles = StyleSheet.create({
+  imageUv: {
+    width: 120,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "gray",
+  },
+  imageRe: {
+    width: 100,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  imageCa: {
+    width: 100,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "red",
+  },
+});

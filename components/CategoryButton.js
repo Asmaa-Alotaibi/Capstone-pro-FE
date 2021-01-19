@@ -27,7 +27,7 @@ const CategoryButton = ({ navigation, category }) => {
 export default CategoryButton;
 const styles = StyleSheet.create({
   box: {
-    flex: 1,
+    // flex: 1,
     height: 180,
     width: 190,
     backgroundColor: "white",

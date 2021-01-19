@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { Component } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,6 @@ import {
 import Carousel from "react-native-anchor-carousel";
 
 const { width } = Dimensions.get("window");
-
 const data = [
   {
     uri: "https://i.imgur.com/Pz2WYAc.jpg",
@@ -36,14 +35,14 @@ const data = [
 ];
 
 export default class ImageCarousel extends Component {
-  renderItem = ({ item, index, navigation }) => {
-    const { uri, title, content, screen } = item;
+  renderItem = ({ item, index }) => {
+    const { uri, title, content } = item;
     return (
       <TouchableOpacity
         activeOpacity={1}
         style={styles.item}
         onPress={() => {
-          navigation.navigate(screen);
+          this.numberCarousel.scrollToIndex(index);
         }}
       >
         <ImageBackground source={{ uri: uri }} style={styles.imageBackground}>
@@ -69,6 +68,7 @@ export default class ImageCarousel extends Component {
           itemWidth={width}
           inActiveOpacity={0.3}
           containerWidth={width}
+          pagingEnable={true}
           ref={(c) => {
             this.numberCarousel = c;
           }}

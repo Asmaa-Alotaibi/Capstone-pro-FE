@@ -85,12 +85,14 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
       <View style={styles.list}>
         {/* <Header hasTabs /> */}
         <Tabs>
-          <Tab heading={`My Profile`}>
-            <Button onPress={() => navigation.navigate("AddAddress")}>
-              <Text>Add Address</Text>
-            </Button>
-            <AddressList userId={profile.userId} navigation={navigation} />
-          </Tab>
+          {authStore.user.id === profile.userId ? (
+            <Tab heading={`My Profile`}>
+              <Button onPress={() => navigation.navigate("AddAddress")}>
+                <Text>Add Address</Text>
+              </Button>
+              <AddressList userId={profile.userId} navigation={navigation} />
+            </Tab>
+          ) : null}
           <Tab heading={`${items.length} Items`}>
             <ScrollView>
               <ItemList items={items} navigation={navigation} />
@@ -99,7 +101,7 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
           <Tab heading={`${deliveredItems.length} Deliveries`}>
             <ItemList items={deliveredItems} navigation={navigation} />
           </Tab>
-          <Tab heading={`${requistedItems.length} Requisted Items`}>
+          <Tab heading={`${requistedItems.length} Ordered`}>
             <ScrollView>
               <ItemList items={requistedItems} navigation={navigation} />
             </ScrollView>
