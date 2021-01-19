@@ -1,3 +1,8 @@
+import { Text } from "react-native";
+import React, { useState } from "react";
+import DropDownList from "./DropDownList";
+import addressStore from "../../stores/addressStore";
+import { observer } from "mobx-react";
 import {
   Button,
   Container,
@@ -7,13 +12,6 @@ import {
   Item,
   Label,
 } from "native-base";
-import { Platform, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-
-import DropDownList from "./DropDownList";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import addressStore from "../../stores/addressStore";
-import { observer } from "mobx-react";
 
 const AddAddress = ({ navigation }) => {
   const [address, setAddress] = useState({

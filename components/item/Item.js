@@ -15,7 +15,7 @@ const Item = ({ item, navigation }) => {
   return (
     // <View style={styles.container}>
     <TouchableOpacity
-      onPress={() => navigation.navigate("ItemDetail", { item: item })}
+      onPress={() => navigation.navigate("ItemDetail", { item: item })} //    MiniRequestSummary
     >
       <View style={styles.box}>
         <ItemImage

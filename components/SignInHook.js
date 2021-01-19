@@ -51,7 +51,7 @@ export default function App() {
           //   type={password}
           defaultValue=""
           control={control}
-          type="hidden"
+          type="password"
           rules={{
             required: { value: true, message: "Password is required." },
             pattern: {

@@ -5,10 +5,10 @@ import React from "react";
 
 const areas = [
   { label: "Abdullah Al Salem", value: "abdullah al salem" },
-  { label: "Bayan", value: "bayan" },
+  { label: "salmiya", value: "salmiya" },
   { label: "Bneid Al Qar", value: "bneid al qar" },
-  { label: "Faiha", value: "faiha" },
-  { label: "Kaifan", value: "kaifan" },
+  { label: "jabriya", value: "jabriya" },
+  { label: "Khaitan", value: "Khaitan" },
   { label: "Khaldiya", value: "khaldiya" },
   { label: "Kuwait City", value: "kuwait city" },
   { label: "Mansouriya", value: "mansouriya" },
@@ -27,7 +27,6 @@ const areas = [
 ];
 
 const DropDownList = ({ onChangeText, city }) => {
-  console.log(city, "dropdownpicker");
   return (
     <View style={styles.dropdownview}>
       <DropDownPicker
