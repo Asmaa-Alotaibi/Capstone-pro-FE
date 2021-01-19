@@ -121,13 +121,13 @@ const AddItem = ({ navigation }) => {
                 onChangeText={(category) => setItem({ ...item, category })}
               />
             </Item>
-            <Item floatingLabel last>
+            {/* <Item floatingLabel last>
               <Label>Category</Label>
               <Input
                 value={item.category}
                 onChangeText={(category) => setItem({ ...item, category })}
               />
-            </Item>
+            </Item> */}
           </Form>
           <Button
             bordered

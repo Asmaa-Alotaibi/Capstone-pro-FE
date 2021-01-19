@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { ListItem, Left, Right, Button, Text, Body } from "native-base";
 import ip from "../../stores/ipaddress";
 import authStore from "../../stores/authStore";
+import { ImageBackground } from "react-native";
 const SingleItem = ({ item, navigation }) => {
   const handelPress = () => {
     if (authStore.user.id === 0) navigation.replace("Signin");
@@ -17,11 +18,37 @@ const SingleItem = ({ item, navigation }) => {
         <TouchableOpacity
           onPress={() => navigation.navigate("ItemDetail", { item: item })}
         >
-          <Image
-            style={{ width: 150, height: 150 }}
-            source={{ uri: item.image }}
-            // source={{ uri: item.image.replace("localhost", ip) }}
-          />
+          {!item.booked ? (
+            <Image
+              style={{ width: 150, height: 150 }}
+              //source={{ uri: item.image }}
+              source={{ uri: item.image.replace("localhost", ip) }}
+            />
+          ) : (
+            <ImageBackground
+              source={{ uri: item.image.replace("localhost", ip) }}
+              style={{
+                height: 150,
+                width: 150,
+                position: "relative",
+                top: 2,
+                left: 2,
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 30,
+                  color: "red",
+                  position: "absolute",
+                  bottom: 50, // position where you want
+                  left: 20,
+                }}
+              >
+                Booked!
+              </Text>
+            </ImageBackground>
+          )}
         </TouchableOpacity>
       </Left>
       <Body>
