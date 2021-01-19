@@ -4,6 +4,8 @@ import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import ImageCarousel from "./Carousel";
 import NewItemList from "./item/NewItemList";
+import Flatcategories from "./Flatcategories";
+import { observer } from "mobx-react";
 
 const Home = ({ navigation }) => {
   return (
@@ -13,7 +15,7 @@ const Home = ({ navigation }) => {
           flex: 1,
           alignContent: "center",
           alignItems: "center",
-          justifyContent: "center",
+          backgroundColor: "white",
         }}
       >
         <View style={{ height: 800 }}>
@@ -22,9 +24,36 @@ const Home = ({ navigation }) => {
         <Text
           style={{
             fontSize: 40,
+            color: "black",
             paddingLeft: 5,
             fontWeight: "600",
-            marginTop: -400,
+            marginTop: -390,
+            marginBottom: -5,
+          }}
+        >
+          Categories
+        </Text>
+        <Flatcategories navigation={navigation} />
+        <Text
+          style={{
+            fontSize: 40,
+            color: "black",
+            marginTop: 20,
+            marginBottom: -5,
+            paddingLeft: 10,
+            fontWeight: "600",
+            textAlign: "left",
+            // marginTop: -400,
+            // borderRadius: 10,
+            // shadowColor: "gray",
+            // shadowOffset: {
+            //   width: 0,
+            //   height: 2,
+            // },
+            // shadowOpacity: 0.9,
+            // shadowRadius: 7,
+
+            // elevation: 5,
           }}
         >
           New Arrivale
@@ -35,7 +64,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default observer(Home);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

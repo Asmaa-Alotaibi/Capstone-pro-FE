@@ -96,16 +96,15 @@ const UpdateProfile = ({ route, navigation }) => {
                 >
                   {newProfile.image && (
                     <Image
-                      source={{ uri: newProfile.image }}
-                      style={{ width: "100%", height: 300, marginLeft: -13 }}
+                      // source={{ uri: newProfile.image }}
+                      // style={{ width: "100%", height: 300 }}
 
-//                       source={
-//                         newProfile.image.uri
-//                           ? { uri: newProfile.image.uri }
-//                           : { uri: newProfile.image }
-//                       }
-//                       style={{ width: "100%", height: 300 }}
-
+                      source={
+                        newProfile.image.uri
+                          ? { uri: newProfile.image.uri }
+                          : { uri: newProfile.image }
+                      }
+                      style={{ width: "100%", height: 300 }}
                     />
                   )}
                 </ImageBackground>

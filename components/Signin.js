@@ -19,6 +19,7 @@ const Signin = ({ navigation }) => {
   });
 
   const handleSubmit = async () => {
+    navigation.navigate("Home");
     await authStore.signin(user);
     {
       authStore.user.id !== 0

@@ -17,9 +17,15 @@ const UpdateButton = ({ profile, navigation, item }) => {
           width: 300,
           alignContent: "center",
           justifyContent: "center",
+          color: "white",
+          backgroundColor: "#009387",
         }}
       >
-        {profile ? <Text>Edit Your Profile</Text> : <Text>Edit Your Item</Text>}
+        {profile ? (
+          <Text style={{ color: "white" }}>Edit Your Profile</Text>
+        ) : (
+          <Text>Edit Your Item</Text>
+        )}
       </Button>
     </>
   );
