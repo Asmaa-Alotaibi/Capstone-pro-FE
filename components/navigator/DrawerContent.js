@@ -89,30 +89,42 @@ const DrawerContent = (props) => {
                   props.navigation.navigate("Categories");
                 }}
               />
-              <DrawerItem
-                icon={({ color, size }) => (
-                  <Icon name="view-list-outline" color={color} size={size} />
-                )}
-                label="My Items"
-                onPress={() => {
-                  props.navigation.navigate("ItemList", {
-                    items: items,
-                    navigation: props.navigation,
-                  });
-                }}
-              />
-              <DrawerItem
-                icon={({ color, size }) => (
-                  <Icon name="view-list-outline" color={color} size={size} />
-                )}
-                label="My Orders"
-                onPress={() => {
-                  props.navigation.navigate("ItemList", {
-                    items: requistedItems,
-                    navigation: props.navigation,
-                  });
-                }}
-              />
+              {authStore.user.id !== 0 ? (
+                <>
+                  <DrawerItem
+                    icon={({ color, size }) => (
+                      <Icon
+                        name="view-list-outline"
+                        color={color}
+                        size={size}
+                      />
+                    )}
+                    label="My Items"
+                    onPress={() => {
+                      props.navigation.navigate("ItemList", {
+                        items: items,
+                        navigation: props.navigation,
+                      });
+                    }}
+                  />
+                  <DrawerItem
+                    icon={({ color, size }) => (
+                      <Icon
+                        name="view-list-outline"
+                        color={color}
+                        size={size}
+                      />
+                    )}
+                    label="My Orders"
+                    onPress={() => {
+                      props.navigation.navigate("ItemList", {
+                        items: requistedItems,
+                        navigation: props.navigation,
+                      });
+                    }}
+                  />{" "}
+                </>
+              ) : null}
             </>
           ) : (
             <DrawerItem
@@ -165,20 +177,6 @@ const DrawerContent = (props) => {
         ) : null}
       </DrawerContentScrollView>
       <Drawer.Section style={StyleSheet.bottomDrawerSection}>
-        <Drawer.Section title="Prefernces">
-          <TouchableRipple
-            onPress={() => {
-              toggleTheme();
-            }}
-          >
-            <View style={styles.prefrence}>
-              <Text>Dark Mode</Text>
-              <View pointerEvents="none">
-                <Switch value={isDarkTheme} />
-              </View>
-            </View>
-          </TouchableRipple>
-        </Drawer.Section>
         {authStore.user.id !== 0 ? (
           <DrawerItem
             style={{ backgroundColor: "#009387" }}

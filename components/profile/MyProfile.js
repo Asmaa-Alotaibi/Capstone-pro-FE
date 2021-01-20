@@ -5,10 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Avatar } from "react-native-paper";
 import authStore from "../../stores/authStore";
 import profileStore from "../../stores/profileStore";
-import UpdateItemButton from "../buttons/UpdateItemButton";
-import Signin from "../Signin";
 import ProfilePage from "./ProfilePage";
-import { observer } from "mobx-react";
 
 const MyProfile = ({ navigation }) => {
   const profile = profileStore.getProfileByUserId(authStore.user.id);
@@ -148,4 +145,3 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
-
