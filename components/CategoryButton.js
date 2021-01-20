@@ -10,7 +10,6 @@ import {
 import { observer } from "mobx-react";
 
 const CategoryButton = ({ navigation, category }) => {
-  console.log(category.name);
   return (
     <TouchableOpacity
       onPress={() =>

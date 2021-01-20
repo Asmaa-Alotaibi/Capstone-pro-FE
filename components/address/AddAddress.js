@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DropDownList from "./DropDownList";
 import addressStore from "../../stores/addressStore";
 import { observer } from "mobx-react";
+import { showMessage } from "react-native-flash-message";
 import {
   Button,
   Container,
@@ -13,7 +14,7 @@ import {
   Label,
 } from "native-base";
 
-const AddAddress = ({ navigation }) => {
+const AddAddress = ({ navigation, route }) => {
   const [address, setAddress] = useState({
     city: "",
     block: "",
@@ -25,6 +26,23 @@ const AddAddress = ({ navigation }) => {
 
   const handleSubmit = async () => {
     await addressStore.createAddress(address);
+    if (route.params.fromaddItem)
+      showMessage({
+        message: "Item Has been added",
+        description: `You have Added an New Item Succesfully`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
+    else {
+      showMessage({
+        message: "Address Has been added",
+        description: `You have Added an New Address Succesfully`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
+    }
     navigation.pop();
   };
 
@@ -100,5 +118,3 @@ const AddAddress = ({ navigation }) => {
 };
 
 export default observer(AddAddress);
-
-// radio button old addresses drop downlist vs create new address //

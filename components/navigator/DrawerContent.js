@@ -15,7 +15,7 @@ import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
 import profileStore from "../../stores/profileStore";
-
+import ip from "../../stores/ipaddress";
 const DrawerContent = (props) => {
   const items = itemStore.items.filter(
     (item) => item.ownerId === authStore.user.id
@@ -50,7 +50,14 @@ const DrawerContent = (props) => {
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
                 <Avatar.Image
-                  source={profile.image ? { uri: profile.image } : profileImg}
+                  source={
+                    profile.image
+                      ? {
+                          //   uri: profile.image  }
+                          uri: profile.image.replace("localhost", ip),
+                        }
+                      : profileImg
+                  }
                   size={50}
                 />
                 <View style={{ marginLeft: 15, flexDirection: "column" }}>

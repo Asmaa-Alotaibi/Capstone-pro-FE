@@ -87,7 +87,11 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
         >
           {authStore.user.id === profile.userId ? (
             <Tab heading={`My Profile`}>
-              <Button onPress={() => navigation.navigate("AddAddress")}>
+              <Button
+                onPress={() =>
+                  navigation.navigate("AddAddress", { fromaddItem: "true" })
+                }
+              >
                 <Text>Add Address</Text>
               </Button>
               <AddressList userId={profile.userId} navigation={navigation} />

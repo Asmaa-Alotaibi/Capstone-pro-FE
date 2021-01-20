@@ -41,10 +41,12 @@ export default DropDownCatList;
 
 const styles = StyleSheet.create({
   dropdownview: {
+ 
     zIndex: 100,
     backgroundColor: "white",
     flex: 1,
     // marginTop: 5,
+ 
   },
   container: {
     // flex: 1,
