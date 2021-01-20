@@ -53,20 +53,57 @@ const RequestedItem = ({ item, navigation }) => {
           ) : item.driverId === null ? (
             <Button
               onPress={handleDriver}
-              style={{ marginRight: 5, backgroundColor: "#009387" }}
+              style={{
+                marginRight: 5,
+                backgroundColor: "#009387",
+                justifyContent: "center",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.8,
+                shadowRadius: 5,
+                elevation: 5,
+              }}
             >
               <Text>Deliver</Text>
             </Button>
           ) : authStore.user.id === item.driverId ? (
             <Button
               onPress={handleDriver}
-              style={{ backgroundColor: "tomato", marginRight: 3 }}
+              style={{
+                backgroundColor: "tomato",
+                marginRight: 3,
+                justifyContent: "center",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.8,
+                shadowRadius: 5,
+                elevation: 5,
+              }}
             >
               <Text>Cancel</Text>
             </Button>
           ) : (
             <Button
-              style={{ backgroundColor: "gray", width: 100, marginRight: 5 }}
+              style={{
+                backgroundColor: "gray",
+                width: 100,
+                marginRight: 5,
+                justifyContent: "center",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.8,
+                shadowRadius: 5,
+                elevation: 5,
+              }}
             >
               <Text>Delivered</Text>
             </Button>

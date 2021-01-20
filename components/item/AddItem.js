@@ -165,13 +165,23 @@ const AddItem = ({ navigation }) => {
               width: 100,
               backgroundColor: "#009387",
               justifyContent: "center",
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.8,
+              shadowRadius: 5,
+              elevation: 5,
             }}
             onPress={handleSubmit}
           >
-            <Text style={{ color: "white" }}>Submit</Text>
+            <Text style={{ color: "white" }}>Add</Text>
           </Button>
 
-          <View>
+
+          <View style={{ zIndex: -50 }}>
+
             <RadioButtonRN
               data={data}
               selectedBtn={(option) => setaddressSelected(option)}

@@ -41,7 +41,7 @@ const ItemDetail = ({ route, navigation }) => {
     if (authStore.user.id === 0) navigation.replace("SignInHook");
     else navigation.navigate("Request", { item: item });
   };
- 
+
   const handleCancel = () => {
     itemStore.cancelRequest({ ...item, recipientId: null, booked: false });
   };
@@ -107,6 +107,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "gray",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   imageRe: {
     width: 100,
@@ -114,6 +123,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#009387",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   imageCa: {
     width: 100,
@@ -121,5 +139,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "tomato",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
 });

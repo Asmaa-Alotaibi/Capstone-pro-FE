@@ -15,7 +15,19 @@ const UpdateItemButton = ({ navigation, item }) => {
       }
       name="edit"
       type="FontAwesome"
-      style={{ color: "gray", marginRight: 10 }}
+      style={{
+        color: "gray",
+        marginRight: 10,
+        justifyContent: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+      }}
     />
   );
 };

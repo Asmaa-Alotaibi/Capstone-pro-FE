@@ -46,12 +46,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
- 
-// import DrawerConntent from "./DrawerContent";
-// import { View } from "react-native";
-// import Icon from "react-native-vector-icons/Ionicons";
-// import UpdateItemButton from "../buttons/UpdateItemButton";
- 
+import DrawerConntent from "./DrawerContent";
+import { View } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+import UpdateItemButton from "../buttons/UpdateItemButton";
+
 
 // import { Tab } from "native-base";
 
@@ -84,13 +83,15 @@ const Router = () => {
     >
       <AuthStack.Screen
         name="Signin"
-        component={Signin}
-        options={{ headerLeft: () => <LogOutButton /> }}
+        component={SignInHook}
+        options={{
+          header: () => false,
+        }}
       />
       <AuthStack.Screen
         name="Signup"
         component={SignUpHook}
-        options={{ headerLeft: () => <LogOutButton /> }}
+        options={{ header: () => false }}
       />
     </AuthStack.Navigator>
   );
@@ -269,7 +270,6 @@ const Router = () => {
           headerLeft: () => <LogOutButton />,
         }}
       />
-
       <HomeStack.Screen
         name="CategoryItemList"
         component={CategoryItemList}

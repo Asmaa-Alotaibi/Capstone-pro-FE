@@ -1,10 +1,12 @@
 import { Containerr } from "../../styles";
 import React from "react";
 import SingleAddress from "../SingleAddress";
-import { Spinner } from "native-base";
+import { Button, Icon, Spinner, View } from "native-base";
 import addressStore from "../../stores/addressStore";
 import authStore from "../../stores/authStore";
 import { observer } from "mobx-react";
+import AddAddress from "./AddAddress";
+import { Text } from "react-native";
 
 const AddressList = ({ route, navigation }) => {
   if (!authStore.user) navigation.replace("Signin");
@@ -20,6 +22,35 @@ const AddressList = ({ route, navigation }) => {
       />
     ));
   console.log(addressList, "from Address List");
-  return <Containerr>{addressList}</Containerr>;
+
+  return (
+    <>
+      <Containerr>{addressList}</Containerr>
+
+      <Button
+        style={{
+          width: 90,
+          marginTop: 20,
+          marginLeft: 160,
+          marginBottom: 10,
+          justifyContent: "center",
+          backgroundColor: "#009387",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 5,
+          elevation: 5,
+        }}
+        onPress={() =>
+          navigation.navigate("AddAddress", { fromaddItem: "false" })
+        }
+      >
+        <Text style={{ marginTop: 3, color: "white" }}>Add New</Text>
+      </Button>
+    </>
+  );
 };
 export default observer(AddressList);

@@ -9,7 +9,19 @@ const QRScannertButton = ({ navigation, item }) => {
       onPress={() => navigation.navigate("QRScanner", { item: item })}
       name="qrcode-scan"
       type="MaterialCommunityIcons"
-      style={{ marginLeft: 40, marginRight: 10, fontSize: 30 }}
+      style={{
+        marginLeft: 40,
+        fontSize: 30,
+        justifyContent: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+      }}
     />
   );
 };

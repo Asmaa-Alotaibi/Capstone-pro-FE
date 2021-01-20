@@ -76,7 +76,12 @@ const MyProfile = ({ navigation }) => {
           <Button
             style={{ backgroundColor: "white" }}
             onPress={() => {
-              navigation.navigate("AddressList", { userId: profile.userId });
+
+              navigation.navigate("AddressList", {
+                userId: profile.userId,
+                navigation: navigation,
+              });
+
             }}
           >
             <Text>Show All</Text>

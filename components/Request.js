@@ -107,6 +107,16 @@ const Request = ({ navigation, route }) => {
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "#009387",
+            backgroundColor: "#009387",
+            justifyContent: "center",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
           }}
         >
           <Text style={{ fontSize: 15, color: "white" }}>Submit</Text>
