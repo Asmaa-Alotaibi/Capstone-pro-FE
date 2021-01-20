@@ -19,7 +19,6 @@ export default function App({ navigation }) {
   const phonenumberInputRef = React.useRef();
   const emailInputRef = React.useRef();
 
-
   const onSubmit = async (user, { navigation }) => {
     console.log(user);
     await authStore.signup(user);
@@ -334,6 +333,14 @@ const styles = StyleSheet.create({
     width: 150,
     height: 40,
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    elevation: 5,
   },
   container: {
     flex: 1,
@@ -365,6 +372,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 5,
   },
   signIn: {
     width: 150,

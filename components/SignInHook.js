@@ -249,8 +249,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.8,
-    shadowRadius: 5,
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
     elevation: 5,
   },
   container: {
@@ -283,6 +283,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 5,
   },
   signIn: {
     width: 150,
