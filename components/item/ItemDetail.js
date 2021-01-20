@@ -41,7 +41,7 @@ const ItemDetail = ({ route, navigation }) => {
     if (authStore.user.id === 0) navigation.replace("SignInHook");
     else navigation.navigate("Request", { item: item });
   };
-
+ 
   const handleCancel = () => {
     itemStore.cancelRequest({ ...item, recipientId: null, booked: false });
   };

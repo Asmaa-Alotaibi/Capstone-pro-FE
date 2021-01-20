@@ -13,6 +13,7 @@ import { observer } from "mobx-react";
 
 const Categories = ({ navigation }) => {
   const category = [
+ 
     {
       name: "FURNITURES",
       lable: "furnitures",
@@ -53,12 +54,15 @@ const Categories = ({ navigation }) => {
       lable: "clothes",
       image: clothes,
     },
+ 
   ];
   let index = 0;
   const categories = category.map((e) => (
     <CategoryButton category={e} navigation={navigation} key={index++} />
   ));
+ 
   return <View style={styles.container}>{categories}</View>;
+ 
 };
 
 export default observer(Categories);

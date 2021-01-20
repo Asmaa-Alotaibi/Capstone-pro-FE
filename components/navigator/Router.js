@@ -38,11 +38,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
+ 
+import MiniRequestSummary from "../MiniRequestSummary";
+ 
 import profileStore from "../../stores/profileStore";
 import DrawerConntent from "./DrawerContent";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import UpdateItemButton from "../buttons/UpdateItemButton";
+
 
 // import { Tab } from "native-base";
 
@@ -133,6 +137,22 @@ const Router = () => {
       <HomeStack.Screen name="FlatList" component={Flatcategories} />
 
       <HomeStack.Screen
+
+        name="ProfilePage"
+        component={ProfilePage}
+        options={({ route }) => {
+          const { profile } = route.params;
+          return {
+            title: profile.user.username,
+            headerLeft: () => <LogOutButton />,
+          };
+        }}
+      />
+
+ 
+
+ 
+      <HomeStack.Screen
         name="Signup"
         component={Signup}
         options={{ headerLeft: () => <LogOutButton /> }}
@@ -162,6 +182,7 @@ const Router = () => {
         component={AddAddress}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+ 
       <HomeStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -173,6 +194,8 @@ const Router = () => {
           };
         }}
       />
+ 
+ 
       <HomeStack.Screen
         name="ItemList"
         component={ItemList}
@@ -201,6 +224,7 @@ const Router = () => {
         component={QRScanner}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+ 
     </HomeStack.Navigator>
   );
 
@@ -215,12 +239,18 @@ const Router = () => {
           headerRight: () => <UpdateItemButton />,
         }}
       />
+ 
+      <ProfileStack.Screen name="AddressList" component={AddressList} />
+      <ProfileStack.Screen name="AddAddress" component={AddAddress} />
+       
+ 
 
       <ProfileStack.Screen
         name="ItemList"
         component={ItemList}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+ 
       <ProfileStack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
@@ -238,6 +268,14 @@ const Router = () => {
         options={{ headerLeft: () => <LogOutButton /> }}
       />
 
+ 
+      
+      <ProfileStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
+      />
+      <ProfileStack.Screen name="QRScanner" component={QRScanner} />
+ 
       <ProfileStack.Screen
         name="Request"
         component={Request}
@@ -253,6 +291,7 @@ const Router = () => {
         component={QRScanner}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+ 
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
@@ -283,6 +322,13 @@ const Router = () => {
         component={QRScanner}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+ 
+      <CategoriesStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
+      />
+      <CategoriesStack.Screen name="QRScanner" component={QRScanner} />
+ 
     </CategoriesStack.Navigator>
   );
   const MainTabScreen = () => (

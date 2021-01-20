@@ -1,5 +1,13 @@
 import * as ImagePicker from "expo-image-picker";
-
+import { Image, ImageBackground, Platform, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import itemStore from "../../stores/itemStore";
+import { observer } from "mobx-react";
+import { showMessage } from "react-native-flash-message";
+import DropDownCatList from "./DropDownCatList";
+import RadioButtonRN from "radio-buttons-react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
   Button,
   Container,
@@ -8,14 +16,8 @@ import {
   Input,
   Item,
   Label,
+  View,
 } from "native-base";
-import { Image, ImageBackground, Platform, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-
-import { TouchableOpacity } from "react-native-gesture-handler";
-import itemStore from "../../stores/itemStore";
-import { observer } from "mobx-react";
-import { showMessage } from "react-native-flash-message";
 
 const AddItem = ({ navigation }) => {
   const [item, setItem] = useState({
@@ -26,6 +28,12 @@ const AddItem = ({ navigation }) => {
     description: "",
     category: "",
   });
+  const [addressOption, setaddressOption] = useState("");
+  const radiogroup_options = [
+    { id: 0, label: "Existing address" },
+    { id: 1, label: "New address" },
+  ];
+
   const handleSubmit = async () => {
     await itemStore.createItem(item);
     showMessage({
@@ -114,21 +122,14 @@ const AddItem = ({ navigation }) => {
                 }
               />
             </Item>
-            <Item floatingLabel last>
-              <Label>Category</Label>
-              <Input
-                value={item.category}
-                onChangeText={(category) => setItem({ ...item, category })}
-              />
-            </Item>
-            {/* <Item floatingLabel last>
-              <Label>Category</Label>
-              <Input
-                value={item.category}
-                onChangeText={(category) => setItem({ ...item, category })}
-              />
-            </Item> */}
+            <DropDownCatList
+              category={item.category}
+              onChangeText={(category) =>
+                setItem({ ...item, category: category.value })
+              }
+            />
           </Form>
+
           <Button
             style={{
               marginLeft: 160,
@@ -141,7 +142,33 @@ const AddItem = ({ navigation }) => {
           >
             <Text style={{ color: "white" }}>Submit</Text>
           </Button>
+
+
+          <View>
+            {/* <RadioButtonRN
+              data={radiogroup_options}
+              selectedBtn={(option) => setaddressOption(option)}
+              icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
+            /> */}
+            {/* {addressOption === 0 ?
+          (<DropDownaddressList>) :()
+             } */}
+          </View>
+
         </Content>
+        <Button
+          bordered
+          dark
+          style={{
+            marginLeft: 190,
+            marginTop: 50,
+            width: 100,
+            justifyContent: "center",
+          }}
+          onPress={handleSubmit}
+        >
+          <Text>Submit</Text>
+        </Button>
       </Container>
     </>
   );

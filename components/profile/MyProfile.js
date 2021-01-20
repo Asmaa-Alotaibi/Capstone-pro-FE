@@ -8,6 +8,7 @@ import profileStore from "../../stores/profileStore";
 import UpdateItemButton from "../buttons/UpdateItemButton";
 import Signin from "../Signin";
 import ProfilePage from "./ProfilePage";
+import { observer } from "mobx-react";
 
 const MyProfile = ({ navigation }) => {
   const profile = profileStore.getProfileByUserId(authStore.user.id);
@@ -91,6 +92,7 @@ const MyProfile = ({ navigation }) => {
 };
 
 export default observer(MyProfile);
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -146,3 +148,4 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+

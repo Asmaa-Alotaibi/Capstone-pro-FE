@@ -16,9 +16,10 @@ const SingleAddress = ({ address, navigation }) => {
         <Text> House :{address.house}</Text>
         <Text> Flat :{address.flat}</Text>
       </View>
-
-      <DeleteAddress addressId={address.id} navigation={navigation} />
-      <UpdateAddressButton address={address} navigation={navigation} />
+      <View>
+        <DeleteAddress addressId={address.id} navigation={navigation} />
+        <UpdateAddressButton address={address} navigation={navigation} />
+      </View>
     </>
   );
 };

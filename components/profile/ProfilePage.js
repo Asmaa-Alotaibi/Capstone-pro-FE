@@ -20,12 +20,9 @@ import {
   ProfileUserName,
 } from "../../styles";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-
-import AddAddress from "../address/AddAddress";
 import AddressList from "../address/AddressList";
 import ItemList from "../item//ItemList";
 import React from "react";
-import Signin from "../Signin";
 import UpdateButton from "../buttons/UpdateButton";
 import authStore from "../../stores/authStore";
 import ip from "../../stores/ipaddress";

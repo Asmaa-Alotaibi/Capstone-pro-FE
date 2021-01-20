@@ -9,8 +9,9 @@ import { observer } from "mobx-react";
 const AddressList = ({ userId, navigation }) => {
   if (!authStore.user) navigation.replace("Signin");
   if (addressStore.loading) return <Spinner />;
+
   const addressList = addressStore.addresses
-    .filter((address) => address.userId === userId) //change to address.profileId
+    .filter((address) => address.profileId === userId)
     .map((address) => (
       <SingleAddress
         address={address}
