@@ -1,11 +1,13 @@
+import * as Font from "expo-font";
+
+import AppLoading from "expo-app-loading";
+import FlashMessage from "react-native-flash-message";
 import React from "react";
 import Router from "./components/navigator/Router";
-import AppLoading from "expo-app-loading";
-import * as Font from "expo-font";
-import FlashMessage from "react-native-flash-message";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View } from "react-native";
 import authStore from "./stores/authStore";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+
 export default class App extends React.Component {
   state = {
     loading: true,
