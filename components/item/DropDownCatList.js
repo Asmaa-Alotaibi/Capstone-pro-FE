@@ -20,12 +20,14 @@ const DropDownCatList = ({ onChangeText, category }) => {
         items={categories}
         defaultValue={category}
         containerStyle={styles.categories}
-        style={{ backgroundColor: "#fafafa" }}
+        style={{ backgroundColor: "white" }}
         itemStyle={{ justifyContent: "flex-center" }}
-        dropDownStyle={{ backgroundColor: "#fafafa" }}
+        dropDownStyle={{ backgroundColor: "white", height: 500 }}
         onChangeItem={onChangeText}
-        labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
+        labelStyle={{ fontSize: 18, textAlign: "left", color: "#000" }}
         searchable={true}
+        placeholderStyle={{ color: "gray" }}
+        placeholder={"Select a Category"}
         searchablePlaceholder="Search here !"
         searchablePlaceholderTextColor="gray"
         seachableStyle={{}}
@@ -39,22 +41,28 @@ export default DropDownCatList;
 
 const styles = StyleSheet.create({
   dropdownview: {
-    zIndex: 200,
-    position: "relative", //tried this didnt work !
+ 
+    zIndex: 100,
+    backgroundColor: "white",
+    flex: 1,
+    // marginTop: 5,
+ 
   },
   container: {
-    flex: 1,
-    backgroundColor: "#003f5c",
+    // flex: 1,
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
+    height: 500,
   },
   inputText: {
     height: 50,
     color: "white",
   },
   categories: {
-    height: 60,
-    width: 350,
-    paddingVertical: 10,
+    height: 80,
+    width: "100%",
+    backgroundColor: "white",
+    // paddingVertical: 10,
   },
 });

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import { Content, Spinner } from "native-base";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
@@ -5,7 +6,7 @@ import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
 import RequestedItemList from "../item/RequestedItemList";
 
-const DriverHomePage = () => {
+const DriverHomePage = ({ navigation }) => {
   if (itemStore.loading) return <Spinner />;
   const driver = authStore.user;
 
@@ -19,7 +20,7 @@ const DriverHomePage = () => {
     (item) => item.driverId === driver.id
   );
   return (
-    <Content>
+    <Content style={{ backgroundColor: "white" }}>
       <Text style={styles.username}>Hello, {driver.username}</Text>
       <View style={styles.container}>
         <View style={styles.box}>
@@ -39,14 +40,14 @@ const DriverHomePage = () => {
         </View>
       ) : (
         <View style={styles.list}>
-          <RequestedItemList items={requested} />
+          <RequestedItemList items={requested} navigation={navigation} />
         </View>
       )}
     </Content>
   );
 };
 
-export default DriverHomePage;
+export default observer(DriverHomePage);
 const styles = StyleSheet.create({
   box: {
     flex: 1,
@@ -70,11 +71,11 @@ const styles = StyleSheet.create({
   },
   numberD: {
     fontSize: 30,
-    color: "green",
+    color: "#009387",
   },
   numberP: {
     fontSize: 30,
-    color: "red",
+    color: "tomato",
   },
   text: {
     fontSize: 20,

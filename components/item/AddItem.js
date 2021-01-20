@@ -156,7 +156,22 @@ const AddItem = ({ navigation }) => {
               }
             />
           </Form>
-          <View></View>
+ 
+
+          <Button
+            style={{
+              zIndex: -50,
+              marginLeft: 160,
+              marginTop: 50,
+              width: 100,
+              backgroundColor: "#009387",
+              justifyContent: "center",
+            }}
+            onPress={handleSubmit}
+          >
+            <Text style={{ color: "white" }}>Submit</Text>
+          </Button>
+ 
           <View>
             <RadioButtonRN
               data={data}
@@ -165,19 +180,6 @@ const AddItem = ({ navigation }) => {
             />
           </View>
         </Content>
-        <Button
-          bordered
-          dark
-          style={{
-            marginLeft: 190,
-            marginTop: 50,
-            width: 100,
-            justifyContent: "center",
-          }}
-          onPress={handleSubmit}
-        >
-          <Text>Submit</Text>
-        </Button>
       </Container>
     </>
   );

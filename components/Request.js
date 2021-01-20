@@ -1,4 +1,4 @@
-import { Button, Content, Left } from "native-base";
+import { Button, Content, Left, Right } from "native-base";
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import ip from "../stores/ipaddress";
@@ -7,7 +7,7 @@ import itemStore from "../stores/itemStore";
 
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Image, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { showMessage } from "react-native-flash-message";
 
 const Request = ({ navigation, route }) => {
@@ -53,32 +53,78 @@ const Request = ({ navigation, route }) => {
     }
   };
   return (
-    <Content>
-      <View>
-        <Text>ReUse</Text>
-        <Left>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={{ flexDirection: "row", margin: 20 }}>
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
+        >
           <Image
-            style={{ width: 100, height: 100 }}
+            style={{
+              width: 150,
+              height: 150,
+            }}
             source={{ uri: item.image.replace("localhost", ip) }}
           />
-        </Left>
-        <Text>You are ordering : {item.name}</Text>
-        <Text>Description : {item.description}</Text>
-        <Text>owner of this item is : {item.owner.username}</Text>
-        {/* <Text> Address of this item is : {item.addressId.city}</Text> */}
-        <Text>Delivery Options:</Text>
+        </View>
+        <View style={{ marginTop: 55, marginLeft: 30 }}>
+          <Text style={styles.text}>
+            Product : <Text style={{ color: "black" }}>{item.name}</Text>{" "}
+          </Text>
+          <Text style={styles.note}>Owner : {item.owner.username}</Text>
+        </View>
+      </View>
+      <View style={{ marginTop: 10, marginLeft: 30 }}>
+        <Text style={styles.text}>
+          Description :{" "}
+          <Text style={{ color: "black" }}>{item.description}</Text>{" "}
+        </Text>
+      </View>
+      {/* <Text> Address of this item is : {item.addressId.city}</Text> */}
+      <View style={{ margin: 30 }}>
+        <Text style={{ fontSize: 17 }}>Delivery Options:</Text>
         <RadioButtonRN
+          activeColor={"#009387"}
           data={radiogroup_options}
           selectedBtn={(option) => setdeliveryOption(option)}
-          icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
+          icon={<Icon name="check-circle" size={25} color="#009387" />}
         />
-        <Button onPress={handelSubmit} style={{ width: 80, height: 30 }}>
-          <Text style={{ fontSize: 15 }}>Submit</Text>
+        <Button
+          onPress={handelSubmit}
+          style={{
+            marginTop: 20,
+            marginLeft: 140,
+            width: 100,
+            height: 50,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#009387",
+          }}
+        >
+          <Text style={{ fontSize: 15, color: "white" }}>Submit</Text>
         </Button>
       </View>
-    </Content>
+    </View>
   );
 };
 
 export default observer(Request);
 // { ...item, QRvalue: randomValue }
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 17,
+    color: "gray",
+  },
+  note: {
+    fontSize: 15,
+    color: "gray",
+  },
+});

@@ -1,4 +1,5 @@
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import {
@@ -12,9 +13,16 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
+import itemStore from "../../stores/itemStore";
 import profileStore from "../../stores/profileStore";
 import ip from "../../stores/ipaddress";
 const DrawerContent = (props) => {
+  const items = itemStore.items.filter(
+    (item) => item.ownerId === authStore.user.id
+  );
+  const requestedItems = itemStore.items.filter(
+    (item) => authStore.user.id === item.recipientId
+  );
   const handleLogOut = () => {
     setIsDriver(false);
     authStore.signout();
@@ -74,15 +82,65 @@ const DrawerContent = (props) => {
               props.navigation.navigate("Home");
             }}
           />
-          <DrawerItem
-            icon={({ color, size }) => (
-              <Icon name="view-list-outline" color={color} size={size} />
-            )}
-            label="Categories"
-            onPress={() => {
-              props.navigation.navigate("Categories");
-            }}
-          />
+          {!isDriver ? (
+            <>
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon name="view-list-outline" color={color} size={size} />
+                )}
+                label="Categories"
+                onPress={() => {
+                  props.navigation.navigate("Categories");
+                }}
+              />
+              {authStore.user.id !== 0 ? (
+                <>
+                  <DrawerItem
+                    icon={({ color, size }) => (
+                      <Icon
+                        name="view-list-outline"
+                        color={color}
+                        size={size}
+                      />
+                    )}
+                    label="My Items"
+                    onPress={() => {
+                      props.navigation.navigate("ItemList", {
+                        items: items,
+                        navigation: props.navigation,
+                      });
+                    }}
+                  />
+                  <DrawerItem
+                    icon={({ color, size }) => (
+                      <Icon
+                        name="view-list-outline"
+                        color={color}
+                        size={size}
+                      />
+                    )}
+                    label="My Orders"
+                    onPress={() => {
+                      props.navigation.navigate("ItemList", {
+                        items: requestedItems,
+                        navigation: props.navigation,
+                      });
+                    }}
+                  />
+                </>
+              ) : null}
+            </>
+          ) : (
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="view-list-outline" color={color} size={size} />
+              )}
+              label="Delieveries"
+              onPress={() => {
+                props.navigation.navigate("RequestedItemList");
+              }}
+            />
+          )}
           {authStore.user.id !== 0 ? (
             <DrawerItem
               icon={({ color, size }) => (
@@ -123,20 +181,6 @@ const DrawerContent = (props) => {
         ) : null}
       </DrawerContentScrollView>
       <Drawer.Section style={StyleSheet.bottomDrawerSection}>
-        <Drawer.Section title="Prefernces">
-          <TouchableRipple
-            onPress={() => {
-              toggleTheme();
-            }}
-          >
-            <View style={styles.prefrence}>
-              <Text>Dark Mode</Text>
-              <View pointerEvents="none">
-                <Switch value={isDarkTheme} />
-              </View>
-            </View>
-          </TouchableRipple>
-        </Drawer.Section>
         {authStore.user.id !== 0 ? (
           <DrawerItem
             style={{ backgroundColor: "#009387" }}
@@ -152,7 +196,7 @@ const DrawerContent = (props) => {
     </View>
   );
 };
-export default DrawerContent;
+export default observer(DrawerContent);
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,

@@ -1,12 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import { Button, Icon, Text } from "native-base";
 import React from "react";
-const UpdateItemButton = ({ profile, navigation, item }) => {
+import authStore from "../../stores/authStore";
+import profileStore from "../../stores/profileStore";
+const UpdateItemButton = ({ navigation, item }) => {
+  const profile = profileStore.getProfileByUserId(authStore.user.id);
+  const _navigation = navigation ? navigation : useNavigation();
   return (
     <Icon
-      onPress={() => navigation.navigate("UpdateItem", { item: item })}
+      onPress={() =>
+        item
+          ? _navigation.navigate("UpdateItem", { item: item })
+          : _navigation.navigate("UpdateProfile", { profile: profile })
+      }
       name="edit"
       type="FontAwesome"
-      style={{ padding: 5, marginRight: -15 }}
+      style={{ color: "gray", marginRight: 10 }}
     />
   );
 };

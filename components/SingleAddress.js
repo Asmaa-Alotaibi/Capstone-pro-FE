@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import DeleteAddress from "./address/DeleteAddress";
 import React from "react";
 import UpdateAddressButton from "./address/UpdateAddressButton";
+import { observer } from "mobx-react";
 
 const SingleAddress = ({ address, navigation }) => {
   return (
@@ -23,4 +24,4 @@ const SingleAddress = ({ address, navigation }) => {
   );
 };
 
-export default SingleAddress;
+export default observer(SingleAddress);
