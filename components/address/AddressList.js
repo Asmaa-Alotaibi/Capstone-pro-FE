@@ -6,10 +6,10 @@ import addressStore from "../../stores/addressStore";
 import authStore from "../../stores/authStore";
 import { observer } from "mobx-react";
 
-const AddressList = ({ userId, navigation }) => {
+const AddressList = ({ route, navigation }) => {
   if (!authStore.user) navigation.replace("Signin");
   if (addressStore.loading) return <Spinner />;
-
+  const { userId } = route.params;
   const addressList = addressStore.addresses
     .filter((address) => address.profileId === userId)
     .map((address) => (

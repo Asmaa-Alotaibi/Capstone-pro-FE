@@ -9,7 +9,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 const NewItemList = ({ navigation }) => {
   if (itemStore.loading) return <Spinner />;
-  let d = new Date() - 1259200000; //date before 3 days  -259200000 , before 1 day -86400000
+  let d = new Date() - 259200000; //date before 3 days  -259200000 , before 1 day -86400000
   const newitemList = itemStore.items
     .filter((e) => Date.parse(e.createdAt) > d)
     .map((e) => <Item item={e} key={e.id} navigation={navigation} />);

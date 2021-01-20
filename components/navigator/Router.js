@@ -46,6 +46,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
+ 
+// import DrawerConntent from "./DrawerContent";
+// import { View } from "react-native";
+// import Icon from "react-native-vector-icons/Ionicons";
+// import UpdateItemButton from "../buttons/UpdateItemButton";
+ 
 
 // import { Tab } from "native-base";
 
@@ -434,7 +440,7 @@ const Router = () => {
         }}
       />
       <MainTab.Screen
-        name="Categoties"
+        name="Categories"
         component={CategoryStackScreen}
         options={{
           tabBarIcon: ({ color }) => (

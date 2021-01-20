@@ -12,27 +12,25 @@ export default function App({ navigation }) {
   const passwordInputRef = React.useRef();
   const phonenumberInputRef = React.useRef();
 
-
   const onSubmit = async (user, { navigation }) => {
     console.log(user);
     await authStore.signup(user);
     const newUser = authStore.user;
     console.log("from sign up>>", newUser);
     navigation.navigate("Signup");
-// =======
-//   const onSubmit = async (user) => {
+    // =======
+    //   const onSubmit = async (user) => {
     // console.log(user);
-//     await authStore.signup(user);
-//     showMessage({
-//       message: `Welcome ${authStore.user.username}`,
-//       description: `You Signed up Succesfully, Thanks !`,
-//       type: "default",
-//       backgroundColor: "black", // background color
-//       color: "#fff",
-//     });
+    //     await authStore.signup(user);
+    //     showMessage({
+    //       message: `Welcome ${authStore.user.username}`,
+    //       description: `You Signed up Succesfully, Thanks !`,
+    //       type: "default",
+    //       backgroundColor: "#ff6b6b", // background color
+    //       color: "black",
+    //     });
     // const newUser = authStore.user;
     // console.log("from sign up>>", newUser);
-
   };
 
   return (

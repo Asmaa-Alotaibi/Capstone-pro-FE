@@ -31,16 +31,16 @@ const AddAddress = ({ navigation, route }) => {
         message: "Item Has been added",
         description: `You have Added an New Item Succesfully`,
         type: "default",
-        backgroundColor: "black", // background color
-        color: "#fff",
+        backgroundColor: "#ff6b6b", // background color
+        color: "black",
       });
     else {
       showMessage({
         message: "Address Has been added",
         description: `You have Added an New Address Succesfully`,
         type: "default",
-        backgroundColor: "black", // background color
-        color: "#fff",
+        backgroundColor: "#ff6b6b", // background color
+        color: "black",
       });
     }
     navigation.pop();

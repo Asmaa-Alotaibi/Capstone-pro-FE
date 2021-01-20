@@ -156,7 +156,7 @@ const DrawerContent = (props) => {
               icon={({ color, size }) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
-              label="Profile"
+              label="Signin"
               onPress={() => {
                 props.navigation.navigate("Signin");
               }}
@@ -171,7 +171,7 @@ const DrawerContent = (props) => {
               }}
             >
               <View style={styles.prefrence}>
-                <Text>Switch To {!isDriver ? "Deliver" : "Shop"}</Text>
+                <Text>Switch To {!isDriver ? "Deliver" : "Give OR Get"}</Text>
                 <View pointerEvents="none">
                   <Switch value={isDriver} />
                 </View>

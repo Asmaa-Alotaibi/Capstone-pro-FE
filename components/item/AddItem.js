@@ -67,8 +67,8 @@ const AddItem = ({ navigation }) => {
         message: "Item Has been added",
         description: `You have Added an New Item Succesfully`,
         type: "default",
-        backgroundColor: "black", // background color
-        color: "#fff",
+        backgroundColor: "ff6b6b", // background color
+        color: "black",
       });
       navigation.navigate("NewItemList");
     }
@@ -156,7 +156,6 @@ const AddItem = ({ navigation }) => {
               }
             />
           </Form>
- 
 
           <Button
             style={{
@@ -171,7 +170,7 @@ const AddItem = ({ navigation }) => {
           >
             <Text style={{ color: "white" }}>Submit</Text>
           </Button>
- 
+
           <View>
             <RadioButtonRN
               data={data}
