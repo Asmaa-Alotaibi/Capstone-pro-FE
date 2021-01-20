@@ -88,6 +88,17 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
           {authStore.user.id === profile.userId ? (
             <Tab heading={`My Profile`}>
               <Button
+                style={{
+                  justifyContent: "center",
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.8,
+                  shadowRadius: 5,
+                  elevation: 5,
+                }}
                 onPress={() =>
                   navigation.navigate("AddAddress", { fromaddItem: "true" })
                 }

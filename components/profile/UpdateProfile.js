@@ -178,7 +178,20 @@ const UpdateProfile = ({ route, navigation }) => {
           </Item> */}
         </Form>
         <Button
-          style={{ marginLeft: 160, marginTop: 50, backgroundColor: "#009387" }}
+          style={{
+            marginLeft: 160,
+            marginTop: 50,
+            backgroundColor: "#009387",
+            justifyContent: "center",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
           onPress={handleSubmit}
         >
           <Text>Submit</Text>

@@ -15,7 +15,7 @@ import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
 import profileStore from "../../stores/profileStore";
-import ip from "../../stores/ipaddress";
+
 const DrawerContent = (props) => {
   const items = itemStore.items.filter(
     (item) => item.ownerId === authStore.user.id
@@ -50,14 +50,7 @@ const DrawerContent = (props) => {
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
                 <Avatar.Image
-                  source={
-                    profile.image
-                      ? {
-                          //   uri: profile.image  }
-                          uri: profile.image.replace("localhost", ip),
-                        }
-                      : profileImg
-                  }
+                  source={profile.image ? { uri: profile.image } : profileImg}
                   size={50}
                 />
                 <View style={{ marginLeft: 15, flexDirection: "column" }}>
@@ -180,7 +173,7 @@ const DrawerContent = (props) => {
           </Drawer.Section>
         ) : null}
       </DrawerContentScrollView>
-      <Drawer.Section style={StyleSheet.bottomDrawerSection}>
+      <Drawer.Section style={styles.bottomDrawerSection}>
         {authStore.user.id !== 0 ? (
           <DrawerItem
             style={{ backgroundColor: "#009387" }}
@@ -231,7 +224,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   bottomDrawerSection: {
-    marginBottom: 15,
+    marginBottom: 20,
     borderTopColor: "#f4f4f4",
     borderTopWidth: 1,
   },

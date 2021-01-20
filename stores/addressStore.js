@@ -33,7 +33,7 @@ class AddressStore {
     try {
       const res = await instance.post("/addresses", newAddress);
       runInAction(() => {
-        this.addresses.push(newAddress);
+        this.addresses.push(res.data);
       });
     } catch (error) {
       console.log(error);

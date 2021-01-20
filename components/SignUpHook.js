@@ -1,17 +1,23 @@
-import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Controller, useForm } from "react-hook-form";
 
-import React from "react";
+import React, { useState } from "react";
 import authStore from "../stores/authStore";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { showMessage } from "react-native-flash-message";
-
+import { EyeButtonStyled } from "../styles";
+import { Button, Icon } from "native-base";
 export default function App({ navigation }) {
   const { control, handleSubmit, errors, getValues } = useForm();
   const usernameInputRef = React.useRef();
   const passwordInputRef = React.useRef();
   const phonenumberInputRef = React.useRef();
-
+  const emailInputRef = React.useRef();
 
   const onSubmit = async (user, { navigation }) => {
     console.log(user);
@@ -19,24 +25,190 @@ export default function App({ navigation }) {
     const newUser = authStore.user;
     console.log("from sign up>>", newUser);
     navigation.navigate("Signup");
-// =======
-//   const onSubmit = async (user) => {
+    // =======
+    //   const onSubmit = async (user) => {
     // console.log(user);
-//     await authStore.signup(user);
-//     showMessage({
-//       message: `Welcome ${authStore.user.username}`,
-//       description: `You Signed up Succesfully, Thanks !`,
-//       type: "default",
-//       backgroundColor: "black", // background color
-//       color: "#fff",
-//     });
+    //     await authStore.signup(user);
+    //     showMessage({
+    //       message: `Welcome ${authStore.user.username}`,
+    //       description: `You Signed up Succesfully, Thanks !`,
+    //       type: "default",
+    //       backgroundColor: "black", // background color
+    //       color: "#fff",
+    //     });
     // const newUser = authStore.user;
     // console.log("from sign up>>", newUser);
-
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container1}>
+      <View style={styles.header}>
+        <Text style={styles.text_header}>Welcome</Text>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.text_footer}>Username</Text>
+        <View style={styles.action}>
+          <Icon
+            name="user-o"
+            type="FontAwesome"
+            style={{ color: "#05375a", fontSize: 20 }}
+          />
+          <Controller
+            name="username"
+            defaultValue=""
+            control={control}
+            rules={{ required: "Username is required." }}
+            onFocus={() => {
+              usernameInputRef.current.focus();
+            }}
+            render={({ onChange, onBlur, value }) => (
+              <TextInput
+                placeholder="USER NAME"
+                style={styles.textInput}
+                autoCapitalize="none"
+                ref={usernameInputRef}
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+          />
+          {/* {data.check_textInputChange ? (
+          <Icon
+            type="Feather"
+            name="check-circle"
+            style={{ fontSize: 20, color: "green" }}
+          />
+        ) : null} */}
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 35 }]}>Password</Text>
+        <View style={styles.action}>
+          <Icon
+            name="lock"
+            type="FontAwesome"
+            style={{ color: "#05375a", fontSize: 20 }}
+          />
+          <Controller
+            name="password"
+            //   type={password}
+            defaultValue=""
+            control={control}
+            type="password"
+            rules={{
+              required: { value: true, message: "Password is required." },
+              // pattern: {
+              //   // value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              //   message: "Incorrect",
+              // },
+            }}
+            onFocus={() => {
+              passwordInputRef.current.focus();
+            }}
+            render={({ onChange, onBlur, value }) => (
+              <TextInput
+                placeholder="PASSWORD"
+                style={styles.textInput}
+                autoCapitalize="none"
+                ref={passwordInputRef}
+                onBlur={onBlur}
+                secureTextEntry={true}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+          />
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 35 }]}>Email</Text>
+        <View style={styles.action}>
+          <Icon
+            name="email"
+            type="Fontisto"
+            style={{ color: "#05375a", fontSize: 20 }}
+          />
+          <Controller
+            name="email"
+            defaultValue=""
+            control={control}
+            render={({ onChange, onBlur, value }) => (
+              <TextInput
+                placeholder="EMAIL"
+                style={styles.textInput}
+                autoCapitalize="none"
+                ref={emailInputRef}
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+          />
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 35 }]}>
+          Phone number
+        </Text>
+        <View style={styles.action}>
+          <Icon
+            name="phone"
+            type="FontAwesome"
+            style={{ color: "#05375a", fontSize: 20 }}
+          />
+          <Controller
+            name="phonenumber"
+            defaultValue=""
+            control={control}
+            rules={{
+              required: { value: true, message: "Phone Number is required." },
+              pattern: {
+                value: /\d{8}$/,
+                message: "Incorrect",
+              },
+            }}
+            onFocus={() => {
+              phonenumberInputRef.current.focus();
+            }}
+            render={({ onChange, onBlur, value }) => (
+              <TextInput
+                placeholder="PHONE NUMBER"
+                style={styles.textInput}
+                ref={phonenumberInputRef}
+                onBlur={onBlur}
+                onChangeText={(value) => onChange(value)}
+                value={value}
+              />
+            )}
+          />
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            bottom: 100,
+            right: 130,
+          }}
+        >
+          <Button
+            style={[styles.button, { backgroundColor: "#009387" }]}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <Text style={[styles.textSign, { color: "#fff" }]}>Sign Up</Text>
+          </Button>
+          <Button
+            style={[
+              styles.button,
+              {
+                backgroundColor: "#fff",
+                marginTop: 10,
+                borderWidth: 1,
+                borderColor: "#009387",
+              },
+            ]}
+            onPress={() => navigation.navigate("SignInHook")}
+          >
+            <Text style={[styles.textSign, { color: "#009387" }]}>Sign In</Text>
+          </Button>
+        </View>
+      </View>
+    </View>
+
+    /* <View style={styles.container}>
       <View>
         <Text style={styles.label}>username</Text>
         <Controller
@@ -138,7 +310,7 @@ export default function App({ navigation }) {
       <TouchableOpacity onPress={() => navigation.replace("Signin")}>
         <Text style={styles.loginText}>Signin</Text>
       </TouchableOpacity>
-    </View>
+    </View> */
   );
 }
 
@@ -149,11 +321,16 @@ const styles = StyleSheet.create({
     marginLeft: 0,
   },
   button: {
-    marginTop: 40,
-    color: "white",
-    backgroundColor: "#ec5990",
+    // marginTop: 40,
+    // color: "white",
+    // backgroundColor: "#ec5990",
+    // height: 40,
+    // borderRadius: 4,
+    alignItems: "center",
+    marginTop: 30,
+    width: 150,
     height: 40,
-    borderRadius: 4,
+    justifyContent: "center",
   },
   container: {
     flex: 1,
@@ -167,5 +344,62 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 4,
     color: "black",
+  },
+  container1: {
+    flex: 1,
+    backgroundColor: "#009387",
+  },
+  header: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingBottom: 50,
+    paddingHorizontal: 20,
+  },
+  footer: {
+    flex: 3,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+  signIn: {
+    width: 150,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    flexDirection: "row",
+  },
+  textSign: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  title: {
+    color: "#05375a",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  textInput: {
+    flex: 1,
+    // marginTop:
+    paddingLeft: 10,
+    color: "#05375a",
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomColor: "#f2f2f2",
+    borderBottomWidth: 1,
+    paddingBottom: 5,
+  },
+  text_footer: {
+    color: "#05375a",
+    fontSize: 18,
+  },
+  text_header: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
   },
 });

@@ -134,12 +134,23 @@ const UpdateItem = ({ route, navigation }) => {
           </Item>
         </Form>
         <Button
-          bordered
-          dark
-          style={{ marginLeft: 190, marginTop: 50 }}
+          style={{
+            marginLeft: 160,
+            marginTop: 50,
+            justifyContent: "center",
+            backgroundColor: "#009387",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
           onPress={handleSubmit}
         >
-          <Text>Submit</Text>
+          <Text style={{ color: "white" }}>Submit</Text>
         </Button>
       </Content>
     </Container>
