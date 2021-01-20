@@ -5,6 +5,7 @@ import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
 import DriverHomePage from "../drivers/DriverHomePage";
+import DriverSummary from "../drivers/DriverSummary";
 import DriversList from "../DriversList";
 import Home from "../Home";
 import { Thumbnail } from "native-base";
@@ -83,6 +84,11 @@ const Router = () => {
         component={RequestedItemList}
         options={{ headerLeft: () => <LogOutButton /> }}
       />
+      <DriverStack.Screen
+        name="DriverSummary"
+        component={DriverSummary}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </DriverStack.Navigator>
   );
   const DriverHStackScreen = () => (
@@ -98,6 +104,11 @@ const Router = () => {
           ),
         }}
       />
+      <DriverHStack.Screen
+        name="DriverSummary"
+        component={DriverSummary}
+        options={{ headerLeft: () => <LogOutButton /> }}
+      />
     </DriverHStack.Navigator>
   );
   const HomeStackScreen = () => (
@@ -111,6 +122,10 @@ const Router = () => {
         name="NewItemList"
         component={NewItemList}
         options={{ headerLeft: () => <LogOutButton /> }}
+      />
+      <HomeStack.Screen
+        name="MiniRequestSummary"
+        component={MiniRequestSummary}
       />
       <HomeStack.Screen
         name="ItemDetail"
@@ -263,7 +278,6 @@ const Router = () => {
         name="MiniRequestSummary"
         component={MiniRequestSummary}
       />
-      <ProfileStack.Screen name="QRScanner" component={QRScanner} />
 
       <ProfileStack.Screen
         name="Request"

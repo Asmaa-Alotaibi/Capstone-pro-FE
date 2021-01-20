@@ -21,11 +21,13 @@ import profileImg from "../../img/profileImage.jpg";
 
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
+import authStore from "../../stores/authStore";
 
 const UpdateProfile = ({ route, navigation }) => {
   const { profile } = route.params;
   const [newProfile, setNewProfile] = useState(profile);
-  console.log(newProfile);
+  console.log(newProfile.user.email);
+  // console.log(newProfile);
   const handleSubmit = async () => {
     await profileStore.updateProfile(newProfile);
     {
@@ -142,6 +144,24 @@ const UpdateProfile = ({ route, navigation }) => {
           </Item>
           <Item floatingLabel last>
             <Label>Last Name</Label>
+            <Input
+              value={newProfile.lastName}
+              onChangeText={(lastName) =>
+                setNewProfile({ ...newProfile, lastName })
+              }
+            />
+          </Item>
+          <Item floatingLabel last>
+            <Label>Email</Label>
+            <Input
+              value={newProfile.user.email}
+              onChangeText={(email) =>
+                setNewProfile({ ...newProfile.user, email })
+              }
+            />
+          </Item>
+          <Item floatingLabel last>
+            <Label>Phone</Label>
             <Input
               value={newProfile.lastName}
               onChangeText={(lastName) =>

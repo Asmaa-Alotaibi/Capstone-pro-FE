@@ -18,72 +18,72 @@ const MyProfile = ({ navigation }) => {
           style={styles.img}
         />
       </View>
-      <View style={{ marginLeft: 35, marginTop: 30 }}>
-        <View style={styles.row}>
-          <View style={styles.icon}>
-            <Icon style={{ color: "#009387" }} name="email" type="Entypo" />
-          </View>
-          <View style={{ marginLeft: 20 }}>
-            <Text style={styles.lable} note>
-              Username
-            </Text>
-            <Text style={styles.text}>{authStore.user.username}</Text>
-          </View>
+      {/* <View style={{ marginLeft: 35, marginTop: 30 }}> */}
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon style={{ color: "#009387" }} name="email" type="Entypo" />
         </View>
-        <View style={styles.row}>
-          <View style={styles.icon}>
-            <Icon style={{ color: "#009387" }} name="person" />
-          </View>
-          <View style={{ marginLeft: 20 }}>
-            <Text style={styles.lable} note>
-              Name
-            </Text>
-            <Text style={styles.text}>
-              {profile.firstName} {profile.lastName}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.icon}>
-            <Icon style={{ color: "#009387" }} name="email" type="Fontisto" />
-          </View>
-          <View style={{ marginLeft: 20 }}>
-            <Text style={styles.lable} note>
-              Email
-            </Text>
-            <Text style={styles.text}>{authStore.user.email}</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.icon}>
-            <Icon style={{ color: "#009387" }} name="phone" type="AntDesign" />
-          </View>
-          <View style={{ marginLeft: 20 }}>
-            <Text style={styles.lable} note>
-              Phone Number
-            </Text>
-            <Text style={styles.text}>{authStore.user.username}</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.icon}>
-            <Icon style={{ color: "#009387" }} name="list" />
-          </View>
-          <View style={{ marginLeft: 20 }}>
-            <Text style={styles.lable} note>
-              Addresses
-            </Text>
-            <Button
-              style={{ backgroundColor: "white" }}
-              onPress={() => {
-                navigation.navigate("AddressList");
-              }}
-            >
-              <Text>Show All</Text>
-            </Button>
-          </View>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.lable} note>
+            Username
+          </Text>
+          <Text style={styles.text}>{authStore.user.username}</Text>
         </View>
       </View>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon style={{ color: "#009387" }} name="person" />
+        </View>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.lable} note>
+            Name
+          </Text>
+          <Text style={styles.text}>
+            {profile.firstName} {profile.lastName}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon style={{ color: "#009387" }} name="email" type="Fontisto" />
+        </View>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.lable} note>
+            Email
+          </Text>
+          <Text style={styles.text}>{profile.user.email}</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon style={{ color: "#009387" }} name="phone" type="AntDesign" />
+        </View>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.lable} note>
+            Phone Number
+          </Text>
+          <Text style={styles.text}>{profile.user.phone}</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.icon}>
+          <Icon style={{ color: "#009387" }} name="list" />
+        </View>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.lable} note>
+            Addresses
+          </Text>
+          <Button
+            style={{ backgroundColor: "white" }}
+            onPress={() => {
+              navigation.navigate("AddressList");
+            }}
+          >
+            <Text>Show All</Text>
+          </Button>
+        </View>
+      </View>
+      {/* </View> */}
     </View>
   );
 };

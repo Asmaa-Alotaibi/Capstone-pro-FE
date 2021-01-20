@@ -132,6 +132,7 @@ const AddItem = ({ navigation }) => {
 
           <Button
             style={{
+              zIndex: -50,
               marginLeft: 160,
               marginTop: 50,
               width: 100,
@@ -143,7 +144,6 @@ const AddItem = ({ navigation }) => {
             <Text style={{ color: "white" }}>Submit</Text>
           </Button>
 
-
           <View>
             {/* <RadioButtonRN
               data={radiogroup_options}
@@ -154,21 +154,7 @@ const AddItem = ({ navigation }) => {
           (<DropDownaddressList>) :()
              } */}
           </View>
-
         </Content>
-        <Button
-          bordered
-          dark
-          style={{
-            marginLeft: 190,
-            marginTop: 50,
-            width: 100,
-            justifyContent: "center",
-          }}
-          onPress={handleSubmit}
-        >
-          <Text>Submit</Text>
-        </Button>
       </Container>
     </>
   );

@@ -10,12 +10,17 @@ import {
   ItemName,
   Product,
 } from "../../styles";
+import authStore from "../../stores/authStore";
 
 const Item = ({ item, navigation }) => {
   return (
     // <View style={styles.container}>
     <TouchableOpacity
-      onPress={() => navigation.navigate("ItemDetail", { item: item })} //    MiniRequestSummary
+      onPress={() =>
+        authStore.user.id === item.recipientId
+          ? navigation.navigate("MiniRequestSummary", { item: item })
+          : navigation.navigate("ItemDetail", { item: item })
+      } //    MiniRequestSummary
     >
       <View style={styles.box}>
         <ItemImage

@@ -6,7 +6,7 @@ import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
 import RequestedItemList from "../item/RequestedItemList";
 
-const DriverHomePage = () => {
+const DriverHomePage = ({ navigation }) => {
   if (itemStore.loading) return <Spinner />;
   const driver = authStore.user;
 
@@ -40,7 +40,7 @@ const DriverHomePage = () => {
         </View>
       ) : (
         <View style={styles.list}>
-          <RequestedItemList items={requested} />
+          <RequestedItemList items={requested} navigation={navigation} />
         </View>
       )}
     </Content>
