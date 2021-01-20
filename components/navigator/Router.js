@@ -1,18 +1,23 @@
+import { DrawerContent, createDrawerNavigator } from "@react-navigation/drawer";
+
 import AddAddress from "../address/AddAddress";
 import AddItem from "../item/AddItem";
 import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
+import DrawerConntent from "./DrawerContent";
 import DriverHomePage from "../drivers/DriverHomePage";
 import DriverSummary from "../drivers/DriverSummary";
 import DriversList from "../DriversList";
+import Flatcategories from "../Flatcategories";
 import Home from "../Home";
-import { Thumbnail } from "native-base";
+import Icon from "react-native-vector-icons/Ionicons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
 import LogOutButton from "../buttons/LogOutButton";
+import MiniRequestSummary from "../MiniRequestSummary";
 import MyProfile from "../profile/MyProfile";
 import { NavigationContainer } from "@react-navigation/native";
 import NewItemList from "../item/NewItemList";
@@ -29,25 +34,18 @@ import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
 import Signup from "../Signup";
-import Flatcategories from "../Flatcategories";
+import { Thumbnail } from "native-base";
 import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
+import UpdateItemButton from "../buttons/UpdateItemButton";
 import UpdateProfile from "../profile/UpdateProfile";
+import { View } from "react-native";
 import authStore from "../../stores/authStore";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
-
-import MiniRequestSummary from "../MiniRequestSummary";
-
 import profileStore from "../../stores/profileStore";
-import DrawerConntent from "./DrawerContent";
-import { View } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import UpdateItemButton from "../buttons/UpdateItemButton";
- 
 
 // import { Tab } from "native-base";
 
@@ -65,7 +63,19 @@ const Drawer = createDrawerNavigator();
 
 const Router = () => {
   const AuthStackScreen = () => (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <AuthStack.Screen
         name="Signin"
         component={Signin}
@@ -79,7 +89,19 @@ const Router = () => {
     </AuthStack.Navigator>
   );
   const DriverStackScreen = () => (
-    <DriverStack.Navigator>
+    <DriverStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <DriverStack.Screen
         name="RequestedItemList"
         component={RequestedItemList}
@@ -93,7 +115,19 @@ const Router = () => {
     </DriverStack.Navigator>
   );
   const DriverHStackScreen = () => (
-    <DriverHStack.Navigator>
+    <DriverHStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <DriverHStack.Screen
         name="Home"
         component={DriverHomePage}
@@ -112,17 +146,32 @@ const Router = () => {
       />
     </DriverHStack.Navigator>
   );
+
   const HomeStackScreen = () => (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <HomeStack.Screen
         name="Home"
         component={Home}
-        options={{ headerLeft: () => <LogOutButton /> }}
+        options={{
+          headerLeft: () => <LogOutButton />,
+        }}
       />
       <HomeStack.Screen
         name="NewItemList"
         component={NewItemList}
-        options={{ headerLeft: () => <LogOutButton /> }}
+        options={{ headerLeft: () => <LogOutButton />, title: "Item List" }}
       />
       <HomeStack.Screen
         name="MiniRequestSummary"
@@ -206,7 +255,6 @@ const Router = () => {
         }}
       />
 
- 
       <HomeStack.Screen
         name="ItemList"
         component={ItemList}
@@ -215,7 +263,7 @@ const Router = () => {
           headerLeft: () => <LogOutButton />,
         }}
       />
- 
+
       <HomeStack.Screen
         name="CategoryItemList"
         component={CategoryItemList}
@@ -240,7 +288,19 @@ const Router = () => {
   );
 
   const ProfileStackScreen = () => (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <ProfileStack.Screen
         name="MyProfile"
         component={MyProfile}
@@ -300,7 +360,19 @@ const Router = () => {
     </ProfileStack.Navigator>
   );
   const CategoryStackScreen = () => (
-    <CategoriesStack.Navigator>
+    <CategoriesStack.Navigator
+      screenOptions={{
+        title: "Re Use",
+        headerTintColor: "#009387",
+        headerStyle: { backgroundColor: "#ffffff" },
+        zIndex: 100,
+        headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 30,
+        },
+      }}
+    >
       <CategoriesStack.Screen
         name="Categories"
         component={Categories}
@@ -461,7 +533,9 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        drawerContent={(props) => <DrawerConntent {...props} />}
+        drawerContent={(props) => (
+          <DrawerContent {...props} headerMode="none" />
+        )}
       >
         <Drawer.Screen name="Main" component={MainTabScreen} />
 
