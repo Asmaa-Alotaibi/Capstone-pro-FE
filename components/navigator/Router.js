@@ -6,13 +6,11 @@ import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
-import DrawerConntent from "./DrawerContent";
 import DriverHomePage from "../drivers/DriverHomePage";
 import DriverSummary from "../drivers/DriverSummary";
 import DriversList from "../DriversList";
 import Flatcategories from "../Flatcategories";
 import Home from "../Home";
-import Icon from "react-native-vector-icons/Ionicons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
@@ -47,10 +45,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
 import DrawerConntent from "./DrawerContent";
-import { View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import UpdateItemButton from "../buttons/UpdateItemButton";
-
 
 // import { Tab } from "native-base";
 
@@ -420,7 +415,15 @@ const Router = () => {
           backgroundColor: "#009387",
           justifyContent: "center",
           alignItems: "center",
-          alignContent: "center", //color you want to change
+          alignContent: "center",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.8,
+          shadowRadius: 5,
+          elevation: 5, //color you want to change
         },
         activeTintColor: "white",
         inactiveTintColor: "white",
@@ -501,6 +504,14 @@ const Router = () => {
           fontSize: 15,
           marginBottom: -15,
         },
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
       }}
     >
       <DriverTab.Screen
