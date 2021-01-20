@@ -39,7 +39,8 @@ export default DropDownCatList;
 
 const styles = StyleSheet.create({
   dropdownview: {
-    zIndex: 100,
+    zIndex: 200,
+    position: "relative", //tried this didnt work !
   },
   container: {
     flex: 1,

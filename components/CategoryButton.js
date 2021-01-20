@@ -9,7 +9,6 @@ import {
 } from "react-native";
 
 const CategoryButton = ({ navigation, category }) => {
-  console.log(category.name);
   return (
     <TouchableOpacity
       onPress={() =>

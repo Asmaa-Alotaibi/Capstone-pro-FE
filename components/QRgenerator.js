@@ -42,12 +42,6 @@ const QRgenerator = ({ RQValue }) => {
         <TouchableOpacity style={styles.buttonStyle} onPress={shareQRCode}>
           <Text style={styles.buttonTextStyle}>Share QR Code</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => Alert.alert("well Done")}
-        >
-          <Text style={styles.buttonTextStyle}>Go Back</Text>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

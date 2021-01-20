@@ -21,12 +21,15 @@ class ItemStore {
       console.error("ItemStore -> fetchitems -> error", error);
     }
   };
-  createItem = async (newItem) => {
+  createItem = async (newItem, addressId) => {
     try {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
+      formData.append(addressId);
       const res = await instance.post("/items", formData);
       res.data.owner = { username: authStore.user.username };
+      console.log("TCL: createItem -> res.data", res.data);
+
       runInAction(() => {
         this.items.push(res.data);
       });
@@ -34,6 +37,7 @@ class ItemStore {
       console.log(error);
     }
   };
+
   deleteItem = async (itemId) => {
     try {
       await instance.delete(`/items/${itemId}`);

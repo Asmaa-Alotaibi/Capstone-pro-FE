@@ -8,6 +8,8 @@ import { showMessage } from "react-native-flash-message";
 import DropDownCatList from "./DropDownCatList";
 import RadioButtonRN from "radio-buttons-react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import authStore from "../../stores/authStore";
+import addressStore from "../../stores/addressStore";
 import {
   Button,
   Container,
@@ -28,23 +30,50 @@ const AddItem = ({ navigation }) => {
     description: "",
     category: "",
   });
-  const [addressOption, setaddressOption] = useState("");
-  const radiogroup_options = [
-    { id: 0, label: "Existing address" },
-    { id: 1, label: "New address" },
-  ];
-
-  const handleSubmit = async () => {
-    await itemStore.createItem(item);
-    showMessage({
-      message: "Item Has been added",
-      description: `You have Added an New Item Succesfully`,
-      type: "default",
-      backgroundColor: "black", // background color
-      color: "#fff",
+  // code for address selection
+  const [addressSelected, setaddressSelected] = useState("");
+  const UserAddresses = addressStore.addresses.filter(
+    (address) => address.profileId === authStore.user.id
+  );
+  const data = new Array();
+  data.push({
+    id: 0,
+    label: "Other address",
+  });
+  for (var i = 1; i < UserAddresses.length; i++) {
+    data.push({
+      id: UserAddresses[i].id,
+      label: UserAddresses[i].city
+        .concat(" blk ")
+        .concat(UserAddresses[i].block)
+        .concat(" st ")
+        .concat(UserAddresses[i].street),
     });
-    navigation.navigate("NewItemList");
+  }
+  //end
+  const handleSubmit = async () => {
+    if (addressSelected.id === 0) {
+      navigation.navigate("AddAddress", { fromaddItem: "true" });
+      await itemStore.createItem(
+        { ...item, addressId: addressStore.addresses.length },
+        addressStore.addresses.length
+      );
+    } else {
+      await itemStore.createItem(
+        { ...item, addressId: addressSelected.id },
+        addressSelected.id
+      );
+      showMessage({
+        message: "Item Has been added",
+        description: `You have Added an New Item Succesfully`,
+        type: "default",
+        backgroundColor: "black", // background color
+        color: "#fff",
+      });
+      navigation.navigate("NewItemList");
+    }
   };
+
   const imageSize = (image) => {
     console.log(image);
   };
@@ -69,8 +98,6 @@ const AddItem = ({ navigation }) => {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.cancelled) {
       let localUri = result.uri;
@@ -103,7 +130,7 @@ const AddItem = ({ navigation }) => {
                 )}
               </Item>
               <Text note style={{ fontSize: 17, textAlign: "center" }}>
-                Edit Your Picture
+                Add Your Picture
               </Text>
             </TouchableOpacity>
             <Item floatingLabel>
@@ -129,16 +156,13 @@ const AddItem = ({ navigation }) => {
               }
             />
           </Form>
-
+          <View></View>
           <View>
-            {/* <RadioButtonRN
-              data={radiogroup_options}
-              selectedBtn={(option) => setaddressOption(option)}
+            <RadioButtonRN
+              data={data}
+              selectedBtn={(option) => setaddressSelected(option)}
               icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
-            /> */}
-            {/* {addressOption === 0 ?
-          (<DropDownaddressList>) :()
-             } */}
+            />
           </View>
         </Content>
         <Button
@@ -160,6 +184,3 @@ const AddItem = ({ navigation }) => {
 };
 
 export default observer(AddItem);
-
-// radio button old addresses drop downlist vs create new address //
-// check item.addressid

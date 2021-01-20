@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
 import profileStore from "../../stores/profileStore";
-
+import ip from "../../stores/ipaddress";
 const DrawerContent = (props) => {
   const handleLogOut = () => {
     setIsDriver(false);
@@ -42,7 +42,14 @@ const DrawerContent = (props) => {
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
                 <Avatar.Image
-                  source={profile.image ? { uri: profile.image } : profileImg}
+                  source={
+                    profile.image
+                      ? {
+                          //   uri: profile.image  }
+                          uri: profile.image.replace("localhost", ip),
+                        }
+                      : profileImg
+                  }
                   size={50}
                 />
                 <View style={{ marginLeft: 15, flexDirection: "column" }}>
