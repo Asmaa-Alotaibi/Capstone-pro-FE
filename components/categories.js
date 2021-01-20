@@ -9,6 +9,7 @@ import clothes from "../img/clothes.jpg";
 import elect from "../img/ELECT.jpg";
 import kitchenware from "../img/kitchenware.jpg";
 import art from "../img/art.jpg";
+import { observer } from "mobx-react";
 
 const Categories = ({ navigation }) => {
   const category = [
@@ -60,7 +61,7 @@ const Categories = ({ navigation }) => {
   return <View style={styles.container}>{categories}</View>;
 };
 
-export default Categories;
+export default observer(Categories);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

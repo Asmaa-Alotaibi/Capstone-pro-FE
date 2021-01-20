@@ -130,17 +130,16 @@ const AddItem = ({ navigation }) => {
             </Item> */}
           </Form>
           <Button
-            bordered
-            dark
             style={{
-              marginLeft: 190,
+              marginLeft: 160,
               marginTop: 50,
               width: 100,
+              backgroundColor: "#009387",
               justifyContent: "center",
             }}
             onPress={handleSubmit}
           >
-            <Text>Submit</Text>
+            <Text style={{ color: "white" }}>Submit</Text>
           </Button>
         </Content>
       </Container>

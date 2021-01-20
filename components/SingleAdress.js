@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import React from "react";
 import { View, Text } from "react-native";
 
@@ -14,4 +15,4 @@ const SingleAdress = ({ address }) => {
   );
 };
 
-export default SingleAdress;
+export default observer(SingleAdress);

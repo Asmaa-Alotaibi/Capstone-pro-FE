@@ -20,7 +20,7 @@ const RequestedItemList = ({ navigation, items }) => {
         ));
   //
   return (
-    <Content>
+    <Content style={{ backgroundColor: "white" }}>
       <List>{itemList}</List>
     </Content>
   );

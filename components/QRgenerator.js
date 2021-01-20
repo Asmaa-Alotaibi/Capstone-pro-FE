@@ -9,6 +9,7 @@ import {
   Share,
   Alert,
 } from "react-native";
+import { observer } from "mobx-react";
 
 const QRgenerator = ({ RQValue }) => {
   let myQRCode = useRef();
@@ -53,7 +54,7 @@ const QRgenerator = ({ RQValue }) => {
   );
 };
 
-export default QRgenerator;
+export default observer(QRgenerator);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

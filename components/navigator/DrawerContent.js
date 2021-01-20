@@ -1,4 +1,5 @@
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import {
@@ -12,9 +13,19 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import profileImg from "../../img/profileImage.jpg";
 import authStore from "../../stores/authStore";
+import itemStore from "../../stores/itemStore";
 import profileStore from "../../stores/profileStore";
 
 const DrawerContent = (props) => {
+  const items = itemStore.items.filter(
+    (item) => item.ownerId === authStore.user.id
+  );
+  const deliveredItems = items.filter(
+    (item) => item.driverId === authStore.user.id
+  );
+  const requistedItems = items.filter(
+    (item) => item.recepientId === authStore.user.id
+  );
   const handleLogOut = () => {
     setIsDriver(false);
     authStore.signout();
@@ -67,15 +78,53 @@ const DrawerContent = (props) => {
               props.navigation.navigate("Home");
             }}
           />
-          <DrawerItem
-            icon={({ color, size }) => (
-              <Icon name="view-list-outline" color={color} size={size} />
-            )}
-            label="Categories"
-            onPress={() => {
-              props.navigation.navigate("Categories");
-            }}
-          />
+          {!isDriver ? (
+            <>
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon name="view-list-outline" color={color} size={size} />
+                )}
+                label="Categories"
+                onPress={() => {
+                  props.navigation.navigate("Categories");
+                }}
+              />
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon name="view-list-outline" color={color} size={size} />
+                )}
+                label="My Items"
+                onPress={() => {
+                  props.navigation.navigate("ItemList", {
+                    items: items,
+                    navigation: props.navigation,
+                  });
+                }}
+              />
+              <DrawerItem
+                icon={({ color, size }) => (
+                  <Icon name="view-list-outline" color={color} size={size} />
+                )}
+                label="My Orders"
+                onPress={() => {
+                  props.navigation.navigate("ItemList", {
+                    items: requistedItems,
+                    navigation: props.navigation,
+                  });
+                }}
+              />
+            </>
+          ) : (
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="view-list-outline" color={color} size={size} />
+              )}
+              label="Delieveries"
+              onPress={() => {
+                props.navigation.navigate("RequestedItemList");
+              }}
+            />
+          )}
           {authStore.user.id !== 0 ? (
             <DrawerItem
               icon={({ color, size }) => (
@@ -145,7 +194,7 @@ const DrawerContent = (props) => {
     </View>
   );
 };
-export default DrawerContent;
+export default observer(DrawerContent);
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
