@@ -29,15 +29,15 @@ const UpdateItem = ({ route, navigation }) => {
             message: "Item Updated",
             description: `You have Updated your Item Succesfully`,
             type: "default",
-            backgroundColor: "black", // background color
-            color: "#fff",
+            backgroundColor: "#ff6b6b", // background color
+            color: "black",
           })
         : showMessage({
             message: "Item was not Updated",
             description: `You have not Updated anything in your Item`,
             type: "default",
-            backgroundColor: "black", // background color
-            color: "#fff",
+            backgroundColor: "#ff6b6b", // background color
+            color: "black",
           });
     }
     navigation.navigate("NewItemList");

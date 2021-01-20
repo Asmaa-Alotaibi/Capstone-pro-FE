@@ -19,6 +19,7 @@ export default function App({ navigation }) {
   const phonenumberInputRef = React.useRef();
   const emailInputRef = React.useRef();
 
+
   const onSubmit = async (user, { navigation }) => {
     console.log(user);
     await authStore.signup(user);
@@ -33,8 +34,10 @@ export default function App({ navigation }) {
     //       message: `Welcome ${authStore.user.username}`,
     //       description: `You Signed up Succesfully, Thanks !`,
     //       type: "default",
+
     //       backgroundColor: "black", // background color
     //       color: "#fff",
+
     //     });
     // const newUser = authStore.user;
     // console.log("from sign up>>", newUser);

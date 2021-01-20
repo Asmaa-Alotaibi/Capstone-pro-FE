@@ -27,15 +27,15 @@ const Signin = ({ navigation }) => {
             message: `Welcome ${authStore.user.username}`,
             description: `You Signed in Succesfully, Thanks !`,
             type: "default",
-            backgroundColor: "black", // background color
-            color: "#fff",
+            backgroundColor: "#ff6b6b", // background color
+            color: "black", //font #fff
           })
         : showMessage({
             message: `Fieled Required`,
             description: `Please Fill The Username and the Password`,
             type: "default",
-            backgroundColor: "black", // background color
-            color: "#fff",
+            backgroundColor: "#feffad", // background color
+            color: "black",
           });
     }
     const loggedinUser = authStore.user;
