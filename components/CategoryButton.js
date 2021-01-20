@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import { observer } from "mobx-react";
 
 const CategoryButton = ({ navigation, category }) => {
   console.log(category.name);
@@ -37,7 +38,7 @@ const CategoryButton = ({ navigation, category }) => {
   );
 };
 
-export default CategoryButton;
+export default observer(CategoryButton);
 const styles = StyleSheet.create({
   box: {
     // flex: 1,

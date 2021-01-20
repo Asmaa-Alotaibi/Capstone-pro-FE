@@ -7,15 +7,17 @@ import authStore from "../../stores/authStore";
 import { Containerr } from "../../styles";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-const ItemList = ({ items, navigation }) => {
+const ItemList = ({ navigation, route }) => {
+  const { items } = route.params;
+  const _navigation = navigation ? navigation : route.params.navigation;
   if (!authStore.user) navigation.replace("Signin");
   if (itemStore.loading) return <Spinner />;
   const itemList = items
     ? items.map((item) => (
-        <Item item={item} key={item.id} navigation={navigation} />
+        <Item item={item} key={item.id} navigation={_navigation} />
       ))
     : itemStore.items.map((item) => (
-        <Item item={item} key={item.id} navigation={navigation} />
+        <Item item={item} key={item.id} navigation={_navigation} />
       ));
 
   return (

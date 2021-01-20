@@ -7,6 +7,7 @@ import call from "react-native-phone-call";
 import { Icon } from "native-base";
 import addressStore from "../stores/addressStore";
 import QRgenerator from "./QRgenerator";
+import { observer } from "mobx-react";
 
 const RequestSummary = ({ route }) => {
   const option = route.params.option;
@@ -66,4 +67,4 @@ const RequestSummary = ({ route }) => {
   );
 };
 
-export default RequestSummary;
+export default observer(RequestSummary);

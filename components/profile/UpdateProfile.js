@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { showMessage } from "react-native-flash-message";
+import profileImg from "../../img/profileImage.jpg";
 
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
@@ -82,17 +83,29 @@ const UpdateProfile = ({ route, navigation }) => {
     <Container>
       <Content>
         <Form>
-          <Item>
+          <Item
+            style={{
+              alignContent: "center",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <TouchableOpacity onPress={pickImage}>
               <Item
-                style={{ alignContent: "center", justifyContent: "center" }}
+                style={{
+                  alignContent: "center",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
                 <ImageBackground
-                  source={{
-                    uri:
-                      "https://www.namepros.com/attachments/empty-png.89209/",
+                  source={profileImg}
+                  style={{
+                    width: 150,
+                    height: 150,
+                    marginLeft: -10,
+                    borderRadius: 50,
                   }}
-                  style={{ width: "100%", height: 300, marginLeft: -10 }}
                 >
                   {newProfile.image && (
                     <Image
@@ -104,7 +117,11 @@ const UpdateProfile = ({ route, navigation }) => {
                           ? { uri: newProfile.image.uri }
                           : { uri: newProfile.image }
                       }
-                      style={{ width: "100%", height: 300 }}
+                      style={{
+                        width: 150,
+                        height: 150,
+                        borderRadius: 100,
+                      }}
                     />
                   )}
                 </ImageBackground>
@@ -141,9 +158,7 @@ const UpdateProfile = ({ route, navigation }) => {
           </Item> */}
         </Form>
         <Button
-          bordered
-          dark
-          style={{ marginLeft: 190, marginTop: 50 }}
+          style={{ marginLeft: 160, marginTop: 50, backgroundColor: "#009387" }}
           onPress={handleSubmit}
         >
           <Text>Submit</Text>

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import React from "react";
 import { SearchBar } from "react-native-elements";
 
@@ -13,4 +14,4 @@ const SearchBarr = ({ setQuery, query }) => {
   );
 };
 
-export default SearchBarr;
+export default observer(SearchBarr);

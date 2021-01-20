@@ -45,7 +45,8 @@ import profileStore from "../../stores/profileStore";
 import DrawerConntent from "./DrawerContent";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
- 
+import UpdateItemButton from "../buttons/UpdateItemButton";
+
 
 // import { Tab } from "native-base";
 
@@ -58,6 +59,7 @@ const ProfileStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const DriverStack = createStackNavigator();
+const DriverHStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const Router = () => {
@@ -83,6 +85,21 @@ const Router = () => {
         options={{ headerLeft: () => <LogOutButton /> }}
       />
     </DriverStack.Navigator>
+  );
+  const DriverHStackScreen = () => (
+    <DriverHStack.Navigator>
+      <DriverHStack.Screen
+        name="Home"
+        component={DriverHomePage}
+        options={{
+          headerLeft: () => <LogOutButton />,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" size={30} color={color} />
+          ),
+        }}
+      />
+    </DriverHStack.Navigator>
   );
   const HomeStackScreen = () => (
     <HomeStack.Navigator>
@@ -120,6 +137,7 @@ const Router = () => {
       <HomeStack.Screen name="FlatList" component={Flatcategories} />
 
       <HomeStack.Screen
+
         name="ProfilePage"
         component={ProfilePage}
         options={({ route }) => {
@@ -179,6 +197,14 @@ const Router = () => {
  
  
       <HomeStack.Screen
+        name="ItemList"
+        component={ItemList}
+        options={{
+          title: "My List",
+          headerLeft: () => <LogOutButton />,
+        }}
+      />
+      <HomeStack.Screen
         name="CategoryItemList"
         component={CategoryItemList}
         options={{ headerLeft: () => <LogOutButton /> }}
@@ -208,9 +234,10 @@ const Router = () => {
         name="MyProfile"
         component={MyProfile}
         options={{
+          title: "My Profile",
           headerLeft: () => <LogOutButton />,
+          headerRight: () => <UpdateItemButton />,
         }}
-        options={{ headerLeft: () => <LogOutButton /> }}
       />
  
       <ProfileStack.Screen name="AddressList" component={AddressList} />
@@ -218,11 +245,6 @@ const Router = () => {
        
  
 
-      <ProfileStack.Screen
-        name="ProfilePage"
-        component={ProfilePage}
-        options={{ headerLeft: () => <LogOutButton /> }}
-      />
       <ProfileStack.Screen
         name="ItemList"
         component={ItemList}
@@ -322,7 +344,8 @@ const Router = () => {
         activeTintColor: "white",
         inactiveTintColor: "white",
         labelStyle: {
-          fontSize: 10,
+          fontSize: 15,
+          marginBottom: -15,
         },
       }}
     >
@@ -382,9 +405,54 @@ const Router = () => {
     </MainTab.Navigator>
   );
   const DriverTabScreen = () => (
-    <DriverTab.Navigator>
-      <DriverTab.Screen name="Home" component={DriverHomePage} />
-      <DriverTab.Screen name="Deliveries" component={DriverStackScreen} />
+    <DriverTab.Navigator
+      tabBarOptions={{
+        pressColor: "gray", //for click (ripple) effect color
+        style: {
+          backgroundColor: "#009387",
+          justifyContent: "center",
+          alignItems: "center",
+          alignContent: "center", //color you want to change
+        },
+        activeTintColor: "white",
+        inactiveTintColor: "white",
+        labelStyle: {
+          fontSize: 15,
+          marginBottom: -15,
+        },
+      }}
+    >
+      <DriverTab.Screen
+        name="Home"
+        component={DriverHStackScreen}
+        options={{
+          headerLeft: () => <LogOutButton />,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" size={30} color={color} />
+          ),
+        }}
+      />
+      <DriverTab.Screen
+        name="Deliveries"
+        component={DriverStackScreen}
+        options={{
+          headerLeft: () => <LogOutButton />,
+          tabBarIcon: ({ color }) => (
+            <Icon name="list-circle" size={26} color={color} />
+          ),
+        }}
+      />
+      <DriverTab.Screen
+        name="MyProfile"
+        component={ProfileStackScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color }) => (
+            <Icon name="person" size={30} color={color} />
+          ),
+        }}
+      />
     </DriverTab.Navigator>
   );
   return (
