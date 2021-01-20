@@ -28,26 +28,35 @@ const QRgenerator = ({ RQValue }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Text style={styles.titleStyle}>Your QR Code ..</Text>
-        <QRCode
-          getRef={(ref) => (myQRCode = ref)}
-          value={JSON.stringify(RQValue)}
-          size={250}
-          color="black"
-          backgroundColor="white"
-          logoSize={30}
-          logoMargin={2}
-          logoBorderRadius={15}
-          logoBackgroundColor="yellow"
-        />
+        <View
+          style={{
+            marginTop: -30,
+            flex: 0.8,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
+        >
+          <Text style={styles.titleStyle}>Your QR Code ..</Text>
+          <QRCode
+            getRef={(ref) => (myQRCode = ref)}
+            value={JSON.stringify(RQValue)}
+            size={250}
+            color="black"
+            backgroundColor="white"
+            logoSize={30}
+            logoMargin={2}
+            logoBorderRadius={15}
+            logoBackgroundColor="yellow"
+          />
+        </View>
         <TouchableOpacity style={styles.buttonStyle} onPress={shareQRCode}>
           <Text style={styles.buttonTextStyle}>Share QR Code</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => Alert.alert("well Done")}
-        >
-          <Text style={styles.buttonTextStyle}>Go Back</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -65,7 +74,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   titleStyle: {
-    fontSize: 20,
+    fontSize: 17,
     textAlign: "center",
     margin: 10,
   },
@@ -74,14 +83,25 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: "#51D8C7",
+    // width: 100,
+    // height: 60,
+    backgroundColor: "#009387",
     borderWidth: 0,
     color: "#FFFFFF",
-    borderColor: "#51D8C7",
+    // borderColor: "#51D8C7",
     alignItems: "center",
     borderRadius: 5,
     marginTop: 30,
     padding: 10,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
   },
   buttonTextStyle: {
     color: "#FFFFFF",

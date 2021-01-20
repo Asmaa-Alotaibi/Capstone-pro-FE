@@ -7,7 +7,7 @@ import ip from "../../stores/ipaddress";
 import authStore from "../../stores/authStore";
 import itemStore from "../../stores/itemStore";
 
-const RequestedItem = ({ item }) => {
+const RequestedItem = ({ item, navigation }) => {
   const handleDriver = () => {
     const updatedItem =
       authStore.user.id !== item.driverId
@@ -19,18 +19,26 @@ const RequestedItem = ({ item }) => {
     <>
       <ListItem style={{ width: "100%" }}>
         <Left>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={{ uri: item.image }}
-            // source={{ uri: item.image.replace("localhost", ip) }}
-          />
+          <TouchableOpacity
+            onPress={() =>
+              authStore.user.id === item.driverId
+                ? navigation.navigate("DriverSummary", { item: item })
+                : null
+            }
+          >
+            <Image
+              style={{ width: 100, height: 100 }}
+              source={{ uri: item.image }}
+              // source={{ uri: item.image.replace("localhost", ip) }}
+            />
+          </TouchableOpacity>
           <Body>
             <Text>Need To be Delivered To </Text>
             <Text>
               {item.adress ? (
                 item.address.city
               ) : (
-                <Text style={{ color: "red" }}>Adrees Not Available</Text>
+                <Text style={{ color: "tomato" }}>Adrees Not Available</Text>
               )}
             </Text>
           </Body>

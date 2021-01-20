@@ -54,25 +54,43 @@ const Request = ({ navigation, route }) => {
   };
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
-      <Text style={(styles.text, { margin: 10, fontSize: 20 })}>
-        You Request:
-      </Text>
       <View style={{ flexDirection: "row", margin: 20 }}>
-        <Image
-          style={{ width: 150, height: 150 }}
-          source={{ uri: item.image.replace("localhost", ip) }}
-        />
-        <View style={{ margin: 20 }}>
-          <Text style={styles.text}>Product : {item.name}</Text>
-          <Text style={styles.text}>Owner : {item.owner.username}</Text>
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
+        >
+          <Image
+            style={{
+              width: 150,
+              height: 150,
+            }}
+            source={{ uri: item.image.replace("localhost", ip) }}
+          />
+        </View>
+        <View style={{ marginTop: 55, marginLeft: 30 }}>
+          <Text style={styles.text}>
+            Product : <Text style={{ color: "black" }}>{item.name}</Text>{" "}
+          </Text>
+          <Text style={styles.note}>Owner : {item.owner.username}</Text>
         </View>
       </View>
-      <View style={{ margin: 10 }}>
-        <Text style={styles.text}>Description : {item.description}</Text>
+      <View style={{ marginTop: 10, marginLeft: 30 }}>
+        <Text style={styles.text}>
+          Description :{" "}
+          <Text style={{ color: "black" }}>{item.description}</Text>{" "}
+        </Text>
       </View>
       {/* <Text> Address of this item is : {item.addressId.city}</Text> */}
-      <View style={{ margin: 20 }}>
-        <Text style={{ fontSize: 20 }}>Delivery Options:</Text>
+      <View style={{ margin: 30 }}>
+        <Text style={{ fontSize: 17 }}>Delivery Options:</Text>
         <RadioButtonRN
           activeColor={"#009387"}
           data={radiogroup_options}
@@ -82,7 +100,8 @@ const Request = ({ navigation, route }) => {
         <Button
           onPress={handelSubmit}
           style={{
-            margin: 20,
+            marginTop: 20,
+            marginLeft: 140,
             width: 100,
             height: 50,
             alignItems: "center",
@@ -101,6 +120,11 @@ export default observer(Request);
 // { ...item, QRvalue: randomValue }
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
+    fontSize: 17,
+    color: "gray",
+  },
+  note: {
+    fontSize: 15,
+    color: "gray",
   },
 });

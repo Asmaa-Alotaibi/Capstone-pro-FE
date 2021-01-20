@@ -14,7 +14,7 @@ const CategoryButton = ({ navigation, category }) => {
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate("CategoryItemList", { category: category.name })
+        navigation.navigate("CategoryItemList", { category: category.lable })
       }
     >
       <View style={styles.box}>
@@ -30,7 +30,7 @@ const CategoryButton = ({ navigation, category }) => {
           }}
         >
           <View style={styles.textBox}>
-            <Text style={styles.text}>{category.lable}</Text>
+            <Text style={styles.text}>{category.name}</Text>
           </View>
         </ImageBackground>
       </View>

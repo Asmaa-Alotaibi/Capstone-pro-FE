@@ -21,7 +21,7 @@ const ItemList = ({ navigation, route }) => {
       ));
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.container}>{itemList}</View>
     </ScrollView>
   );
@@ -30,6 +30,7 @@ const ItemList = ({ navigation, route }) => {
 export default observer(ItemList);
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flex: 1,
     flexDirection: "row",
     alignContent: "center",

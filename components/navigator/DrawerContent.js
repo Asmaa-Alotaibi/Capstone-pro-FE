@@ -20,11 +20,8 @@ const DrawerContent = (props) => {
   const items = itemStore.items.filter(
     (item) => item.ownerId === authStore.user.id
   );
-  const deliveredItems = items.filter(
-    (item) => item.driverId === authStore.user.id
-  );
-  const requistedItems = items.filter(
-    (item) => item.recepientId === authStore.user.id
+  const requestedItems = itemStore.items.filter(
+    (item) => authStore.user.id === item.recipientId
   );
   const handleLogOut = () => {
     setIsDriver(false);
@@ -118,11 +115,11 @@ const DrawerContent = (props) => {
                     label="My Orders"
                     onPress={() => {
                       props.navigation.navigate("ItemList", {
-                        items: requistedItems,
+                        items: requestedItems,
                         navigation: props.navigation,
                       });
                     }}
-                  />{" "}
+                  />
                 </>
               ) : null}
             </>
