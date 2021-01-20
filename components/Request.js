@@ -28,8 +28,8 @@ const Request = ({ navigation, route }) => {
         message: "Done, Thanks",
         description: `Your order has been submited !`,
         type: "default",
-        backgroundColor: "black", // background color
-        color: "#fff",
+        backgroundColor: "#ff6b6b", // background color
+        color: "black",
       });
       navigation.navigate("RequestSummary", {
         item: item,
@@ -43,8 +43,8 @@ const Request = ({ navigation, route }) => {
         message: "Done, Thanks",
         description: `Item is booked and your Delivery request in process !`,
         type: "default",
-        backgroundColor: "black",
-        color: "#fff",
+        backgroundColor: "#ff6b6b",
+        color: "black",
       });
       navigation.navigate("RequestSummary", {
         item: item,

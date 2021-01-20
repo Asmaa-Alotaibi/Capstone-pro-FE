@@ -36,8 +36,8 @@ const UpdateProfile = ({ route, navigation }) => {
             message: "Profile Updated",
             description: `You have Updated your Profile Succesfully`,
             type: "default",
-            backgroundColor: "black", // background color
-            color: "#fff",
+            backgroundColor: "#ff6b6b", // background color
+            color: "black",
           })
         : null;
     }

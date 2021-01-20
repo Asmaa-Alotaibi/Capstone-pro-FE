@@ -6,14 +6,14 @@ import { Avatar } from "react-native-paper";
 import authStore from "../../stores/authStore";
 import profileStore from "../../stores/profileStore";
 import ProfilePage from "./ProfilePage";
-
+import ip from "../../stores/ipaddress";
 const MyProfile = ({ navigation }) => {
   const profile = profileStore.getProfileByUserId(authStore.user.id);
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <View style={styles.container}>
         <Avatar.Image
-          source={{ uri: profile.image }}
+          source={{ uri: profile.image.replace("localhost", ip) }}
           size={150}
           style={styles.img}
         />
@@ -76,7 +76,7 @@ const MyProfile = ({ navigation }) => {
           <Button
             style={{ backgroundColor: "white" }}
             onPress={() => {
-              navigation.navigate("AddressList");
+              navigation.navigate("AddressList", { userId: profile.userId });
             }}
           >
             <Text>Show All</Text>
