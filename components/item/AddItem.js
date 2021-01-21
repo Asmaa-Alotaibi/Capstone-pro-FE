@@ -67,10 +67,10 @@ const AddItem = ({ navigation }) => {
         message: "Item Has been added",
         description: `You have Added an New Item Succesfully`,
         type: "default",
-        backgroundColor: "ff6b6b", // background color
+        backgroundColor: "#009387", // background color
         color: "black",
       });
-      navigation.navigate("NewItemList");
+      navigation.navigate("Home");
     }
   };
 
@@ -133,6 +133,12 @@ const AddItem = ({ navigation }) => {
                 Add Your Picture
               </Text>
             </TouchableOpacity>
+            <DropDownCatList
+              category={item.category}
+              onChangeText={(category) =>
+                setItem({ ...item, category: category.value })
+              }
+            />
             <Item floatingLabel>
               <Label>Name</Label>
               <Input
@@ -149,19 +155,23 @@ const AddItem = ({ navigation }) => {
                 }
               />
             </Item>
-            <DropDownCatList
-              category={item.category}
-              onChangeText={(category) =>
-                setItem({ ...item, category: category.value })
-              }
-            />
           </Form>
 
+          <View style={{ zIndex: -50 }}>
+            <RadioButtonRN
+              activeColor={"#009387"}
+              data={data}
+              selectedBtn={(option) => setaddressSelected(option)}
+              icon={<Icon name="check-circle" size={25} color="#009387" />}
+            />
+          </View>
+        </Content>
+        <View style={{ position: "absolute", bottom: 20, right: 10 }}>
           <Button
             style={{
               zIndex: -50,
               marginLeft: 160,
-              marginTop: 50,
+              marginTop: 10,
               width: 100,
               backgroundColor: "#009387",
               justifyContent: "center",
@@ -178,17 +188,7 @@ const AddItem = ({ navigation }) => {
           >
             <Text style={{ color: "white" }}>Add</Text>
           </Button>
-
-
-          <View style={{ zIndex: -50 }}>
-
-            <RadioButtonRN
-              data={data}
-              selectedBtn={(option) => setaddressSelected(option)}
-              icon={<Icon name="check-circle" size={25} color="#2c9dd1" />}
-            />
-          </View>
-        </Content>
+        </View>
       </Container>
     </>
   );

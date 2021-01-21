@@ -30,7 +30,7 @@ export default function QRScanner({ navigation, route }) {
         message: "Well done",
         description: `Your item is gone now :) !`,
         type: "default",
-        backgroundColor: "#ff6b6b", // background color
+        backgroundColor: "#009387", // background color
         color: "black",
       });
       navigation.navigate("Home");

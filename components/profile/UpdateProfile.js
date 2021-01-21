@@ -36,7 +36,7 @@ const UpdateProfile = ({ route, navigation }) => {
             message: "Profile Updated",
             description: `You have Updated your Profile Succesfully`,
             type: "default",
-            backgroundColor: "#ff6b6b", // background color
+            backgroundColor: "#009387", // background color
             color: "black",
           })
         : null;
@@ -156,16 +156,22 @@ const UpdateProfile = ({ route, navigation }) => {
             <Input
               value={newProfile.user.email}
               onChangeText={(email) =>
-                setNewProfile({ ...newProfile.user, email })
+                setNewProfile({
+                  ...newProfile,
+                  user: { ...newProfile.user, email },
+                })
               }
             />
           </Item>
           <Item floatingLabel last>
             <Label>Phone</Label>
             <Input
-              value={newProfile.lastName}
-              onChangeText={(lastName) =>
-                setNewProfile({ ...newProfile, lastName })
+              value={newProfile.user.phone}
+              onChangeText={(phone) =>
+                setNewProfile({
+                  ...newProfile,
+                  user: { ...newProfile.user, phone },
+                })
               }
             />
           </Item>

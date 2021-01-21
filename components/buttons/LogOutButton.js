@@ -14,7 +14,18 @@ const LogOutButton = () => {
       onPress={handleLogOut}
       name="list"
       type="Ionicons"
-      style={{ marginLeft: 10, color: "#009387" }}
+      style={{
+        marginLeft: 10,
+        color: "#009387",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
+      }}
     />
     // Alert.alert(
     //   "Alert Title",

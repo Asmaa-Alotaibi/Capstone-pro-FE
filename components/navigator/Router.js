@@ -1,4 +1,4 @@
-import { DrawerContent, createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import AddAddress from "../address/AddAddress";
 import AddItem from "../item/AddItem";
@@ -47,6 +47,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
 
+
 // import { Tab } from "native-base";
 
 // const { Navigator, Screen } = createStackNavigator();
@@ -73,6 +74,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -101,6 +110,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -127,6 +144,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -160,6 +185,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -299,6 +332,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -306,7 +347,6 @@ const Router = () => {
         name="MyProfile"
         component={MyProfile}
         options={{
-          title: "My Profile",
           headerLeft: () => <LogOutButton />,
           headerRight: () => <UpdateItemButton />,
         }}
@@ -371,6 +411,14 @@ const Router = () => {
         headerTitleStyle: {
           fontWeight: "bold",
           fontSize: 30,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 2.25,
+          elevation: 5,
         },
       }}
     >
@@ -496,7 +544,15 @@ const Router = () => {
           backgroundColor: "#009387",
           justifyContent: "center",
           alignItems: "center",
-          alignContent: "center", //color you want to change
+          alignContent: "center",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.8,
+          shadowRadius: 5,
+          elevation: 5, //color you want to change
         },
         activeTintColor: "white",
         inactiveTintColor: "white",
@@ -504,14 +560,6 @@ const Router = () => {
           fontSize: 15,
           marginBottom: -15,
         },
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.8,
-        shadowRadius: 5,
-        elevation: 5,
       }}
     >
       <DriverTab.Screen
