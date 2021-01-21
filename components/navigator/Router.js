@@ -6,7 +6,7 @@ import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
-import DrawerConntent from "./DrawerContent";
+import DrawerContent from "./DrawerContent";
 import DriverHomePage from "../drivers/DriverHomePage";
 import DriverSummary from "../drivers/DriverSummary";
 import DriversList from "../DriversList";
@@ -46,7 +46,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
-
 
 // import { Tab } from "native-base";
 
