@@ -54,6 +54,7 @@ export default function App({ navigation }) {
             fontWeight: "bold",
             textAlign: "center",
             paddingTop: 30,
+            marginTop: 20,
           }}
         >
           Re Use
