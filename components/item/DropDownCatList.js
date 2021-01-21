@@ -21,6 +21,7 @@ const DropDownCatList = ({ onChangeText, category }) => {
         defaultValue={category}
         containerStyle={styles.categories}
         style={{ backgroundColor: "white" }}
+        dropDownMaxHeight={300}
         itemStyle={{ justifyContent: "flex-center" }}
         dropDownStyle={{ backgroundColor: "white", height: 500 }}
         onChangeItem={onChangeText}
@@ -41,12 +42,10 @@ export default DropDownCatList;
 
 const styles = StyleSheet.create({
   dropdownview: {
- 
     zIndex: 100,
     backgroundColor: "white",
     flex: 1,
     // marginTop: 5,
- 
   },
   container: {
     // flex: 1,

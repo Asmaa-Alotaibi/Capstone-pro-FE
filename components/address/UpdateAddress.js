@@ -84,9 +84,22 @@ const UpdateAddress = ({ route, navigation }) => {
           </Item>
         </Form>
         <Button
-          bordered
-          dark
-          style={{ marginLeft: 190, marginTop: 50 }}
+          style={{
+            zIndex: -50,
+            marginLeft: 160,
+            marginTop: 10,
+            width: 100,
+            backgroundColor: "#009387",
+            justifyContent: "center",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+          }}
           onPress={handleSubmit}
         >
           <Text>Submit</Text>

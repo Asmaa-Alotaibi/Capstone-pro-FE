@@ -18,7 +18,6 @@ const MyProfile = ({ navigation }) => {
           style={styles.img}
         />
       </View>
-      {/* <View style={{ marginLeft: 35, marginTop: 30 }}> */}
       <View style={styles.row}>
         <View style={styles.icon}>
           <Icon style={{ color: "#009387" }} name="email" type="Entypo" />
@@ -76,12 +75,10 @@ const MyProfile = ({ navigation }) => {
           <Button
             style={{ backgroundColor: "white" }}
             onPress={() => {
-
               navigation.navigate("AddressList", {
                 userId: profile.userId,
                 navigation: navigation,
               });
-
             }}
           >
             <Text>Show All</Text>

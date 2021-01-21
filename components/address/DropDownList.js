@@ -33,13 +33,15 @@ const DropDownList = ({ onChangeText, city }) => {
         items={areas}
         defaultValue={city}
         containerStyle={styles.cities}
-        style={{ backgroundColor: "#fafafa" }}
+        style={{ backgroundColor: "#fff" }}
         itemStyle={{ justifyContent: "flex-center" }}
-        dropDownStyle={{ backgroundColor: "#fafafa" }}
+        dropDownStyle={{ backgroundColor: "#fff" }}
+        dropDownMaxHeight={400}
         onChangeItem={onChangeText}
-        labelStyle={{ fontSize: 14, textAlign: "left", color: "#000" }}
+        labelStyle={{ fontSize: 18, textAlign: "left", color: "#000" }}
         searchable={true}
-        searchablePlaceholder="Search for an item"
+        placeholder={"City"}
+        searchablePlaceholder="Search for a City"
         searchablePlaceholderTextColor="gray"
         seachableStyle={{}}
         searchableError={() => <Text>Not Found</Text>}
@@ -97,8 +99,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   cities: {
-    height: 60,
-    width: 350,
-    paddingVertical: 10,
+    height: 100,
+    width: 420,
+    // paddingVertical: 10,s
   },
 });

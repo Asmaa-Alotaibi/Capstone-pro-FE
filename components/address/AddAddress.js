@@ -31,7 +31,7 @@ const AddAddress = ({ navigation, route }) => {
         message: "Item Has been added",
         description: `You have Added an New Item Succesfully`,
         type: "default",
-        backgroundColor: "#ff6b6b", // background color
+        backgroundColor: "#009387", // background color
         color: "black",
       });
     else {
@@ -39,7 +39,7 @@ const AddAddress = ({ navigation, route }) => {
         message: "Address Has been added",
         description: `You have Added an New Address Succesfully`,
         type: "default",
-        backgroundColor: "#ff6b6b", // background color
+        backgroundColor: "#009387", // background color
         color: "black",
       });
     }
@@ -118,7 +118,7 @@ const AddAddress = ({ navigation, route }) => {
             }}
             onPress={handleSubmit}
           >
-            <Text>Add</Text>
+            <Text style={{ color: "white" }}>Add</Text>
           </Button>
         </Content>
       </Container>

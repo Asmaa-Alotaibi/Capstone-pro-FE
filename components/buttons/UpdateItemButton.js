@@ -24,7 +24,7 @@ const UpdateItemButton = ({ navigation, item }) => {
           width: 0,
           height: 2,
         },
-        shadowOpacity: 0.8,
+        shadowOpacity: 0.4,
         shadowRadius: 5,
         elevation: 5,
       }}

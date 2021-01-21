@@ -27,7 +27,7 @@ const Signin = ({ navigation }) => {
             message: `Welcome ${authStore.user.username}`,
             description: `You Signed in Succesfully, Thanks !`,
             type: "default",
-            backgroundColor: "#ff6b6b", // background color
+            backgroundColor: "#009387", // background color
             color: "black", //font #fff
           })
         : showMessage({

@@ -26,7 +26,11 @@ const DriverSummary = ({ route }) => {
         <Text style={styles.text}>
           Adress :{" "}
           <Text style={{ color: "black" }}>
-            {/* <SingleAdress address={address} /> */}
+            {address ? (
+              <SingleAdress address={address} />
+            ) : (
+              <Text style={{ color: "tomato" }}>Adress Is Not Available</Text>
+            )}
           </Text>
         </Text>
       </>
