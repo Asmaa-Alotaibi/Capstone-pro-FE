@@ -158,6 +158,17 @@ const AddItem = ({ navigation }) => {
           </Form>
 
           <View style={{ zIndex: -50 }}>
+            <Text
+              style={{
+                fontSize: 20,
+                color: "gray",
+                // marginLeft: 13,
+                textAlign: "center",
+                marginTop: 20,
+              }}
+            >
+              Address
+            </Text>
             <RadioButtonRN
               activeColor={"#009387"}
               data={data}

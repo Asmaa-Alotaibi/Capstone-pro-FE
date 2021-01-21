@@ -1,5 +1,6 @@
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { observer } from "mobx-react";
+import { Spinner } from "native-base";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import {
@@ -17,6 +18,7 @@ import itemStore from "../../stores/itemStore";
 import profileStore from "../../stores/profileStore";
 
 const DrawerContent = (props) => {
+  if (profileStore.loading) return <Spinner />;
   const items = itemStore.items.filter(
     (item) => item.ownerId === authStore.user.id
   );
@@ -26,7 +28,7 @@ const DrawerContent = (props) => {
   const handleLogOut = () => {
     setIsDriver(false);
     authStore.signout();
-    props.navigation.navigate("Main");
+    props.navigation.navigate("Home");
   };
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const toggleTheme = () => {
@@ -45,7 +47,7 @@ const DrawerContent = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
-        {authStore.user.id !== 0 ? (
+        {authStore.user.id === 0 ? null : (
           <View style={styles.drawerContent}>
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
@@ -64,7 +66,7 @@ const DrawerContent = (props) => {
               </View>
             </View>
           </View>
-        ) : null}
+        )}
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem
             icon={({ color, size }) => (

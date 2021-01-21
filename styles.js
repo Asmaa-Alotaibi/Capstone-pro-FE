@@ -99,8 +99,8 @@ export const ItemDetailTitle = styled.Text`
 
 export const ItemDetailImage = styled.Image`
   height: 400px;
-  width: 98%;
-  margin-left: 4px;
+  width: 100%;
+  /* margin-left: 4px; */
 `;
 
 export const ItemDescription = styled.Text`

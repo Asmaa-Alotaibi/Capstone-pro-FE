@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import decode from "jwt-decode";
 import instance from "./instance";
+import profileStore from "./profileStore";
 import { makeAutoObservable, runInAction } from "mobx";
 
 class AuthStore {
@@ -21,7 +22,6 @@ class AuthStore {
       this.user = decode(token);
     });
   };
-
   signup = async (userData) => {
     try {
       const res = await instance.post("/signup", userData);

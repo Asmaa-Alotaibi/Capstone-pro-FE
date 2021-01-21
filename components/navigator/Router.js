@@ -34,7 +34,7 @@ import SignInHook from "../SignInHook";
 import SignUpHook from "../SignUpHook";
 import Signin from "../Signin";
 import Signup from "../Signup";
-import { Thumbnail } from "native-base";
+import { Spinner, Thumbnail } from "native-base";
 import UpdateAddress from "../address/UpdateAddress";
 import UpdateButton from "../buttons/UpdateButton";
 import UpdateItem from "../item/UpdateItem";
@@ -472,7 +472,7 @@ const Router = () => {
           shadowRadius: 5,
           elevation: 5, //color you want to change
         },
-        activeTintColor: "white",
+        activeTintColor: "#1e4743",
         inactiveTintColor: "white",
         labelStyle: {
           fontSize: 15,
@@ -594,6 +594,7 @@ const Router = () => {
       />
     </DriverTab.Navigator>
   );
+  if (profileStore.loading) return <Spinner />;
   return (
     <NavigationContainer>
       <Drawer.Navigator

@@ -50,52 +50,78 @@ const ItemDetail = ({ route, navigation }) => {
   console.log("user", authStore.user.id);
   return (
     <>
-      <ScrollView>
-        <Container>
-          <ItemCard>
-            <ItemDetailCardItem>
-              <Body>
+      <Container style={{ backgroundColor: "transparent" }}>
+        <ItemCard>
+          <ItemDetailCardItem>
+            <Body>
+              <View
+                style={{
+                  backgroundColor: "white",
+                  width: "95%",
+                  borderBottomLeftRadius: 30,
+                  borderBottomRightRadius: 30,
+
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.5,
+                  shadowRadius: 5,
+                  elevation: 5,
+                  marginBottom: 20,
+                  marginLeft: 10,
+                  marginTop: 10,
+                }}
+              >
                 <ItemDetailImage
                   source={{
                     uri: item.image,
                     // uri: item.image.replace("localhost", ip),
                   }}
                 />
-                <ItemDetailTitle style={{ color: "gray" }}>
-                  Name <Text>{item.name}</Text>
-                  {"\n"}About the Item: <Text>{item.description}</Text>
-                </ItemDetailTitle>
-                <Right>
-                  {authStore.user.id === profile.userId ? (
-                    <ProfileCardItem>
-                      <DeleteButton itemId={item.id} navigation={navigation} />
+                <View style={{ paddingHorizontal: 20, paddingVertical: 30 }}>
+                  <ItemDetailTitle style={{ color: "gray" }}>
+                    Name <Text>{item.name}</Text>
+                    {"\n"}
+                    {"\n"}About the Item: <Text>{item.description}</Text>
+                  </ItemDetailTitle>
+                </View>
+              </View>
+              <Right>
+                {authStore.user.id === profile.userId ? (
+                  <ProfileCardItem>
+                    <DeleteButton itemId={item.id} navigation={navigation} />
+                    <View style={{ marginLeft: 20 }}>
                       <UpdateItemButton item={item} navigation={navigation} />
+                    </View>
+                    <View style={{ marginLeft: -27 }}>
                       <QRScannertButton item={item} navigation={navigation} />
-                    </ProfileCardItem>
-                  ) : item.recipientId === null ? (
-                    <Button
-                      onPress={() =>
-                        navigation.navigate("Request", { item: item })
-                      }
-                      style={styles.imageRe}
-                    >
-                      <Text>Request</Text>
-                    </Button>
-                  ) : (authStore.user.id === item.recipientId) & !item.gone ? (
-                    <Button onPress={handleCancel} style={styles.imageCa}>
-                      <Text>Cancel</Text>
-                    </Button>
-                  ) : (
-                    <Button style={styles.imageUv}>
-                      <Text>Unavailable</Text>
-                    </Button>
-                  )}
-                </Right>
-              </Body>
-            </ItemDetailCardItem>
-          </ItemCard>
-        </Container>
-      </ScrollView>
+                    </View>
+                  </ProfileCardItem>
+                ) : item.recipientId === null ? (
+                  <Button
+                    onPress={() =>
+                      navigation.navigate("Request", { item: item })
+                    }
+                    style={styles.imageRe}
+                  >
+                    <Text>Request</Text>
+                  </Button>
+                ) : (authStore.user.id === item.recipientId) & !item.gone ? (
+                  <Button onPress={handleCancel} style={styles.imageCa}>
+                    <Text>Cancel</Text>
+                  </Button>
+                ) : (
+                  <Button style={styles.imageUv}>
+                    <Text>Unavailable</Text>
+                  </Button>
+                )}
+              </Right>
+            </Body>
+          </ItemDetailCardItem>
+        </ItemCard>
+      </Container>
     </>
   );
 };
