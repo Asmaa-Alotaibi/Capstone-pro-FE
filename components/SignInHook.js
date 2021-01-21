@@ -6,12 +6,12 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Controller, useForm } from "react-hook-form";
-
-import React, { useState } from "react";
-import authStore from "../stores/authStore";
-import { EyeButtonStyled } from "../styles";
 import { Button, Icon } from "native-base";
+import { Controller, useForm } from "react-hook-form";
+import React, { useState } from "react";
+
+import { EyeButtonStyled } from "../styles";
+import authStore from "../stores/authStore";
 
 export default function App({ navigation }) {
   // const [data, setData] = useState({
@@ -51,16 +51,42 @@ export default function App({ navigation }) {
 
   return (
     <View style={styles.container1}>
+      <View>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 30,
+            fontWeight: "bold",
+            textAlign: "center",
+            paddingTop: 30,
+          }}
+        >
+          Re Use
+        </Text>
+      </View>
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.text_footer}>Username</Text>
+        <View>
+          <Text
+            style={{
+              color: "#009387",
+              fontSize: 30,
+              // marginBottom: 50,
+              marginTop: 35,
+              textAlign: "center",
+            }}
+          >
+            Sign In
+          </Text>
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 60 }]}>Username</Text>
         <View style={styles.action}>
           <Icon
             name="user-o"
             type="FontAwesome"
-            style={{ color: "#05375a", fontSize: 20 }}
+            style={{ color: "#009387", fontSize: 20 }}
           />
           <Controller
             name="username"
@@ -72,7 +98,7 @@ export default function App({ navigation }) {
             }}
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                placeholder="USER NAME"
+                placeholder="USERNAME"
                 style={styles.textInput}
                 autoCapitalize="none"
                 ref={usernameInputRef}
@@ -90,12 +116,12 @@ export default function App({ navigation }) {
             />
           ) : null} */}
         </View>
-        <Text style={[styles.text_footer, { marginTop: 35 }]}>Password</Text>
+        <Text style={[styles.text_footer, { marginTop: 20 }]}>Password</Text>
         <View style={styles.action}>
           <Icon
             name="lock"
             type="FontAwesome"
-            style={{ color: "#05375a", fontSize: 20 }}
+            style={{ color: "#009387", fontSize: 20 }}
           />
           <Controller
             name="password"
@@ -115,7 +141,7 @@ export default function App({ navigation }) {
             }}
             render={({ onChange, onBlur, value }) => (
               <TextInput
-                placeholder="USER NAME"
+                placeholder="PASSWORD"
                 style={styles.textInput}
                 autoCapitalize="none"
                 ref={passwordInputRef}
@@ -130,7 +156,7 @@ export default function App({ navigation }) {
         <View
           style={{
             position: "absolute",
-            bottom: 200,
+            bottom: 18,
             right: 130,
           }}
         >
@@ -145,12 +171,11 @@ export default function App({ navigation }) {
               styles.button,
               {
                 backgroundColor: "#fff",
-                marginTop: 10,
                 borderWidth: 1,
                 borderColor: "#009387",
               },
             ]}
-            onPress={() => navigation.navigate("Signup")}
+            onPress={() => navigation.navigate("SignUpHook")}
           >
             <Text style={[styles.textSign, { color: "#009387" }]}>Sign Up</Text>
           </Button>
@@ -238,7 +263,7 @@ const styles = StyleSheet.create({
     // height: 40,
     // borderRadius: 4,
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 10,
     width: 150,
     height: 40,
     justifyContent: "center",
@@ -273,8 +298,9 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     justifyContent: "flex-end",
-    paddingBottom: 50,
-    paddingHorizontal: 20,
+    // paddingBottom: -100,
+    // paddingHorizontal: 20,
+    marginBottom: -160,
   },
   footer: {
     flex: 3,
@@ -323,11 +349,16 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   text_footer: {
-    color: "#05375a",
+    color: "#009387",
     fontSize: 18,
+    fontWeight: "400",
   },
   text_header: {
-    color: "#fff",
+    color: "#009387",
+    fontWeight: "bold",
+    fontSize: 5,
+  },
+  logo: {
     fontWeight: "bold",
     fontSize: 30,
   },

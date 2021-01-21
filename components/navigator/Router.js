@@ -6,11 +6,13 @@ import AddressList from "../address/AddressList";
 import Categories from "../categories";
 import CategoryItemList from "../item/CategoryItemList";
 import DeleteButton from "../buttons/DeleteButton";
+import DrawerConntent from "./DrawerContent";
 import DriverHomePage from "../drivers/DriverHomePage";
 import DriverSummary from "../drivers/DriverSummary";
 import DriversList from "../DriversList";
 import Flatcategories from "../Flatcategories";
 import Home from "../Home";
+import Icon from "react-native-vector-icons/Ionicons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ItemDetail from "../item/ItemDetail";
 import ItemList from "../item/ItemList";
@@ -44,8 +46,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { observer } from "mobx-react";
 import profileStore from "../../stores/profileStore";
-import DrawerContent from "./DrawerContent";
-import Icon from "react-native-vector-icons/Ionicons";
+
 
 // import { Tab } from "native-base";
 
@@ -85,14 +86,14 @@ const Router = () => {
       }}
     >
       <AuthStack.Screen
-        name="Signin"
+        name="SignInHook"
         component={SignInHook}
         options={{
           header: () => false,
         }}
       />
       <AuthStack.Screen
-        name="Signup"
+        name="SignUpHook"
         component={SignUpHook}
         options={{ header: () => false }}
       />
