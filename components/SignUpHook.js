@@ -18,28 +18,38 @@ export default function App({ navigation }) {
   const { control, handleSubmit, errors, getValues } = useForm();
   const usernameInputRef = React.useRef();
   const passwordInputRef = React.useRef();
-  const phonenumberInputRef = React.useRef();
+  const phoneInputRef = React.useRef();
   const emailInputRef = React.useRef();
 
-  const onSubmit = async (user, { navigation }) => {
+  // const onSubmit = async (user, { navigation }) => {
+  //   console.log(user);
+  //   await authStore.signup(user);
+  //   const newUser = authStore.user;
+  //   console.log("from sign up>>", newUser);
+  //   navigation.navigate("Home");
+  //   // =======
+  const onSubmit = async (user) => {
     console.log(user);
     await authStore.signup(user);
-    const newUser = authStore.user;
-    console.log("from sign up>>", newUser);
-    navigation.navigate("Home");
-    // =======
-    //   const onSubmit = async (user) => {
-    // console.log(user);
-    //     await authStore.signup(user);
-    //     showMessage({
-    //       message: `Welcome ${authStore.user.username}`,
-    //       description: `You Signed up Succesfully, Thanks !`,
-    //       type: "default",
+    {
+      authStore.user.id !== 0
+        ? showMessage({
+            message: `Welcome ${authStore.user.username}`,
+            description: `You Signed up Succesfully, Thanks !`,
+            type: "default",
 
-    //       backgroundColor: "black", // background color
-    //       color: "#fff",
+            backgroundColor: "black", // background color
+            color: "#fff",
+          })
+        : showMessage({
+            message: `Fieled`,
+            description: `You Signed up Succesfully, Thanks !`,
+            type: "default",
 
-    //     });
+            backgroundColor: "black", // background color
+            color: "#fff",
+          });
+    }
     // const newUser = authStore.user;
     // console.log("from sign up>>", newUser);
   };
@@ -121,7 +131,6 @@ export default function App({ navigation }) {
           />
           <Controller
             name="password"
-            //   type={password}
             defaultValue=""
             control={control}
             type="password"
@@ -183,7 +192,7 @@ export default function App({ navigation }) {
             style={{ color: "#009387", fontSize: 20 }}
           />
           <Controller
-            name="phonenumber"
+            name="phone"
             defaultValue=""
             control={control}
             rules={{
@@ -194,13 +203,13 @@ export default function App({ navigation }) {
               },
             }}
             onFocus={() => {
-              phonenumberInputRef.current.focus();
+              phoneInputRef.current.focus();
             }}
             render={({ onChange, onBlur, value }) => (
               <TextInput
                 placeholder="PHONE NUMBER"
                 style={styles.textInput}
-                ref={phonenumberInputRef}
+                ref={phoneInputRef}
                 onBlur={onBlur}
                 onChangeText={(value) => onChange(value)}
                 value={value}
@@ -210,9 +219,7 @@ export default function App({ navigation }) {
         </View>
         <View
           style={{
-            position: "absolute",
-            bottom: 18,
-            right: 130,
+            margin: 110,
           }}
         >
           <Button

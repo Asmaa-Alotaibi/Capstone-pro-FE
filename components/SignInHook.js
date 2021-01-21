@@ -12,6 +12,7 @@ import React, { useState } from "react";
 
 import { EyeButtonStyled } from "../styles";
 import authStore from "../stores/authStore";
+import { showMessage } from "react-native-flash-message";
 
 export default function App({ navigation }) {
   // const [data, setData] = useState({
@@ -45,8 +46,24 @@ export default function App({ navigation }) {
   const onSubmit = async (user) => {
     await authStore.signin(user);
     navigation.navigate("Home");
-    const loggedinUser = authStore.user;
-    console.log("from sign in>>", loggedinUser);
+    await authStore.signin(user);
+    {
+      authStore.user.id !== 0
+        ? showMessage({
+            message: `Welcome ${authStore.user.username}`,
+            description: `You Signed in Succesfully, Thanks !`,
+            type: "default",
+            backgroundColor: "#009387", // background color
+            color: "black", //font #fff
+          })
+        : showMessage({
+            message: `Fieled Required`,
+            description: `Please Fill The Username and the Password`,
+            type: "default",
+            backgroundColor: "#feffad", // background color
+            color: "black",
+          });
+    }
   };
 
   return (
@@ -154,13 +171,7 @@ export default function App({ navigation }) {
             )}
           />
         </View>
-        <View
-          style={{
-            position: "absolute",
-            bottom: 18,
-            right: 130,
-          }}
-        >
+        <View style={{ margin: 120 }}>
           <Button
             style={[styles.button, { backgroundColor: "#009387" }]}
             onPress={handleSubmit(onSubmit)}

@@ -13,7 +13,6 @@ import { observer } from "mobx-react";
 
 const Categories = ({ navigation }) => {
   const category = [
- 
     {
       name: "FURNITURES",
       lable: "furnitures",
@@ -21,54 +20,53 @@ const Categories = ({ navigation }) => {
     },
     {
       name: "KITCHENWARES",
-      lable: "kitchenwares",
+      lable: "Kitchenwares",
       image: kitchenware,
     },
     {
       name: "ARTS",
-      lable: "arts",
+      lable: "Arts",
       image: art,
     },
     {
       name: "TOYS",
-      lable: "toys",
+      lable: "Toys",
       image: toys,
     },
     {
       name: "TOOLS",
-      lable: "tools",
+      lable: "Tools",
       image: tools,
     },
     {
       name: "BOOKS",
-      lable: "books",
+      lable: "Books",
       image: book,
     },
     {
       name: "ELECTRONICS",
-      lable: "electronics",
+      lable: "Electronics",
       image: elect,
     },
     {
       name: "CLOTHES",
-      lable: "clothes",
+      lable: "Clothes",
       image: clothes,
     },
- 
   ];
   let index = 0;
   const categories = category.map((e) => (
     <CategoryButton category={e} navigation={navigation} key={index++} />
   ));
- 
+
   return <View style={styles.container}>{categories}</View>;
- 
 };
 
 export default observer(Categories);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white",
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
