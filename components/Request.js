@@ -72,7 +72,7 @@ const Request = ({ navigation, route }) => {
               width: 150,
               height: 150,
             }}
-            source={{ uri: item.image.replace("localhost", ip) }}
+            source={{ uri: item.image }}
           />
         </View>
         <View style={{ marginTop: 55, marginLeft: 30 }}>

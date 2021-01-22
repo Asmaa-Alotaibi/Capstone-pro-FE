@@ -22,11 +22,11 @@ const SingleItem = ({ item, navigation }) => {
             <Image
               style={{ width: 150, height: 150 }}
               //source={{ uri: item.image }}
-              source={{ uri: item.image.replace("localhost", ip) }}
+              source={{ uri: item.image }}
             />
           ) : (
             <ImageBackground
-              source={{ uri: item.image.replace("localhost", ip) }}
+              source={{ uri: item.image }}
               style={{
                 height: 150,
                 width: 150,

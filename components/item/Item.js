@@ -26,7 +26,7 @@ const Item = ({ item, navigation }) => {
         <ItemImage
           source={{
             //uri: item.image,
-            uri: item.image.replace("localhost", ip),
+            uri: item.image,
           }}
         />
         <ItemName>{item.name}</ItemName>

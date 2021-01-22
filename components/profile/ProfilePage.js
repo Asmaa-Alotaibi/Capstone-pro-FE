@@ -54,7 +54,7 @@ const ProfilePage = ({ route, navigation, Myprofile }) => {
             large
             source={
               profile.image
-                ? { uri: profile.image.replace("localhost", ip) }
+                ? { uri: profile.image }
                 : //   { uri: profile.image }
                   profileImg
             }
