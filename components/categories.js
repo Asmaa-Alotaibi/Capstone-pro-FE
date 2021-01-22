@@ -14,17 +14,17 @@ import { observer } from "mobx-react";
 const Categories = ({ navigation }) => {
   const category = [
     {
-      name: "FURNITURES",
-      lable: "furnitures",
+      name: "FURNITURE",
+      lable: "Furniture",
       image: furniture1,
     },
     {
-      name: "KITCHENWARES",
-      lable: "Kitchenwares",
+      name: "KITCHENWARE",
+      lable: "Kitchenware",
       image: kitchenware,
     },
     {
-      name: "ARTS",
+      name: "ART",
       lable: "Arts",
       image: art,
     },

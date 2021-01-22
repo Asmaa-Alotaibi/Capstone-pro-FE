@@ -26,7 +26,6 @@ const DrawerContent = (props) => {
     (item) => authStore.user.id === item.recipientId
   );
   const handleLogOut = () => {
-    setIsDriver(false);
     authStore.signout();
     props.navigation.navigate("Home");
   };
@@ -52,6 +51,7 @@ const DrawerContent = (props) => {
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
                 <Avatar.Image
+                  backgroundColor="white"
                   source={profile.image ? { uri: profile.image } : profileImg}
                   size={50}
                 />
@@ -153,7 +153,7 @@ const DrawerContent = (props) => {
               )}
               label="Signin"
               onPress={() => {
-                props.navigation.navigate("Signin");
+                props.navigation.navigate("SignInHook");
               }}
             />
           )}

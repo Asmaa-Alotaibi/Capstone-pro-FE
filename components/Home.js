@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
         <Text
           style={{
             fontSize: 40,
-            color: "black",
+            color: "#009387",
             paddingLeft: 5,
             fontWeight: "600",
             marginTop: -390,
@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
         <Text
           style={{
             fontSize: 40,
-            color: "black",
+            color: "#009387",
             marginTop: 20,
             marginBottom: -5,
             paddingLeft: 10,
@@ -50,13 +50,13 @@ const Home = ({ navigation }) => {
             //   width: 0,
             //   height: 2,
             // },
-            // shadowOpacity: 0.9,
+            // shadowOpacity: 0.5,
             // shadowRadius: 7,
 
             // elevation: 5,
           }}
         >
-          New Arrivale
+          New Arrivals
         </Text>
         <NewItemList navigation={navigation} />
       </View>

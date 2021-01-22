@@ -14,35 +14,43 @@ import { observer } from "mobx-react";
 const Categories = ({ navigation }) => {
   const category = [
     {
-      name: "FURNITURES",
+      name: "FURNITURE",
+      lable: "Furniture",
       image: furniture1,
     },
     {
-      name: "KITCHENWARES",
+      name: "KITCHENWARE",
+      lable: "Kitchenware",
       image: kitchenware,
     },
     {
-      name: "ARTS",
+      name: "ART",
+      lable: "Art",
       image: art,
     },
     {
       name: "TOYS",
+      lable: "Toy",
       image: toys,
     },
     {
       name: "TOOLS",
+      lable: "Tool",
       image: tools,
     },
     {
       name: "BOOKS",
+      lable: "Book",
       image: book,
     },
     {
       name: "ELECTRONICS",
+      lable: "Electronic",
       image: elect,
     },
     {
       name: "CLOTHES",
+      lable: "Clothe",
       image: clothes,
     },
   ];
@@ -65,6 +73,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
-    // flexWrap: "wrap",
+    flexWrap: "wrap",
   },
 });

@@ -19,6 +19,7 @@ const DriverHomePage = ({ navigation }) => {
   const requested = itemStore.items.filter(
     (item) => item.driverId === driver.id
   );
+  if (authStore.user.id === 0) return navigation.navigate("Main");
   return (
     <Content style={{ backgroundColor: "white" }}>
       <Text style={styles.username}>Hello, {driver.username}</Text>
