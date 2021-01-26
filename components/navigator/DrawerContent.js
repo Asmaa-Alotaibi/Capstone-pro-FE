@@ -19,6 +19,7 @@ import profileStore from "../../stores/profileStore";
 
 const DrawerContent = (props) => {
   if (profileStore.loading) return <Spinner />;
+  profileStore.fetchprofiles();
   const items = itemStore.items.filter(
     (item) => item.ownerId === authStore.user.id
   );
