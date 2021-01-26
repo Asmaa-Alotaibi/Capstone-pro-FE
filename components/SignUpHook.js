@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { EyeButtonStyled } from "../styles";
 import authStore from "../stores/authStore";
 import { color } from "react-native-reanimated";
+import { showMessage } from "react-native-flash-message";
 
 export default function App({ navigation }) {
   const { control, handleSubmit, errors, getValues } = useForm();
@@ -40,7 +41,7 @@ export default function App({ navigation }) {
 
             backgroundColor: "black", // background color
             color: "#fff",
-          })
+          }) & navigation.navigate("Home")
         : showMessage({
             message: `Fieled`,
             description: `You Signed up Succesfully, Thanks !`,
